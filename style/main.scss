@@ -1,0 +1,11 @@
+@import "colors.scss";
+@import "widgets/bar.scss";
+
+* {
+    font-family: Roboto;
+    color: $on_background;
+}
+
+.background {
+    background-color: $background;
+}

@@ -1,0 +1,9 @@
+{
+    "profile": {
+        "hostname": "XtremeArch",
+        "picture": "/home/axel/.config/shell/res/profile"
+    },
+    "bar": {
+        "music-player": "spotube"
+    }
+}

@@ -1,0 +1,32 @@
+@mixin hoverable {
+    &:hover {
+        background-color: $surface_container_highest;
+    }
+
+    background-color: $surface_container;
+}
+
+.bar {
+    padding: 3px 10px;
+}
+
+.bar-container {
+    @include hoverable;
+    padding: 8px;
+    border-radius: 6px;
+}
+
+.bar button {
+    padding: 0px 8px;
+}
+
+.workspace {
+    &.active {
+        padding: 4px 12px;
+    }
+
+    padding: 4px;
+    border-radius: 6px;
+    background-color: $on_background;
+    transition: all 0.2s ease-in-out;
+}

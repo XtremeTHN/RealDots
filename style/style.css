@@ -1,0 +1,37 @@
+.bar {
+  padding: 3px 10px;
+}
+
+.bar-container {
+  background-color: #1b2122;
+  padding: 8px;
+  border-radius: 6px;
+}
+.bar-container:hover {
+  background-color: #303637;
+}
+
+.bar button {
+  padding: 0px 8px;
+}
+
+.workspace {
+  padding: 4px;
+  border-radius: 6px;
+  background-color: #dee4e4;
+  transition: all 0.2s ease-in-out;
+}
+.workspace.active {
+  padding: 4px 12px;
+}
+
+* {
+  font-family: Roboto;
+  color: #dee4e4;
+}
+
+.background {
+  background-color: #0e1415;
+}
+
+/*# sourceMappingURL=style.css.map */
