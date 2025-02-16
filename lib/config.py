@@ -4,10 +4,12 @@ from inotify.adapters import Inotify
 from inotify.constants import IN_MODIFY
 from typing import TypeVar
 from lib.constants import JSON_CONFIG_PATH
+from pathlib import Path
+from lib.logger import getLogger
 import json
 
-T = TypeVar("T", bound="_conf")
-SettingsObj = TypeVar("SettingsObj", bound="Settings")
+T = TypeVar("T", bound="Config")
+SettingsObj = TypeVar("SettingsObj", bound="Json")
 
 class opt(GObject.GObject):
     __gsignals__ = {
@@ -67,21 +69,33 @@ class opt(GObject.GObject):
 
         self.emit("changed")
 
-class Settings(GObject.Object, Task):
+class Json(GObject.Object, Task):
     __gsignals__ = {
         "changed": (GObject.SignalFlags.RUN_FIRST, None, ()),
     }
-    def __init__(self, filename):
+    def __init__(self, file_obj: Path):
         GObject.Object.__init__(self)
         Task.__init__(self, self.__run)
 
-        self.filename = filename
+        if file_obj.is_file() is False:
+            file_obj.touch()
+        
+        self.file_obj = file_obj
+        self.logger = getLogger("Json")
         self.observer = Inotify()
-        self.observer.add_watch(filename, mask=IN_MODIFY)
+        self.observer.add_watch(str(file_obj), mask=IN_MODIFY)
 
-        with open(self.filename, "r") as f:
-            self.content = json.load(f)
+        self.content = {}
+        self.__read_content()
+
         self.should_stop = Event()
+    
+    def __read_content(self):
+        try:
+            self.content = json.loads(self.file_obj.read_text())
+        except:
+            self.logger.exception("Failed to parse json")
+            self.logger.info("Config unchanged")
 
     def __run(self):
         if self.observer is not None:
@@ -90,31 +104,31 @@ class Settings(GObject.Object, Task):
                     if self.should_stop.is_set():
                         break
                     if event is not None:
-                        try:
-                            with open(self.filename, "r") as f:
-                                self.content = json.load(f)
-                        except Exception as e:
-                            print("failed to parse json:", e)
+                        self.logger.debug("Recieved event: %s", event)
+                        self.__read_content()
                         self.emit("changed")
             except KeyboardInterrupt:
                 self.stop()
     
     def stop(self):
-        self.observer.remove_watch(self.filename)
+        self.logger.info("Stopping...")
+        self.observer.remove_watch(str(self.file_obj))
         self.should_stop.set()
     
     def get_opt(self, key):
         return opt(key.split("."), self)
     
     def save(self):
-        with open(self.filename, "w") as f:
-            f.write(json.dumps(self.content))
-            self.emit("changed")
+        self.logger.info("Saving config...")
+        try:
+            self.file_obj.write_text(json.dumps(self.content))
+        except:
+            self.logger.exception("Failed to save config")
 
 class Config:
     _instance = None
     def __init__(self):
-        self.conf = Settings(str(JSON_CONFIG_PATH))
+        self.conf = Json(JSON_CONFIG_PATH)
         self.conf.start()
 
         self.profile_picture = self.conf.get_opt("profile.picture")

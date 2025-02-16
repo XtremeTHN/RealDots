@@ -15,6 +15,10 @@
   padding: 0px 8px;
 }
 
+.overlay-background {
+  background-color: rgba(14, 20, 21, 0.5);
+}
+
 .workspace {
   padding: 4px;
   border-radius: 6px;

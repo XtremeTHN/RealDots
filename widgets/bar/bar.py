@@ -1,46 +1,76 @@
-from gi.repository import Astal, Gtk, Adw, Gdk, GLib
-from lib.config import Config
-from lib.variable import Variable
-from lib.constants import CONFIG_DIR
+from gi.repository import Gtk, Adw, Astal, GLib, Gdk
 
+from lib.utils import Box
+from lib.config import Config
+from lib.logger import getLogger
+from lib.variable import Variable
 from widgets.bar.workspaces import Workspaces
 
-conf = Config.get_default()
-
-@Gtk.Template(filename=str(CONFIG_DIR / "res/ui/bar.ui"))
 class Bar(Astal.Window):
-    __gtype_name__ = "Bar"
-    
-    start_box: Gtk.Box = Gtk.Template.Child()
-    pfp: Adw.Avatar = Gtk.Template.Child()
-    hostname: Gtk.Label = Gtk.Template.Child()
-    time: Gtk.Label = Gtk.Template.Child()
-    def __init__(self, m):
-        super().__init__(gdkmonitor=m, anchor=Astal.WindowAnchor.BOTTOM | Astal.WindowAnchor.LEFT | Astal.WindowAnchor.RIGHT)
-        self.time_var = Variable("").poll(1000, self.update_time)
+    def __init__(self, mon):
+        self.logger = getLogger("Bar")
 
-        conf.profile_picture.on_change(self.change_pfp, once=True)
-        conf.hostname.on_change(self.change_hostname, once=True)
+        super().__init__(gdkmonitor=mon, anchor=Astal.WindowAnchor.BOTTOM | Astal.WindowAnchor.LEFT | Astal.WindowAnchor.RIGHT)
+        self.add_css_class("bar")
+        self.cfg = Config.get_default()
 
-        self.start_box.append(Workspaces())
+        self.root = Gtk.CenterBox(orientation=Gtk.Orientation.HORIZONTAL)
+        self.time = Variable("")
+
+        # Bar left side
+        self._left_box = Box(spacing=10)
+        self.profile_picture_widget = Adw.Avatar(size=30)
+        self.hostname_widget = Gtk.Label(css_classes=["bar-container"])
+
+        self.workspaces_widget = Workspaces()
+        self._left_box.append_all([self.profile_picture_widget, self.hostname_widget, self.workspaces_widget])
+
+        # Bar center
+        # TODO: task bar
+
+        # Bar right side
+        self._right_box = Box(spacing=10)
+        self.music_widget = Box()
+        self.time_widget = Gtk.Label(css_classes=["bar-container"])
+        self.control_button_widget = Gtk.Button(css_classes=["bar-container"])
+        self.control_button_box = Box()
+        self.bluetooth_icon = Gtk.Image.new_from_icon_name("bluetooth-none-symbolic")
+        self.network_icon = Gtk.Image.new_from_icon_name("network-wireless-no-route-symbolic")
+
+        self._right_box.append_all([self.music_widget, self.time_widget, self.control_button_widget])
+
+        self.root.set_start_widget(self._left_box)
+        self.root.set_end_widget(self._right_box)
+
+        # Connections
+        self.cfg.profile_picture.on_change(self.change_pfp, once=True)
+        self.cfg.hostname.on_change(self.change_hostname, once=True)
+        self.time.poll(1000, self.update_time)
+        
+        self.set_child(self.root)
 
         self.present()
     
     def update_time(self):
-        self.time.set_label(GLib.DateTime.new_now_local().format("%I:%M %p %b %Y"))
-
+        self.time_widget.set_label(GLib.DateTime.new_now_local().format("%I:%M %p %b %Y"))
+    
     def change_hostname(self, _):
-        if conf.hostname.is_set():
-            self.hostname.set_text(conf.hostname.value)
+        self.logger.debug("Changing hostname...")
+        self.logger.debug("Hostname: %s", self.cfg.hostname.value)
+        if self.cfg.hostname.is_set():
+            self.hostname_widget.set_text(self.cfg.hostname.value)
         else:
             # Default host
-            self.hostname.set_text("Linux")
-
+            self.hostname_widget.set_text("Linux")
+    
     def change_pfp(self, _):
-        if conf.profile_picture.is_set():
+        self.logger.debug("Changing profile picture...")
+        self.logger.debug("Path: %s", self.cfg.profile_picture.value)
+        if self.cfg.profile_picture.is_set():
             try:
-                img = Gdk.Texture.new_from_filename(conf.profile_picture.value)
+                img = Gdk.Texture.new_from_filename(self.cfg.profile_picture.value)
             except Exception as e:
-                print("couldn't create texture from file:", conf.profile_picture.value, "\nerror:", e)
+                self.logger.error("Couldn't create texture from file: %s", self.cfg.profile_picture.value)
+                self.logger.error("Error: %s", e)
                 return
-            self.pfp.set_custom_image(img)
+            self.profile_picture_widget.set_custom_image(img)

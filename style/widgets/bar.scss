@@ -20,6 +20,10 @@
     padding: 0px 8px;
 }
 
+.overlay-background {
+    background-color: rgba($background, 0.5);
+}
+
 .workspace {
     &.active {
         padding: 4px 12px;
