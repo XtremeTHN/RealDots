@@ -6,9 +6,9 @@ from typing import TypeVar
 from lib.constants import JSON_CONFIG_PATH
 from pathlib import Path
 from lib.logger import getLogger
+from lib.utils import Object
 import json
 
-T = TypeVar("T", bound="Config")
 SettingsObj = TypeVar("SettingsObj", bound="Json")
 
 class opt(GObject.GObject):
@@ -125,8 +125,7 @@ class Json(GObject.Object, Task):
         except:
             self.logger.exception("Failed to save config")
 
-class Config:
-    _instance = None
+class Config(Object):
     def __init__(self):
         self.conf = Json(JSON_CONFIG_PATH)
         self.conf.start()
@@ -136,11 +135,3 @@ class Config:
 
         self.player = self.conf.get_opt("bar.music-player")
 
-    @classmethod
-    def get_default(cls: type[T]) -> T:
-        """
-        Returns the default Service object for this process, creating it if necessary.
-        """
-        if cls._instance is None:
-            cls._instance = cls()
-        return cls._instance

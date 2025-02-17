@@ -1,4 +1,5 @@
 from gi.repository import Gtk, GObject
+from typing import TypeVar
 
 class Box(Gtk.Box):
     def __init__(self, vertical=False, spacing=0, children=[], css_classes=[]):
@@ -44,3 +45,18 @@ class Box(Gtk.Box):
         super().append(child)
         self.__children.append(child)
         self.notify("children")
+
+T = TypeVar("T", bound="Object")
+class Object(GObject.Object):
+    _instance = None
+    def __init__(self):
+        super().__init__()
+    
+    @classmethod
+    def get_default(cls: type[T]) -> T:
+        """
+        Returns the default Service object for this process, creating it if necessary.
+        """
+        if cls._instance is None:
+            cls._instance = cls()
+        return cls._instance
