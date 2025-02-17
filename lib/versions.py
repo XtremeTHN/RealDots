@@ -7,6 +7,7 @@ gi.require_versions({
     "Astal": "4.0",
     "AstalMpris": "0.1",
     "AstalNetwork": "0.1",
+    "AstalWp": "0.1",
     "Adw": "1",
     "Gtk": "4.0"
 })

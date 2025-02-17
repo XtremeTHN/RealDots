@@ -4,7 +4,7 @@ from lib.utils import Box
 from lib.config import Config
 from lib.logger import getLogger
 from lib.variable import Variable
-from widgets.bar.quickicons import NetworkIndicator
+from widgets.bar.quickicons import NetworkIndicator, AudioIndicator
 from widgets.bar.hypr import Workspaces, ActiveWindow
 
 class Bar(Astal.Window):
@@ -34,14 +34,15 @@ class Bar(Astal.Window):
         self.music_widget = Box()
         self.time_widget = Gtk.Label(css_classes=["bar-container"])
         self.control_button_widget = Gtk.Button(css_classes=["bar-container"])
-        self.control_button_box = Box()
+        self.control_button_box = Box(spacing=10)
         self.control_button_widget.set_child(self.control_button_box)
 
         # TODO: implement bluetooth indicator
         self.bluetooth_icon = Gtk.Image.new_from_icon_name("bluetooth-disabled-symbolic")
+        self.audio_icon = AudioIndicator()
         self.network_icon = NetworkIndicator()
 
-        self.control_button_box.append_all([self.bluetooth_icon, self.network_icon])
+        self.control_button_box.append_all([self.audio_icon, self.bluetooth_icon, self.network_icon])
 
         self._right_box.append_all([self.music_widget, self.time_widget, self.control_button_widget])
 
