@@ -132,7 +132,6 @@ class Config:
         self.conf.start()
 
         self.profile_picture = self.conf.get_opt("profile.picture")
-        self.hostname = self.conf.get_opt("profile.hostname")
         self.wallpaper = self.conf.get_opt("background.wallpaper")
 
         self.player = self.conf.get_opt("bar.music-player")

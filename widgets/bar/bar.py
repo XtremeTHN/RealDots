@@ -4,7 +4,8 @@ from lib.utils import Box
 from lib.config import Config
 from lib.logger import getLogger
 from lib.variable import Variable
-from widgets.bar.workspaces import Workspaces
+from widgets.bar.quickicons import NetworkIndicator
+from widgets.bar.hypr import Workspaces, ActiveWindow
 
 class Bar(Astal.Window):
     def __init__(self, mon):
@@ -20,10 +21,10 @@ class Bar(Astal.Window):
         # Bar left side
         self._left_box = Box(spacing=10)
         self.profile_picture_widget = Adw.Avatar(size=30)
-        self.hostname_widget = Gtk.Label(css_classes=["bar-container"])
+        self.window_info = ActiveWindow()
 
         self.workspaces_widget = Workspaces()
-        self._left_box.append_all([self.profile_picture_widget, self.hostname_widget, self.workspaces_widget])
+        self._left_box.append_all([self.profile_picture_widget, self.window_info, self.workspaces_widget])
 
         # Bar center
         # TODO: task bar
@@ -34,8 +35,13 @@ class Bar(Astal.Window):
         self.time_widget = Gtk.Label(css_classes=["bar-container"])
         self.control_button_widget = Gtk.Button(css_classes=["bar-container"])
         self.control_button_box = Box()
-        self.bluetooth_icon = Gtk.Image.new_from_icon_name("bluetooth-none-symbolic")
-        self.network_icon = Gtk.Image.new_from_icon_name("network-wireless-no-route-symbolic")
+        self.control_button_widget.set_child(self.control_button_box)
+
+        # TODO: implement bluetooth indicator
+        self.bluetooth_icon = Gtk.Image.new_from_icon_name("bluetooth-disabled-symbolic")
+        self.network_icon = NetworkIndicator()
+
+        self.control_button_box.append_all([self.bluetooth_icon, self.network_icon])
 
         self._right_box.append_all([self.music_widget, self.time_widget, self.control_button_widget])
 
@@ -44,7 +50,6 @@ class Bar(Astal.Window):
 
         # Connections
         self.cfg.profile_picture.on_change(self.change_pfp, once=True)
-        self.cfg.hostname.on_change(self.change_hostname, once=True)
         self.time.poll(1000, self.update_time)
         
         self.set_child(self.root)
@@ -58,10 +63,10 @@ class Bar(Astal.Window):
         self.logger.debug("Changing hostname...")
         self.logger.debug("Hostname: %s", self.cfg.hostname.value)
         if self.cfg.hostname.is_set():
-            self.hostname_widget.set_text(self.cfg.hostname.value)
+            self.window_name_widget.set_text(self.cfg.hostname.value)
         else:
             # Default host
-            self.hostname_widget.set_text("Linux")
+            self.window_name_widget.set_text("Linux")
     
     def change_pfp(self, _):
         self.logger.debug("Changing profile picture...")
