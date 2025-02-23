@@ -1,0 +1,11 @@
+[colors]
+background = "{{colors.background.default.hex}}ff"
+text = "{{colors.primary.default.hex}}ff"
+selection = "{{colors.on_primary_container.default.hex}}ff"
+selection-text = "{{colors.on_primary.default.hex}}ff"
+border = "{{colors.tertiary.default.hex}}ff"
+selection-match = "{{colors.tertiary.default.hex}}ff"
+
+[border]
+radius = 17
+width = 1

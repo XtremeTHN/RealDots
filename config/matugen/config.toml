@@ -1,0 +1,21 @@
+[config]
+
+[config.wallpaper]
+command = "swww"
+arguments = ["img", "--transition-type", "center"] 
+
+[templates.fuzzel]
+input_path = "templates/fuzzel.tmp"
+output_path = "~/.config/fuzzel/fuzzel.ini"
+
+[templates.nvim]
+input_path = "templates/nvim_colors.tmp"
+output_path = "~/.config/nvim/lua/themes/matugen.lua"
+
+[templates.gtk3]
+input_path = "templates/gtk.tmp"
+output_path = "~/.themes/adw-gtk3-dark/gtk-3.0/colors.css"
+
+[templates.gtk4]
+input_path = "templates/gtk.tmp"
+output_path = "~/.themes/adw-gtk3-dark/gtk-4.0/colors.css"
