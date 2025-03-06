@@ -1,16 +1,15 @@
-import gi
 from ctypes import CDLL
 CDLL('libgtk4-layer-shell.so')
 
+import gi
+def __require_astal_feats(feature: str | list[str], version="0.1"):
+    if isinstance(feature, str):
+        feature = [feature]
+    for x in feature:
+        gi.require_version(f"Astal{x}", version)
+
 gi.require_versions({
-    "AstalHyprland": "0.1",
     "Astal": "4.0",
-    "AstalMpris": "0.1",
-    "AstalNetwork": "0.1",
-    "AstalWp": "0.1",
-    "Adw": "1",
-    "Gtk": "4.0"
 })
 
-from gi.repository import Adw
-Adw.init()
+__require_astal_feats(["IO", "Hyprland", "Network"])

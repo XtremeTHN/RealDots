@@ -1,13 +1,14 @@
 import lib.versions
+import sys
+
 from gi.repository import Astal, AstalIO, Gio
 
 from lib.task import Task
 from lib.config import Config
-from lib.logger import getLogger
+from widgets.bar.bar import Bar
 from lib.style import compile_scss
 from lib.constants import CONFIG_DIR
-
-from widgets.bar import Bar
+from lib.logger import getLogger
 
 class ShellApp(Astal.Application):
     def __init__(self):

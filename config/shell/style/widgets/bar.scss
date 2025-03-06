@@ -1,40 +1,35 @@
-@mixin hoverable {
-    &:hover {
-        background-color: $surface_container_highest;
-    }
-
-    background-color: $surface_container;
+.bar {
+    padding: 5px 10px;
+    background-color: rgba($background, 0.2);
 }
 
-.bar {
-    padding: 3px 10px;
+.bar-window {
+    background-color: transparent;
 }
 
 .bar-container {
-    @include hoverable;
-    padding: 8px;
-    border-radius: 6px;
+    background-color: rgba($surface_container, 0.8);
+    padding: 3px 5px;
+    border-radius: 3px;
 }
 
-.bar button {
-    padding: 0px 8px;
-}
+// .workspace {
+//     padding: 2px 6px;
+//     border-radius: 6px;
+//     background-color: rgba($tertiary, 0.4);
+// }
+// .workspace.active {
+//     background-color: rgba($tertiary, 0.6);
+// }
 
-.overlay-background {
-    background-color: rgba($background, 0.5);
-}
+// .workspace {
+//     &.active {
+//         background-color: $primary;
+//         // padding: 4px 12px;
+//     }
 
-.window-class {
-    font-size: xx-small;
-}
-
-.workspace {
-    &.active {
-        padding: 4px 12px;
-    }
-
-    padding: 4px;
-    border-radius: 6px;
-    background-color: $on_background;
-    transition: all 0.2s ease-in-out;
-}
+//     padding: 6px;
+//     border-radius: 6px;
+//     background-color: $on_background;
+//     transition: all 0.2s ease-in-out;
+// }

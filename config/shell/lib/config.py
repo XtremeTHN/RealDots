@@ -15,11 +15,12 @@ class opt(GObject.GObject):
     __gsignals__ = {
         "changed": (GObject.SignalFlags.RUN_FIRST, None, ()),
     }
-    def __init__(self, keys: list[str], settings_obj: SettingsObj):
+    def __init__(self, keys: list[str], settings_obj: SettingsObj, default_value=None):
         super().__init__()
+        self.logger = settings_obj.logger
         self.settings_obj = settings_obj
         self.keys = keys
-        self._value = self.__get()
+        self._value = default_value if (n:=self.__get()) is None else n
 
         self.settings_obj.connect("changed", self.__settings_changed)
         self.__settings_changed(None)
@@ -42,10 +43,12 @@ class opt(GObject.GObject):
         return self._dict
 
     def __set(self, value):
+        python_line = 'self.settings_obj.content' + "".join(f"[{key}]" for key in self.keys) + " = value"
         try:
-            exec('self.settings_obj.content' + ".".join(f"[{key}]" for key in self.keys) + " = value")
-        except Exception as e:
-            print("failed to set value:", e)
+            exec(python_line)
+        except:
+            self.logger.exception("Failed to set value")
+            self.logger.debug("formatted python line: %s", python_line)
 
     def __settings_changed(self, _): 
         if (v:=self.__get()) is not None:
@@ -115,8 +118,8 @@ class Json(GObject.Object, Task):
         self.observer.remove_watch(str(self.file_obj))
         self.should_stop.set()
     
-    def get_opt(self, key):
-        return opt(key.split("."), self)
+    def get_opt(self, key, default=None):
+        return opt(key.split("."), self, default)
     
     def save(self):
         self.logger.info("Saving config...")
@@ -130,8 +133,9 @@ class Config(Object):
         self.conf = Json(JSON_CONFIG_PATH)
         self.conf.start()
 
-        self.profile_picture = self.conf.get_opt("profile.picture")
         self.wallpaper = self.conf.get_opt("background.wallpaper")
 
+        self.fallback_window_name = self.conf.get_opt("bar.active-window.fallback-name", default="ArchLinux")
         self.player = self.conf.get_opt("bar.music-player")
+
 

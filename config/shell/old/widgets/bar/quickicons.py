@@ -1,9 +1,10 @@
 from gi.repository import Gtk, GObject
 from lib.network import NWrapper
+from lib.audio import WpWrapper
 
 class NetworkIndicator(Gtk.Image):
     def __init__(self):
-        super().__init__(pixel_size=14)
+        super().__init__()
         self.net = NWrapper.get_default()
 
         self.__icon_binding = None
@@ -22,4 +23,10 @@ class NetworkIndicator(Gtk.Image):
             self.__ssid_binding.unbind()
         self.net.bind_property("ssid", self, "tooltip-text", GObject.BindingFlags.SYNC_CREATE)
 
-class BluetoothIndicator(Gtk.Image)
+class AudioIndicator(Gtk.Image):
+    def __init__(self):
+        super().__init__()
+        self.wp = WpWrapper.get_default()
+
+        self.wp.bind_property("icon-name", self, "icon-name", GObject.BindingFlags.SYNC_CREATE)
+        self.wp.bind_property("volume", self, "tooltip-text", GObject.BindingFlags.SYNC_CREATE)

@@ -1,45 +1,27 @@
 .bar {
-  padding: 3px 10px;
+  padding: 5px 10px;
+  background-color: rgba(14, 20, 21, 0.2);
+}
+
+.bar-window {
+  background-color: transparent;
 }
 
 .bar-container {
-  background-color: #1b2122;
-  padding: 8px;
-  border-radius: 6px;
-}
-.bar-container:hover {
-  background-color: #303637;
+  background-color: rgba(27, 33, 34, 0.8);
+  padding: 3px 5px;
+  border-radius: 3px;
 }
 
-.bar button {
-  padding: 0px 8px;
-}
-
-.overlay-background {
-  background-color: rgba(14, 20, 21, 0.5);
-}
-
-.window-class {
-  font-size: xx-small;
-}
-
-.workspace {
-  padding: 4px;
-  border-radius: 6px;
-  background-color: #dee4e4;
-  transition: all 0.2s ease-in-out;
-}
-.workspace.active {
-  padding: 4px 12px;
+.corner {
+  background-color: transparent;
 }
 
 * {
   font-family: Roboto;
+  font-weight: 600;
+  font-size: 0.9rem;
   color: #dee4e4;
-}
-
-.background {
-  background-color: #0e1415;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -1,11 +1,14 @@
 @import "colors.scss";
 @import "widgets/bar.scss";
 
-* {
-    font-family: Roboto;
-    color: $on_background;
+.corner {
+    // color: $background;
+    background-color: transparent;
 }
 
-.background {
-    background-color: $background;
+* {
+    font-family: Roboto;
+    font-weight: 600;
+    font-size: 0.90rem;
+    color: $on_background;
 }

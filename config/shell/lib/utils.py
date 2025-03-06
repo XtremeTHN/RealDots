@@ -2,7 +2,7 @@ from gi.repository import Gtk, GObject
 from typing import TypeVar
 
 class Box(Gtk.Box):
-    def __init__(self, vertical=False, spacing=0, children=[], css_classes=[]):
+    def __init__(self, vertical=False, spacing=0, children=[], css_classes=[], **kwargs):
         """
         Helper class for :class:`Gtk.Box`
         
@@ -11,7 +11,7 @@ class Box(Gtk.Box):
         :param children: An iterable of :class:`Gtk.Widget` to append to the box.
         :param css_classes: A list of CSS classes to apply to the box.
         """
-        super().__init__(orientation=Gtk.Orientation.VERTICAL if vertical else Gtk.Orientation.HORIZONTAL, spacing=spacing, css_classes=css_classes)
+        super().__init__(orientation=Gtk.Orientation.VERTICAL if vertical else Gtk.Orientation.HORIZONTAL, spacing=spacing, css_classes=css_classes, **kwargs)
         self.__children = []
         self.append_all(children)
 
