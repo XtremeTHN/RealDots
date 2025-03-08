@@ -29,4 +29,7 @@ class Workspace(Gtk.Label):
         self.hypr.connect('notify::focused-workspace', self.on_workspace_change); self.on_workspace_change(None, None)
 
     def on_workspace_change(self, _, __):
-        self.set_text(f"Workspace {self.hypr.get_focused_workspace().get_id()}")
+        if self.hypr.get_focused_workspace() is None:
+            self.set_text("Workspace Unknown")
+        else:
+            self.set_text(f"Workspace {self.hypr.get_focused_workspace().get_id()}")

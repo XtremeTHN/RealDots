@@ -2,8 +2,8 @@ from gi.repository import Gtk, GObject
 from lib.network import NWrapper
 
 class NetworkIndicator(Gtk.Image):
-    def __init__(self):
-        super().__init__(pixel_size=14)
+    def __init__(self, _class=[]):
+        super().__init__(pixel_size=14, css_classes=_class)
         self.net = NWrapper.get_default()
 
         self.__icon_binding = None
@@ -22,4 +22,4 @@ class NetworkIndicator(Gtk.Image):
             self.__ssid_binding.unbind()
         self.net.bind_property("ssid", self, "tooltip-text", GObject.BindingFlags.SYNC_CREATE)
 
-class BluetoothIndicator(Gtk.Image)
+# class BluetoothIndicator(Gtk.Image)

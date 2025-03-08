@@ -1,4 +1,5 @@
 from threading import Event, Thread
+import time
 
 class Task(Thread):
     unfinished_cancelable_tasks = []
@@ -28,9 +29,18 @@ class Task(Thread):
             task.stop()
 
 class LoopTask(Task):
-    def __init__(self, function, *args, **kwargs):
-        super().__init__(function, *args, **kwargs)
+    def __init__(self, function, delay=0, *args, **kwargs):
+        """
+        Initializes a LoopTask with a given function, delay and arguments.
 
+        :param function: The function to run.
+        :param delay: The delay in seconds between each function call.
+        :param \\*args: Arguments to pass to the function.
+        :param \\*\\*kwargs: Keyword arguments to pass to the function.
+        """
+        
+        super().__init__(function, *args, **kwargs)
+        self.delay = delay
         self.should_stop = Event()
     
     def stop(self):
@@ -41,6 +51,7 @@ class LoopTask(Task):
         Task.unfinished_cancelable_tasks.append(self)
         while self.should_stop.is_set() == False:
             self.func(*self.args, **self.kwargs)
+            time.sleep(self.delay)
         try:
             Task.unfinished_cancelable_tasks.remove(self)
         except:
