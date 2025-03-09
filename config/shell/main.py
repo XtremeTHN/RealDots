@@ -46,10 +46,12 @@ class ShellApp(Astal.Application):
         for m in self.get_monitors():
             self.add_window(Bar(m))
 
-app = ShellApp()
-
-if __name__ == "__main__":
-    # init_log(debug=True if "-d" in sys.argv or "--debug" in sys.argv else False)
+def run():
+    app = ShellApp()
+    
     app.acquire_socket()
     app.run()
     Task.stop_cancellable_tasks()
+
+if __name__ == "__main__":
+    run()
