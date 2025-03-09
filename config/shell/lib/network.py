@@ -16,6 +16,8 @@ class NWrapper(Object):
         self.__ssid_binding = None
         self.__bind_device_props()
 
+        # print(self.wired.get_state
+
         self.net.connect('notify::wifi', self.on_wifi_changed)
         self.net.connect('notify::wired', self.on_wired_changed)
     
@@ -50,7 +52,7 @@ class NWrapper(Object):
             self.ssid = "Disconnected (No device)"
 
     def is_wired(self):
-        if self.wired is not None:
+        if self.wired.get_state() != AstalNetwork.DeviceState.UNAVAILABLE:
             return True
         return False
     
