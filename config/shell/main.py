@@ -1,4 +1,4 @@
-import lib.versions
+import lib.versions as _
 from gi.repository import Astal, AstalIO, Gio
 
 from lib.task import Task
