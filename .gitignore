@@ -1,3 +1,7 @@
 .venv
 __pycache__
 profile
+.old
+colors.scss
+style.css
+style.css.map

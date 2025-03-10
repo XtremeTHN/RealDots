@@ -19,3 +19,7 @@ output_path = "~/.themes/adw-gtk3-dark/gtk-3.0/colors.css"
 [templates.gtk4]
 input_path = "templates/gtk.tmp"
 output_path = "~/.themes/adw-gtk3-dark/gtk-4.0/colors.css"
+
+[templates.astal]
+input_path = "templates/astal.tmp"
+output_path = "~/.config/shell/style/colors.scss"
