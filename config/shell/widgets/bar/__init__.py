@@ -1,4 +1,4 @@
-from widgets.bar.quickicons import NetworkIndicator, VolumeIndicator
+from widgets.bar.quickicons import NetworkIndicator, VolumeIndicator, BatteryIndicator
 from widgets.bar.hypr import Workspace, ActiveWindow
 from lib.task import LoopTask
 from lib.utils import Box
@@ -22,8 +22,9 @@ class BarContent(Gtk.CenterBox):
         self.quickicons = Box(spacing=10, css_classes=["bar-container"])
         self.network_indicator = NetworkIndicator()
         self.volume_indicator = VolumeIndicator()
+        self.battery_indicator = BatteryIndicator()
 
-        self.quickicons.append_all([self.network_indicator, self.volume_indicator])
+        self.quickicons.append_all([self.network_indicator, self.volume_indicator, self.battery_indicator])
         self.right_box.append_all([self.date_widget, self.quickicons])
 
         self.set_start_widget(self.left_box)

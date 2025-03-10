@@ -1,5 +1,8 @@
-from gi.repository import Gtk, GObject, AstalWp
+from gi.repository import Gtk, GObject, AstalWp, AstalBattery
 from lib.network import NWrapper
+
+def convert_to_percent(_, value):
+    return f"{int(value * 100)}%"
 
 class NetworkIndicator(Gtk.Image):
     def __init__(self, _class=[]):
@@ -38,7 +41,18 @@ class VolumeIndicator(Gtk.Image):
             return
         
         self.speaker.bind_property("volume-icon", self, "icon-name", GObject.BindingFlags.SYNC_CREATE)
-        self.speaker.bind_property("volume", self, "tooltip-text", GObject.BindingFlags.SYNC_CREATE, transform_to=lambda _,v: f"{int(v * 100)}%")
+        self.speaker.bind_property("volume", self, "tooltip-text", GObject.BindingFlags.SYNC_CREATE, transform_to=convert_to_percent)
+
+class BatteryIndicator(Gtk.Image):
+    def __init__(self, _class=[]):
+        super().__init__(pixel_size=14, css_classes=_class)
+        self.battery = AstalBattery.get_default()
+        if self.battery.get_power_supply() is False:
+            self.set_visible(False)
+            return
+        
+        self.battery.bind_property("percentage", self, "tooltip-text", GObject.BindingFlags.SYNC_CREATE, transform_to=convert_to_percent)
+        self.battery.bind_property("icon-name", self, "icon-name", GObject.BindingFlags.SYNC_CREATE)
 
 
 # class BluetoothIndicator(Gtk.Image)
