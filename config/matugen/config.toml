@@ -14,11 +14,15 @@ output_path = "~/.config/nvim/lua/themes/matugen.lua"
 
 [templates.gtk3]
 input_path = "templates/gtk.tmp"
-output_path = "~/.themes/adw-gtk3-dark/gtk-3.0/colors.css"
+output_path = "~/.themes/adw-gtk3-dark-matugen/gtk-3.0/colors.css"
 
 [templates.gtk4]
 input_path = "templates/gtk.tmp"
-output_path = "~/.themes/adw-gtk3-dark/gtk-4.0/colors.css"
+output_path = "~/.themes/adw-gtk3-dark-matugen/gtk-4.0/colors.css"
+
+[templates.kitty]
+input_path = "templates/kitty.tmp"
+output_path = "~/.config/kitty/matugen.conf"
 
 [templates.astal]
 input_path = "templates/astal.tmp"
