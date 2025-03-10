@@ -1,6 +1,6 @@
 .bar {
     padding: 5px 10px;
-    background-color: rgba($background, 0.2);
+    background-color: rgba($background, 0.8);
 }
 
 .bar-window {
@@ -12,24 +12,3 @@
     padding: 3px 5px;
     border-radius: 3px;
 }
-
-// .workspace {
-//     padding: 2px 6px;
-//     border-radius: 6px;
-//     background-color: rgba($tertiary, 0.4);
-// }
-// .workspace.active {
-//     background-color: rgba($tertiary, 0.6);
-// }
-
-// .workspace {
-//     &.active {
-//         background-color: $primary;
-//         // padding: 4px 12px;
-//     }
-
-//     padding: 6px;
-//     border-radius: 6px;
-//     background-color: $on_background;
-//     transition: all 0.2s ease-in-out;
-// }
