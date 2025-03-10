@@ -1,4 +1,5 @@
 from gi.repository import Gtk, GObject, AstalWp, AstalBattery
+from lib.logger import getLogger
 from lib.network import NWrapper
 
 def convert_to_percent(_, value):
@@ -46,8 +47,11 @@ class VolumeIndicator(Gtk.Image):
 class BatteryIndicator(Gtk.Image):
     def __init__(self, _class=[]):
         super().__init__(pixel_size=14, css_classes=_class)
+        self.logger = getLogger("BatteryIndicator")
+
         self.battery = AstalBattery.get_default()
         if self.battery.get_power_supply() is False:
+            self.logger.info("No battery found")
             self.set_visible(False)
             return
         
