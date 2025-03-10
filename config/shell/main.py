@@ -10,8 +10,8 @@ from lib.constants import CONFIG_DIR
 from widgets.bar import Bar
 
 class ShellApp(Astal.Application):
-    def __init__(self):
-        super().__init__(instance_name="astal")
+    def __init__(self, instance_name):
+        super().__init__(instance_name=instance_name)
         self.logger = getLogger("ShellApp")
         self.conf = Config.get_default()
 
@@ -46,8 +46,12 @@ class ShellApp(Astal.Application):
         for m in self.get_monitors():
             self.add_window(Bar(m))
 
-def run():
-    app = ShellApp()
+def run(args):
+    if len(args) < 2:
+        instance = "astal"
+    else:
+        instance = args[1]
+    app = ShellApp(instance)
     
     app.acquire_socket()
     app.run()
