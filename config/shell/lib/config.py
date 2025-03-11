@@ -10,6 +10,6 @@ class Config(Object):
         self.wallpaper = self.conf.get_opt("background.wallpaper")
 
         self.fallback_window_name = self.conf.get_opt("bar.active-window.fallback-name", default="ArchLinux")
-        self.player = self.conf.get_opt("bar.music-player")
+        self.player = self.conf.get_opt("bar.music-player", default="spotify")
 
 

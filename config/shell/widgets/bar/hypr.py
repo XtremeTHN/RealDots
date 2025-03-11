@@ -1,6 +1,5 @@
 from gi.repository import AstalHyprland, Gtk, Pango
 from lib.config import Config
-from lib.utils import Box
 
 class ActiveWindow(Gtk.Label):
     def __init__(self, _class=[]):
@@ -23,7 +22,7 @@ class ActiveWindow(Gtk.Label):
     def __on_window_change(self, _, __):
         win = self.hypr.get_focused_client()
         if win is not None:
-            self.set_text(win.get_title())
+            self.set_text(self.fallback_name if (n:=win.get_title()) is None else n)
         else:
             self.set_text(self.fallback_name)
 

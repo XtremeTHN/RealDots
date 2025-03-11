@@ -13,4 +13,4 @@ gi.require_versions({
 })
 
 __require_astal_feats(["IO", "Hyprland", "Network", "Wp",\
-                       "Battery"])
+                       "Battery", "Mpris"])
