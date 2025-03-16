@@ -1,11 +1,11 @@
 import lib.versions as _
 from gi.repository import Astal, AstalIO, Gio
 
-from lib.task import Task
+from lib.style import Style
 from lib.config import Config
 from lib.logger import getLogger
-from lib.style import compile_scss
 from lib.constants import CONFIG_DIR
+from lib.task import Task, TaskWrapper
 
 from widgets.quick.settings import QuickSettings
 from widgets.bar import Bar
@@ -31,11 +31,8 @@ class ShellApp(Astal.Application):
             self.reload()
     
     def reload(self):
-        self.logger.debug("Triggering wallpaper change...")
-        self.conf.wallpaper.trigger()
-
         self.logger.debug("Compiling scss...")
-        compile_scss()
+        Style.compile_scss()
 
         self.logger.debug("Applying css...")
         self.apply_css(str(CONFIG_DIR / "style/style.css"), True)
