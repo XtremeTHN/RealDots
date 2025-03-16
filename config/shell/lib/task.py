@@ -1,6 +1,14 @@
 from threading import Event, Thread
 import time
 
+class TaskWrapper:
+    def __init__(self, object, method: str):
+        self.object = object
+        self.method = method
+    
+    def stop(self):
+        getattr(self.object, self.method)()
+
 class Task(Thread):
     unfinished_cancelable_tasks = []
     def __init__(self, function, *args, **kwargs):
@@ -24,6 +32,11 @@ class Task(Thread):
         """Implement this function if you want to add a stop function to the task"""
         ...
 
+    @staticmethod
+    def add_cancellable_task(task):
+        Task.unfinished_cancelable_tasks.append(task)
+
+    @staticmethod
     def stop_cancellable_tasks():
         for task in Task.unfinished_cancelable_tasks:
             task.stop()

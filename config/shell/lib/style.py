@@ -1,7 +1,9 @@
 import subprocess
 
+from inotify.adapters import Inotify
+
 from lib.constants import CONFIG_DIR
-from gi.repository import Gio
+from lib.task import Task
 
 class Style:
     STYLES_DIR = CONFIG_DIR / "style"
@@ -13,4 +15,5 @@ class Style:
             return
         
     def watcher(cb):
+        # TODO: Implement this pls axel
         ...
