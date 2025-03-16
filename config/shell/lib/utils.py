@@ -1,5 +1,9 @@
-from gi.repository import Gtk, GObject
+from gi.repository import Gtk, GObject, Gio
+from inotify.constants import IN_MODIFY
+from inotify.adapters import Inotify
+from lib.logger import getLogger
 from typing import TypeVar
+from lib.task import Task
 
 class Box(Gtk.Box):
     def __init__(self, vertical=False, spacing=0, children=[], css_classes=[], **kwargs):
@@ -45,6 +49,36 @@ class Box(Gtk.Box):
         super().append(child)
         self.__children.append(child)
         self.notify("children")
+    
+class Watcher(GObject.Object, Task):
+    __gsignals__ = {
+        "event": (GObject.SignalFlags.RUN_FIRST, None, (str,))
+    }
+
+    def __init__(self):
+        self.logger = getLogger("Watcher")
+        self._name = "Watcher"
+        GObject.Object.__init__(self)
+        Task.__init__(self, self.__run)
+
+        self.cancellable = Gio.Cancellable.new()
+        self.watcher = Inotify()
+
+    def add_watch(self, path, mask=IN_MODIFY):
+        self.watcher.add_watch(path, mask=mask)
+        self._name = path
+    
+    def stop(self):
+        self.logger.info("[%s] Stopping...", self._name)
+        self.cancellable.cancel()
+
+    def __run(self):
+        for event in self.watcher.event_gen():
+            if self.cancellable.is_cancelled():
+                break
+
+            if event is not None:
+                self.emit("event", event)
 
 T = TypeVar("T", bound="Object")
 class Object(GObject.Object):

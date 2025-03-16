@@ -30,7 +30,7 @@ class ShellApp(Astal.Application):
             self.logger.info("Reloading css...")
             self.reload()
     
-    def reload(self):
+    def reload(self, *_):
         self.logger.debug("Compiling scss...")
         Style.compile_scss()
 
@@ -41,6 +41,7 @@ class ShellApp(Astal.Application):
         self.hold()
         self.reload()
 
+        w = Style.watcher(self.reload)
         for m in self.get_monitors():
             self.add_window(Bar(m))
             self.add_window(QuickSettings(m))

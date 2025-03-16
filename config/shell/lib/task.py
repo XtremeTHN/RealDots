@@ -65,10 +65,6 @@ class LoopTask(Task):
         while self.should_stop.is_set() == False:
             self.func(*self.args, **self.kwargs)
             time.sleep(self.delay)
-        try:
-            Task.unfinished_cancelable_tasks.remove(self)
-        except:
-            pass
 
     def start(self):
         self.should_stop.clear()
