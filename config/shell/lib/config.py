@@ -5,7 +5,6 @@ from lib.utils import Object
 class Config(Object):
     def __init__(self):
         self.conf = Json(JSON_CONFIG_PATH)
-        self.conf.start()
 
         self.wallpaper = self.conf.get_opt("background.wallpaper")
 

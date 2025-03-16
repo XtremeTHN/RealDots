@@ -1,10 +1,8 @@
 from pathlib import Path
+from typing import TypeVar
+from lib.utils import Watcher
 from lib.logger import getLogger
 from gi.repository import GObject
-from lib.task import Task, Event
-from inotify.adapters import Inotify
-from inotify.constants import IN_MODIFY
-from typing import TypeVar
 import json
 
 SettingsObj = TypeVar("SettingsObj", bound="Json")
@@ -70,26 +68,30 @@ class opt(GObject.GObject):
 
         self.emit("changed")
 
-class Json(GObject.Object, Task):
+class Json(Watcher):
     __gsignals__ = {
-        "changed": (GObject.SignalFlags.RUN_FIRST, None, ()),
+        "changed": (GObject.SignalFlags.RUN_FIRST, None, ())
     }
     def __init__(self, file_obj: Path):
-        GObject.Object.__init__(self)
-        Task.__init__(self, self.__run)
+        """
+        Initializes a Json object.
+
+        :param file_obj: The file to watch for changes.
+        """
+        super().__init__()
+        self.logger = getLogger("Watcher (Json)")
 
         if file_obj.is_file() is False:
-            file_obj.touch()
-        
+            file_obj.write_text("{}")
+
+        self.add_watch(str(file_obj))
         self.file_obj = file_obj
-        self.logger = getLogger("Json")
-        self.observer = Inotify()
-        self.observer.add_watch(str(file_obj), mask=IN_MODIFY)
 
         self.content = {}
         self.__read_content()
-
-        self.should_stop = Event()
+        
+        self.connect("event", self.__on_event)
+        self.start()
     
     def __read_content(self):
         try:
@@ -97,24 +99,16 @@ class Json(GObject.Object, Task):
         except:
             self.logger.exception("Failed to parse json")
             self.logger.info("Config unchanged")
-
-    def __run(self):
-        if self.observer is not None:
-            try:
-                for event in self.observer.event_gen():
-                    if self.should_stop.is_set():
-                        break
-                    if event is not None:
-                        self.logger.debug("Recieved event: %s", event)
-                        self.__read_content()
-                        self.emit("changed")
-            except KeyboardInterrupt:
-                self.stop()
     
+    def __on_event(self, _, event):
+        self.logger.debug("Recieved event: %s", event)
+        self.__read_content()
+        self.emit("changed")
+
     def stop(self):
         self.logger.info("Stopping...")
-        self.observer.remove_watch(str(self.file_obj))
-        self.should_stop.set()
+        self.watcher.remove_watch(str(self.file_obj))
+        self.cancellable.cancel()
     
     def get_opt(self, key, default=None):
         return opt(key.split("."), self, default)
