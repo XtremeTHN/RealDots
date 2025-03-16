@@ -41,7 +41,7 @@ class ShellApp(Astal.Application):
         self.hold()
         self.reload()
 
-        w = Style.watcher(self.reload)
+        Style.watcher(self.reload)
         for m in self.get_monitors():
             self.add_window(Bar(m))
             self.add_window(QuickSettings(m))
