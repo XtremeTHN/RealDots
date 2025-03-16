@@ -31,10 +31,8 @@ class ShellApp(Astal.Application):
             self.reload()
     
     def reload(self, *_):
-        self.logger.debug("Compiling scss...")
-        Style.compile_scss()
-
         self.logger.debug("Applying css...")
+        Style.compile_scss()
         self.apply_css(str(CONFIG_DIR / "style/style.css"), True)
     
     def do_activate(self) -> None:
