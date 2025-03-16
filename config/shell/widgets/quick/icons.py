@@ -6,15 +6,17 @@ def convert_to_percent(_, value):
     return f"{int(value * 100)}%"
 
 class NetworkIndicator(Gtk.Image):
-    def __init__(self, _class=[]):
-        super().__init__(pixel_size=14, css_classes=_class)
+    def __init__(self, size=14, _class=[], bind_ssid=True):
+        super().__init__(pixel_size=size, css_classes=_class)
         self.net = NWrapper.get_default()
+        self.bind_ssid = bind_ssid
 
         self.__icon_binding = None
         self.__ssid_binding = None
 
         self.on_icon_change(None, None)
-        self.on_ssid_change(None, None)
+        if self.bind_ssid is True:
+            self.on_ssid_change(None, None)
     
     def on_icon_change(self, _, __):
         if self.__icon_binding is not None:
@@ -27,11 +29,12 @@ class NetworkIndicator(Gtk.Image):
         self.net.bind_property("ssid", self, "tooltip-text", GObject.BindingFlags.SYNC_CREATE)
     
 class VolumeIndicator(Gtk.Image):
-    def __init__(self, _class=[]):
-        super().__init__(pixel_size=14, css_classes=_class)
+    def __init__(self, size=14, _class=[], bind_volume=True):
+        super().__init__(pixel_size=size, css_classes=_class)
         self.wayplumber = AstalWp.get_default()
-        self.speaker = None
+        self.bind_volume = bind_volume
 
+        self.speaker = None
         self.wayplumber.connect('notify::default-speaker', self.on_speaker_change)
         self.on_speaker_change(None, None)
     
@@ -40,13 +43,13 @@ class VolumeIndicator(Gtk.Image):
         if self.speaker is None:
             self.icon_name = "audio-volume-muted-symbolic"
             return
-        
-        self.speaker.bind_property("volume-icon", self, "icon-name", GObject.BindingFlags.SYNC_CREATE)
+        if self.bind_volume is True:
+            self.speaker.bind_property("volume-icon", self, "icon-name", GObject.BindingFlags.SYNC_CREATE)
         self.speaker.bind_property("volume", self, "tooltip-text", GObject.BindingFlags.SYNC_CREATE, transform_to=convert_to_percent)
 
 class BatteryIndicator(Gtk.Image):
-    def __init__(self, _class=[]):
-        super().__init__(pixel_size=14, css_classes=_class)
+    def __init__(self, size=14, _class=[], bind_percentage=True):
+        super().__init__(pixel_size=size, css_classes=_class)
         self.logger = getLogger("BatteryIndicator")
 
         self.battery = AstalBattery.get_default()
@@ -55,7 +58,8 @@ class BatteryIndicator(Gtk.Image):
             self.set_visible(False)
             return
         
-        self.battery.bind_property("percentage", self, "tooltip-text", GObject.BindingFlags.SYNC_CREATE, transform_to=convert_to_percent)
+        if bind_percentage is True:
+            self.battery.bind_property("percentage", self, "tooltip-text", GObject.BindingFlags.SYNC_CREATE, transform_to=convert_to_percent)
         self.battery.bind_property("icon-name", self, "icon-name", GObject.BindingFlags.SYNC_CREATE)
 
 

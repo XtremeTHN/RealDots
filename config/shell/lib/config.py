@@ -12,4 +12,8 @@ class Config(Object):
         self.fallback_window_name = self.conf.get_opt("bar.active-window.fallback-name", default="ArchLinux")
         self.player = self.conf.get_opt("bar.music-player", default="spotify")
 
+        self.uptime_update_delay = self.conf.get_opt("quicksettings.uptime-update-delay", default=60)
+        self.profile_picture = self.conf.get_opt("quicksettings.profile-picture")
+        self.quick_username = self.conf.get_opt("quicksettings.username")
+
 

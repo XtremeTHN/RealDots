@@ -27,9 +27,9 @@ class ActiveWindow(Gtk.Label):
             try:
                 self.set_text(win.get_title())
             except:
-                self.logger.exception("Failed to get window title. Using fallback...")
+                self.logger.exception("Failed to get window title.")
+                self.logger.warning("Using fallback...")
                 self.set_text(self.fallback_name)
-
         else:
             self.set_text(self.fallback_name)
 

@@ -7,6 +7,7 @@ from lib.logger import getLogger
 from lib.style import compile_scss
 from lib.constants import CONFIG_DIR
 
+from widgets.quick.settings import QuickSettings
 from widgets.bar import Bar
 
 class ShellApp(Astal.Application):
@@ -45,6 +46,7 @@ class ShellApp(Astal.Application):
 
         for m in self.get_monitors():
             self.add_window(Bar(m))
+            self.add_window(QuickSettings(m))
 
 def run(args):
     if len(args) < 2:
@@ -58,4 +60,4 @@ def run(args):
     Task.stop_cancellable_tasks()
 
 if __name__ == "__main__":
-    run()
+    run([])

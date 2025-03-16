@@ -1,4 +1,4 @@
-from widgets.bar.quickicons import NetworkIndicator, VolumeIndicator, BatteryIndicator
+from widgets.quick.icons import NetworkIndicator, VolumeIndicator, BatteryIndicator
 from widgets.bar.hypr import Workspace, ActiveWindow
 from widgets.bar.music import Music
 from lib.task import LoopTask
@@ -41,7 +41,7 @@ class BarContent(Gtk.CenterBox):
         # self.__date.connect("changed", self.date_widget.)
     
     def __update_date(self):
-        self.date_widget.set_label(GLib.DateTime.new_now_local().format("%I:%M %p %b %Y"))
+        GLib.idle_add(self.date_widget.set_label, GLib.DateTime.new_now_local().format("%I:%M %p %b %Y"))
 
 class Bar(Astal.Window):
     def __init__(self, m):
