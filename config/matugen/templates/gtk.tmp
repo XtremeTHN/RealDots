@@ -22,5 +22,5 @@
 @define-color sidebar_backdrop_color @window_bg_color;
 
 .navigation-sidebar {
-    background-color: {{colors.surface_container_low.default.hex}}
+    background-color: {{colors.surface_container_low.default.hex}};
 }
