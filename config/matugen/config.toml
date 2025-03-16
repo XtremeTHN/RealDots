@@ -24,6 +24,10 @@ output_path = "~/.themes/adw-gtk3-dark-matugen/gtk-4.0/assets/colors.css"
 input_path = "templates/kitty.tmp"
 output_path = "~/.config/kitty/matugen.conf"
 
+[templates.hyprland]
+input_path = "templates/hypr_colors.tmp"
+output_path = "~/.config/hypr/colors.conf"
+
 [templates.astal]
 input_path = "templates/astal.tmp"
 output_path = "~/.config/shell/style/scss/colors.scss"
