@@ -2,12 +2,20 @@
     min-width: 300px;
     min-height: 100px;
     border-radius: 8px;
-    background-color: transparent;
+}
+
+.quick-name {
+    font-size: large;
+    font-weight: 600;
+}
+
+.quickframe {
+    border-radius: 8px;
+    border: 0px;
 }
 
 .quicksettings-content {
     padding: 10px;
     border-radius: 8px;
     background-color: $background;
-    // background-color: rgba($background, 0.2);
 }

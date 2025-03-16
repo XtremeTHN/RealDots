@@ -12,7 +12,7 @@ def get_pretty_seconds(seconds):
 
 class FramedImage(Gtk.Frame):
     def __init__(self, size: int, _class=[]):
-        super().__init__()
+        super().__init__(css_classes=["quickframe"])
 
         self.image = Gtk.Image(css_classes=_class, pixel_size=size)
         self.set_child(self.image)
@@ -47,7 +47,7 @@ class QuickSettingsContent(Box):
         self.top = Box(spacing=5)
         self.label_box = Box(vertical=True, spacing=2, css_classes=["quick-labels"])
 
-        self.pfp = FramedImage(48, ["profile-picture"])
+        self.pfp = FramedImage(48, ["profile-picture"]) 
         self.name = Gtk.Label(css_classes=["quick-name"])
         self.uptime = Gtk.Label(css_classes=["uptime"])
         
