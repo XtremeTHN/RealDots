@@ -26,4 +26,4 @@ output_path = "~/.config/kitty/matugen.conf"
 
 [templates.astal]
 input_path = "templates/astal.tmp"
-output_path = "~/.config/shell/style/colors.scss"
+output_path = "~/.config/shell/style/scss/colors.scss"
