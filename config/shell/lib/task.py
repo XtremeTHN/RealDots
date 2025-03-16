@@ -1,4 +1,5 @@
 from threading import Event, Thread
+from lib.logger import getLogger
 import time
 
 class TaskWrapper:
@@ -34,11 +35,14 @@ class Task(Thread):
 
     @staticmethod
     def add_cancellable_task(task):
-        Task.unfinished_cancelable_tasks.append(task)
+        Task.unfinished_cancelable_tasks.append(task)        # self.should_stop = Event()
+
 
     @staticmethod
     def stop_cancellable_tasks():
+        l = getLogger("Task")
         for task in Task.unfinished_cancelable_tasks:
+            l.debug("Stopping %s with function name %s...", task.__class__.__name__, task.func.__name__)
             task.stop()
 
 class LoopTask(Task):
@@ -54,18 +58,26 @@ class LoopTask(Task):
         
         super().__init__(function, *args, **kwargs)
         self.delay = delay
-        self.should_stop = Event()
+        self.should_stop = False
     
     def stop(self):
-        self.should_stop.set()
+        self.should_stop = True
         Task.unfinished_cancelable_tasks.remove(self)
+
     
     def run(self):
         Task.unfinished_cancelable_tasks.append(self)
-        while self.should_stop.is_set() == False:
+        while True:
+            if self.should_stop is True:
+                break
             self.func(*self.args, **self.kwargs)
             time.sleep(self.delay)
 
+        try:
+            Task.unfinished_cancelable_tasks.remove(self)
+        except:
+            pass
+
     def start(self):
-        self.should_stop.clear()
+        # self.should_stop.clear()
         super().start()
