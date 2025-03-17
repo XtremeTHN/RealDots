@@ -38,18 +38,24 @@ class WifiButton(Gtk.Button):
     def __on_clicked(self):
         ...
 
-class QuickNetworkMenu(Gtk.ScrolledWindow):
+class QuickNetworkMenu(Adw.Bin):
     def __init__(self):
-        super().__init__(min_content_height=150, max_content_height=200, vexpand=True)
-        self.content = Box(vertical=True, spacing=5, css_classes=["quick-network-menu", "card"], vexpand=True)
+        super().__init__()
+        # ugly code
+        self.clamp = Adw.Clamp(maximum_size=200, orientation=Gtk.Orientation.VERTICAL)
+        self.scrollable = Gtk.ScrolledWindow(css_classes=["quick-network-menu", "card"])
+        self.content = Box(vertical=True, spacing=5, )
         self.wrapper = NWrapper.get_default()
         self.placeholder = StatusPage()
 
         self.wrapper.connect("changed", self.__on_wrapper_change); self.__on_wrapper_change(None)
         self.content.connect("notify::children", self.__on_children_change); self.__on_children_change()
 
+        # ugly code
         self.content.append(self.placeholder)
-        self.set_child(self.content)
+        self.scrollable.set_child(self.content)
+        self.clamp.set_child(self.scrollable)
+        self.set_child(self.clamp)
 
     def __on_children_change(self, *_):
         if len(self.content.children) == 0:

@@ -50,7 +50,7 @@ class Uptime(Gtk.Label):
         self.set_label(string.strip(","))
 
 class QuickSettingsContent(Box):
-    def __init__(self):
+    def __init__(self, w):
         super().__init__(vertical=True, spacing=10, css_classes=["quicksettings-content"])
         self.config = Config.get_default()
         self.logger = getLogger("QuickSettings")
@@ -102,12 +102,14 @@ class QuickSettingsContent(Box):
 
 class QuickSettings(Astal.Window):
     def __init__(self, monitor):
+        # Set resizable to false. When the quick menu shows, the window will go back to its original size
         super().__init__(namespace="quicksettings", name="quicksettings",\
                          gdkmonitor=monitor, \
                          anchor=Astal.WindowAnchor.TOP | Astal.WindowAnchor.RIGHT, \
-                         exclusivity=Astal.Exclusivity.NORMAL, css_classes=["quicksettings-window"])
+                         exclusivity=Astal.Exclusivity.NORMAL, css_classes=["quicksettings-window"],\
+                         resizable=False)
 
-        self.content = QuickSettingsContent()
+        self.content = QuickSettingsContent(self)
         self.set_child(self.content)
 
         self.connect("notify::visible", self.content._update_uptime)
