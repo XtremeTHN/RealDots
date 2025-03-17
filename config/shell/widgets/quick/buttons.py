@@ -1,4 +1,4 @@
-from gi.repository import Gtk, GObject, AstalNetwork
+from gi.repository import Gtk, GObject, AstalNetwork, NM
 from lib.utils import Box
 from widgets.quick.icons import NetworkIndicator, BatteryIndicator
 
@@ -30,12 +30,25 @@ class QuickNetwork(QuickButton):
         super().__init__(icon=self.net_icon, header="Internet", default_subtitle="Connected")
         self.wrapper.net.connect("notify::state", self.__change_subtitle); self.__change_subtitle()
         self.wrapper.connect("notify::ssid", self.__change_title); self.__change_title()
+
+        self.button.connect("clicked", self.toggle)
+
+        self.active = False
     
     def set_active(self, active):
         if active is True:
+            self.active = True
+            if self.wrapper.is_wifi() is True:
+                self.wrapper.wifi.set_enabled(True)
             self.button.add_css_class("active")
         else:
+            self.active = False
+            if self.wrapper.is_wifi() is True:
+                self.wrapper.wifi.set_enabled(False)
             self.button.remove_css_class("active")
+    
+    def toggle(self, *_):
+        self.set_active(not self.active)
     
     def __change_title(self, *_, force=False):
         if force is True or self.wrapper.is_wired():
