@@ -51,7 +51,7 @@ class QuickSettingsContent(Box):
         self.logger = getLogger("QuickSettings")
 
         # Top part of the window
-        self.top = Box(spacing=5)
+        self.top = Box(spacing=10)
         self.label_box = Box(vertical=True, spacing=2, css_classes=["quick-labels"])
 
         self.pfp = Adw.Avatar(size=48)
