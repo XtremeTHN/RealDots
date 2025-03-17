@@ -33,17 +33,15 @@ class QuickNetwork(QuickButton):
     
     def set_active(self, active):
         if active is True:
-            # self.button.set_active(True)
             self.button.add_css_class("active")
         else:
-            # self.button.set_active(False)
             self.button.remove_css_class("active")
     
-    def __change_title(self, *_):
-        if self.wrapper.is_wifi():
-            self.heading.set_label(self.wrapper.ssid)
-        else:
+    def __change_title(self, *_, force=False):
+        if force is True or self.wrapper.is_wired():
             self.heading.set_label("Internet")
+        else:
+            self.heading.set_label(self.wrapper.ssid)
 
     def __change_subtitle(self, *_):
         match self.wrapper.net.get_state():
@@ -51,7 +49,13 @@ class QuickNetwork(QuickButton):
                 self.subtitle.set_label("Disconnecting...")
             case AstalNetwork.State.DISCONNECTED:
                 self.subtitle.set_label("Disconnected")
+                self.__change_title(force=True)
                 self.set_active(False)
-            case _:
-                self.subtitle.set_label(self.wrapper.ssid)
+            case AstalNetwork.State.CONNECTED_GLOBAL:
+                self.subtitle.set_label("Connected")
+                self.__change_title()
                 self.set_active(True)
+            case AstalNetwork.State.CONNECTING | AstalNetwork.State.CONNECTED_SITE | AstalNetwork.State.CONNECTED_LOCAL:
+                self.subtitle.set_label("Connecting...")
+            case _:
+                self.subtitle.set_label(f"Unknown state")
