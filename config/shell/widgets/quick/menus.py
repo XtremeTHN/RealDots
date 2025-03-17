@@ -47,7 +47,6 @@ class QuickNetworkMenu(Gtk.ScrolledWindow):
 
         self.wrapper.connect("changed", self.__on_wrapper_change); self.__on_wrapper_change(None)
         self.content.connect("notify::children", self.__on_children_change); self.__on_children_change()
-        self.wrapper.wifi.connect("notify::access-points", self.__on_access_points_changed); self.__on_access_points_changed()
 
         self.content.append(self.placeholder)
         self.set_child(self.content)
@@ -63,6 +62,7 @@ class QuickNetworkMenu(Gtk.ScrolledWindow):
             self.show_no_wifi_device_placeholder()
         else:
             self.wrapper.wifi.scan()
+            self.wrapper.wifi.connect("notify::access-points", self.__on_access_points_changed); self.__on_access_points_changed()
             self.placeholder.set_visible(False)
         
     def __on_access_points_changed(self, *_):
