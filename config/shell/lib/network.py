@@ -3,6 +3,9 @@ from lib.logger import getLogger
 from lib.utils import Object
 
 class NWrapper(Object):
+    __gsignals__ = {
+        "changed": (GObject.SignalFlags.RUN_FIRST, None, tuple())
+    }
     icon_name = GObject.Property(type=str, default="network-wired-symbolic", nick="icon-name")
     ssid = GObject.Property(type=str, default="Disconnected", nick="ssid")
     def __init__(self):
@@ -70,7 +73,9 @@ class NWrapper(Object):
     def on_wifi_changed(self, _, __):
         self.wifi = self.net.get_wifi()
         self.__bind_device_props(self.wifi)
+        self.emit("changed")
 
     def on_wired_changed(self, _, __):
         self.wired = self.net.get_wired()
         self.__bind_device_props(self.wired)
+        self.emit("changed")

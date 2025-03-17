@@ -27,6 +27,10 @@
 }
 
 .quickbutton {
+    &.active {
+        background-color: $primary_container;
+        color: $on_primary_container;
+    }
     padding: 9px;
     padding-left: 15px;
 }
