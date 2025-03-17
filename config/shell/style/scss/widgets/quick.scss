@@ -20,6 +20,10 @@
 }
 
 .quickbutton-right {
+    &.menu {
+        border-bottom-right-radius: 0px;
+        border-bottom-left-radius: 0px;
+    }
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
 
@@ -31,6 +35,11 @@
         background-color: $primary_container;
         color: $on_primary_container;
     }
+    &.menu {
+        border-bottom-right-radius: 0px;
+        border-bottom-left-radius: 0px;
+    }
+    transition: all 0.6s;
     padding: 9px;
     padding-left: 15px;
 }
@@ -43,6 +52,13 @@
 .quickbutton-subtitle {
     font-size: smaller;
     font-weight: 400;
+}
+
+.quick-network-menu {
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+
+    padding: 10px;
 }
 
 .quicksettings-content {

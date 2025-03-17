@@ -26,10 +26,13 @@ class Box(Gtk.Box):
     @children.setter
     def children(self, value):
         self.__children = value
-        while (w:=self.get_last_child()) is not None:
-            self.remove(w)
+        self.clear()
         self.append_all(value)
         self.notify("children")
+
+    def clear(self):
+        while (w:=self.get_last_child()) is not None:
+            self.remove(w)
 
     def append_all(self, children):
         """

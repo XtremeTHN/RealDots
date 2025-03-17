@@ -1,27 +1,48 @@
 from gi.repository import Gtk, GObject, AstalNetwork, NM
 from lib.utils import Box
-from widgets.quick.icons import NetworkIndicator, BatteryIndicator
+from widgets.quick.icons import NetworkIndicator
+from widgets.quick.menus import QuickNetworkMenu
 
-class QuickButton(Gtk.Overlay):
+class QuickButton(Box):
     def __init__(self, icon, header, default_subtitle):
-        super().__init__()
-
+        super().__init__(vertical=True)
+        self.overlay = Gtk.Overlay.new()
         self.button = Gtk.Button(css_classes=["quickbutton"])
         self.right_button = Gtk.Button(css_classes=["quickbutton-right"], halign=Gtk.Align.END, icon_name="go-next-symbolic")
 
-        self.content = Box(spacing=10)
+        self.button_content = Box(spacing=10)
         self._label_box = Box(spacing=0, vertical=True)
         self.heading = Gtk.Label(label=header, xalign=0, css_classes=["quickbutton-heading"])
         self.subtitle = Gtk.Label(label=default_subtitle, xalign=0, css_classes=["quickbutton-subtitle"])
 
+        self.revealer = Gtk.Revealer(transition_type=Gtk.RevealerTransitionType.SLIDE_DOWN, transition_duration=600)
+
         self._label_box.append_all([self.heading, self.subtitle])
-        self.content.append_all([icon, self._label_box])
+        self.button_content.append_all([icon, self._label_box])
 
-        self.button.set_child(self.content)
+        self.button.set_child(self.button_content)
 
-        self.set_child(self.button)
-        self.add_overlay(self.right_button)
-        self.set_measure_overlay(self.right_button, True)
+        self.overlay.set_child(self.button)
+        self.overlay.add_overlay(self.right_button)
+        self.overlay.set_measure_overlay(self.right_button, True)
+
+        self.right_button.connect("clicked", self.toggle_menu)
+        
+        self.append_all([self.overlay, self.revealer])
+    
+    def toggle_menu(self, *_):
+        condition = not self.revealer.get_reveal_child()
+        self.revealer.set_reveal_child(condition)
+        if condition is True:
+            self.button.add_css_class("menu")
+            self.right_button.add_css_class("menu")
+        else:
+            self.right_button.remove_css_class("menu")
+            self.button.remove_css_class("menu")
+    
+    def set_menu(self, menu):
+        self.revealer.set_child(menu)
+        self.menu = menu
 
 class QuickNetwork(QuickButton):
     def __init__(self):
@@ -32,6 +53,8 @@ class QuickNetwork(QuickButton):
         self.wrapper.connect("notify::ssid", self.__change_title); self.__change_title()
 
         self.button.connect("clicked", self.toggle)
+
+        self.set_menu(QuickNetworkMenu())
 
         self.active = False
     
