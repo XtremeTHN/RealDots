@@ -1,6 +1,6 @@
 .bar {
     padding: 5px 10px;
-    background-color: rgba($background, 0.6);
+    background-color: $background;
 }
 
 .bar-window {
@@ -8,7 +8,7 @@
 }
 
 .bar-container {
-    background-color: rgba($surface_container, 0.8);
+    background-color: $surface_container;
     padding: 3px 5px;
     border-radius: 3px;
 }

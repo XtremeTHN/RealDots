@@ -34,14 +34,14 @@ class BarContent(Gtk.CenterBox):
         self.set_end_widget(self.right_box)
 
         # Tasks
-        self.__date = LoopTask(self.__update_date, 1)
-        self.__date.start()
+        GLib.timeout_add(1000, self.__update_date)
 
         # Connections
         # self.__date.connect("changed", self.date_widget.)
     
-    def __update_date(self):
+    def __update_date(self, *_):
         GLib.idle_add(self.date_widget.set_label, GLib.DateTime.new_now_local().format("%I:%M %p %b %Y"))
+        return True
 
 class Bar(Astal.Window):
     def __init__(self, m):

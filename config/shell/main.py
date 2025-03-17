@@ -1,14 +1,16 @@
 import lib.versions as _
-from gi.repository import Astal, AstalIO, Gio
+from gi.repository import Astal, AstalIO, Gio, Adw
 
 from lib.style import Style
 from lib.config import Config
 from lib.logger import getLogger
 from lib.constants import CONFIG_DIR
-from lib.task import Task, TaskWrapper
+from lib.task import Task
 
 from widgets.quick.settings import QuickSettings
 from widgets.bar import Bar
+
+Adw.init()
 
 class ShellApp(Astal.Application):
     def __init__(self, instance_name):
