@@ -3,6 +3,8 @@ from lib.logger import getLogger
 from lib.config import Config
 from lib.utils import Box
 
+from widgets.quick.buttons import QuickNetwork
+
 def get_pretty_seconds(seconds):
     dias = int(seconds // 86400)
     horas = int((seconds % 86400) // 3600)
@@ -46,13 +48,13 @@ class Uptime(Gtk.Label):
 
 class QuickSettingsContent(Box):
     def __init__(self):
-        super().__init__(vertical=True, spacing=3, css_classes=["quicksettings-content"])
+        super().__init__(vertical=True, spacing=10, css_classes=["quicksettings-content"])
         self.config = Config.get_default()
         self.logger = getLogger("QuickSettings")
 
         # Top part of the window
         self.top = Box(spacing=10)
-        self.label_box = Box(vertical=True, spacing=2, css_classes=["quick-labels"])
+        self.label_box = Box(vertical=True, spacing=0, css_classes=["quick-labels"])
 
         self.pfp = Adw.Avatar(size=48)
         self.name = Gtk.Label(css_classes=["quick-name"], xalign=0)
@@ -61,11 +63,15 @@ class QuickSettingsContent(Box):
         self.label_box.append_all([self.name, self.uptime])
         self.top.append_all([self.pfp, self.label_box])
 
+        # Center box
+        self.center = Box(spacing=10, homogeneous=True)
+        self.center.append(QuickNetwork())
+
         # Connections
         self.config.quick_username.on_change(self._update_name, once=True)
         self.config.profile_picture.on_change(self.__update_pfp, once=True)
 
-        self.append_all([self.top])
+        self.append_all([self.top, self.center])
 
     def _update_name(self, *_):
         if self.config.quick_username.is_set() is False:

@@ -11,23 +11,10 @@ class NetworkIndicator(Gtk.Image):
         self.net = NWrapper.get_default()
         self.bind_ssid = bind_ssid
 
-        self.__icon_binding = None
-        self.__ssid_binding = None
-
-        self.on_icon_change(None, None)
-        if self.bind_ssid is True:
-            self.on_ssid_change(None, None)
-    
-    def on_icon_change(self, _, __):
-        if self.__icon_binding is not None:
-            self.__icon_binding.unbind()
         self.net.bind_property("icon-name", self, "icon-name", GObject.BindingFlags.SYNC_CREATE)
-    
-    def on_ssid_change(self, _, __):
-        if self.__ssid_binding is not None:
-            self.__ssid_binding.unbind()
-        self.net.bind_property("ssid", self, "tooltip-text", GObject.BindingFlags.SYNC_CREATE)
-    
+        if self.bind_ssid is True:
+            self.net.bind_property("ssid", self, "tooltip-text", GObject.BindingFlags.SYNC_CREATE)    
+        
 class VolumeIndicator(Gtk.Image):
     def __init__(self, size=14, _class=[], bind_volume=True):
         super().__init__(pixel_size=size, css_classes=_class)

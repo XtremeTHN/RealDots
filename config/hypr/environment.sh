@@ -1,0 +1,1 @@
+/home/axel/.config/uwsm/env

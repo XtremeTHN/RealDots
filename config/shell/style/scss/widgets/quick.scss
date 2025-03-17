@@ -9,9 +9,36 @@
     font-weight: 800;
 }
 
+.uptime {
+    font-size: small;
+    font-weight: 300;
+}
+
 .quickframe {
     border-radius: 8px;
     border: 0px;
+}
+
+.quickbutton-right {
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+
+    border-left: 1px solid $background;
+}
+
+.quickbutton {
+    padding: 9px;
+    padding-left: 15px;
+}
+
+.quickbutton-heading {
+    font-size: larger;
+    font-weight: 700;
+}
+
+.quickbutton-subtitle {
+    font-size: smaller;
+    font-weight: 400;
 }
 
 .quicksettings-content {
