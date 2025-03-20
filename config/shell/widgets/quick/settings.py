@@ -50,7 +50,7 @@ class Uptime(Gtk.Label):
         self.set_label(string.strip(","))
 
 class QuickSettingsContent(Box):
-    def __init__(self, w):
+    def __init__(self):
         super().__init__(vertical=True, spacing=10, css_classes=["quicksettings-content"])
         self.config = Config.get_default()
         self.logger = getLogger("QuickSettings")
@@ -107,9 +107,9 @@ class QuickSettings(Astal.Window):
                          gdkmonitor=monitor, \
                          anchor=Astal.WindowAnchor.TOP | Astal.WindowAnchor.RIGHT, \
                          exclusivity=Astal.Exclusivity.NORMAL, css_classes=["quicksettings-window"],\
-                         resizable=False)
+                         resizable=False, keymode=Astal.Keymode.ON_DEMAND)
 
-        self.content = QuickSettingsContent(self)
+        self.content = QuickSettingsContent()
         self.set_child(self.content)
 
         self.connect("notify::visible", self.content._update_uptime)

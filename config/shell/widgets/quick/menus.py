@@ -1,4 +1,5 @@
 from gi.repository import Gtk, Adw, AstalNetwork
+from widgets.prompts.network import NetworkPrompt
 from lib.network import NWrapper
 from lib.utils import Box
 
@@ -23,11 +24,13 @@ class StatusPage(Box):
 class WifiButton(Gtk.Button):
     def __init__(self, access_point: AstalNetwork.AccessPoint, active_ssid: str):
         super().__init__()
+        self.ap = access_point
         ssid = access_point.get_ssid() or "Unknown"
+        
         self.content = Box(spacing=10, hexpand=True)
-        self.icon = Gtk.Image(pixel_size=8,icon_name=access_point.get_icon_name())
-        self.name = Gtk.Label(label=ssid)
-        self._connected = Gtk.Image(icon_name="emblem-ok-symbolic", pixel_size=8, \
+        self.icon = Gtk.Image(pixel_size=16,icon_name=access_point.get_icon_name())
+        self.name = Gtk.Label(label=ssid, hexpand=True, xalign=0)
+        self._connected = Gtk.Image(icon_name="emblem-ok-symbolic", pixel_size=16, \
                                     halign=Gtk.Align.END, visible=active_ssid == access_point.get_ssid())
 
         self.content.append_all([self.icon, self.name, self._connected])
@@ -35,8 +38,8 @@ class WifiButton(Gtk.Button):
         self.set_child(self.content)
         self.connect("clicked", self.__on_clicked)
     
-    def __on_clicked(self):
-        ...
+    def __on_clicked(self, _):
+        p = NetworkPrompt(self.ap)
 
 class QuickNetworkMenu(Adw.Bin):
     def __init__(self):
