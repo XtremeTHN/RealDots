@@ -1,5 +1,0 @@
-require('config.nvim_conf')
-require('config.mappings')
-require('config.lazy')
-require("mason").setup()
-require("config.lsp")
