@@ -9,7 +9,7 @@ input_path = "templates/fuzzel.tmp"
 output_path = "~/.config/fuzzel/fuzzel.ini"
 
 [templates.nvim]
-input_path = "~/.config/nvim/pywal/matugen.lua"
+input_path = "templates/nvim.tmp"
 output_path = "~/.local/share/nvim/lazy/base46/lua/base46/themes/chadwal.lua"
 post_hook = "killall -SIGUSR1 nvim; exit 0"
 
