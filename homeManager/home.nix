@@ -24,7 +24,6 @@
     glib
     swww
     
-    gh
     warp
     nwg-look
     nautilus
