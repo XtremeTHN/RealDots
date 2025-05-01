@@ -10,5 +10,7 @@
       rebuildSys = "sudo nixos-rebuild ${switchCmd}";
       rebuildHome = "home-manager ${switchCmd}";
     };
+
+    bashrcExtra = "eval $(starship init bash)";
   };
 }
