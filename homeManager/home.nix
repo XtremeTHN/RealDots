@@ -27,6 +27,7 @@
     warp
     nwg-look
     nautilus
+    hyprshot
     fastfetch
     pika-backup
     python3Full

@@ -1,3 +1,5 @@
+{ config, ... }:
+
 {
   wayland.windowManager.hyprland = {
     enable = true;
@@ -18,7 +20,7 @@
         "XCURSOR_SIZE,16"
         "QT_QPA_PLATFORM,wayland"
         "XDG_SCREENSHOTS_DIR,"
-        "HYPRSHOT_DIR,~/Pictures/Screenshots"
+        "HYPRSHOT_DIR,/home/axel/Pictures/Screenshots"
       ];
 
       # Autostart
