@@ -3,7 +3,6 @@
 {
   imports = [
     ./theming.nix
-    ./services/bundle.nix
     ./apps/bundle.nix
     ./wm/hyprland.nix
   ];
@@ -26,6 +25,7 @@
     swww
     
     gh
+    warp
     nwg-look
     nautilus
     fastfetch
@@ -46,23 +46,8 @@
     NIXOS_OZONE_WL = "1";
   };
 
-  # Shell config
-  programs.bash = {
-    enable = true;
-    shellAliases = let
-      switchCmd = "switch --flake $HOME/nix/";
-    in {
-      rebuildSys = "sudo nixos-rebuild ${switchCmd}";
-      rebuildHome = "home-manager ${switchCmd}";
-    };
-  };
-
   dconf.enable = true;
-  programs.git = {
-    enable = true;
-    userName = "Axel";
-    userEmail = "nigthmaresans2@gmail.com";
-  };
+
   # Let home manager install and manage itself.
   programs.home-manager.enable = true;
 }
