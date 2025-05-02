@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, ... } @inputs:
 
 {
   imports = [
@@ -33,6 +33,9 @@
     python3Full
     wl-clipboard
     gnome-keyring
+    
+    # Astal
+    inputs.astal.packages.${system}.default
 
     # Custom apps
     (callPackage ./derivations/kagent.nix {})
