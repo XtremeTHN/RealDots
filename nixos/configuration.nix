@@ -34,7 +34,7 @@
   users.users.axel = {
     isNormalUser = true;
     description = "Axel Andres Valles Gonzalez";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "video" ];
   };
 
   # Allow users to connect to the nix daemon
