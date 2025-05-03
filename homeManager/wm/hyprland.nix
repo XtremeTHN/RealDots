@@ -27,6 +27,7 @@
       # Autostart
       exec-once = [
         "kagent"
+        "shell"
         "swww-daemon"
       ];
 
