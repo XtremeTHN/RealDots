@@ -35,7 +35,10 @@
     gnome-keyring
     
     # Astal
-    inputs.astal.packages.${system}.default
+    #inputs.astal.packages.${system}.default
+    #xtremeShell.packages.${system}.default
+    astalCli
+    xtremeShell
 
     # Custom apps
     (callPackage ./derivations/kagent.nix {})
@@ -50,7 +53,7 @@
   };
 
   dconf.enable = true;
-
+  
   # Let home manager install and manage itself.
   programs.home-manager.enable = true;
 }

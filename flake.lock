@@ -20,6 +20,27 @@
         "type": "github"
       }
     },
+    "astal_2": {
+      "inputs": {
+        "nixpkgs": [
+          "xtremeShell",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1745934282,
+        "narHash": "sha256-hgUd4yUYALHzzoEi/88BnsgrxZIqk+zyQVoI3CL61IU=",
+        "owner": "aylur",
+        "repo": "astal",
+        "rev": "07583deff8a486fad472718572c3248f0fbea1f3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "aylur",
+        "repo": "astal",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -60,7 +81,29 @@
       "inputs": {
         "astal": "astal",
         "home-manager": "home-manager",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "xtremeShell": "xtremeShell"
+      }
+    },
+    "xtremeShell": {
+      "inputs": {
+        "astal": "astal_2",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1746241568,
+        "narHash": "sha256-AOOOPEhmFXYxgKTqf28VIchIp95QKiGKuDYo6PKA+R0=",
+        "owner": "xtremethn",
+        "repo": "gtkshell",
+        "rev": "646da1ff00939fda8ada267995ab3f6a61e082f2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "xtremethn",
+        "repo": "gtkshell",
+        "type": "github"
       }
     }
   },

@@ -6,6 +6,12 @@
     upower.enable = true;
     gvfs.enable = true;
     sshd.enable = true;
+    # Custom
+    udev = {
+      packages = [
+        pkgs.xtremeShell
+      ];
+    };
     dbus = {
       enable = true;
       implementation = "broker";

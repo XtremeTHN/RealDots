@@ -11,19 +11,28 @@
       url = "github:aylur/astal";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    xtremeShell = {
+      url = "github:xtremethn/gtkshell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, home-manager, ... } @inputs:
+  outputs = { self, nixpkgs, astal, home-manager, xtremeShell } @inputs:
     let
       system = "x86_64-linux";
+      overlay = final: prev: {
+        xtremeShell = xtremeShell.packages.${system}.default;
+        astalCli = astal.packages.${system}.default;
+      };
+      pkgs = import nixpkgs { inherit system; overlays = [ overlay ]; };
     in {
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-        inherit system;
+        inherit system pkgs;
         modules = [ ./nixos/configuration.nix ];
       };
 
       homeConfigurations.axel = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.${system};
+        inherit pkgs;
         extraSpecialArgs = inputs;
         modules = [ ./homeManager/home.nix ];
       };
