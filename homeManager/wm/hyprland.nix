@@ -9,7 +9,8 @@
       # Hyprland variables
       "$terminal" = "kitty";
       "$fileManager" = "nautilus";
-      "$menu" = "fuzzel";
+      "$fallbackMenu" = "fuzzel";
+      "$menu" = "astal -t apprunner";
       "$mainMod" = "SUPER";
 
       monitor = ",1920x1080@60,auto,1";
@@ -93,10 +94,12 @@
         # Applications
         "$mainMod, T, exec, $terminal"
         "$mainMod, E, exec, $fileManager"
+        "$mainMod SHIFT, R, exec, $fallbackMenu"
         "$mainMod, R, exec, $menu"
 
         ## Astal
         "$mainMod, B, exec, astal -t quicksettings"
+        "$mainMod, N, exec, astal -t notification-center"
 
         ## Screenshots
         ", Print, exec, hyprshot -m region"
