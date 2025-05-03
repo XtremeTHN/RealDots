@@ -2,7 +2,7 @@
   imports = [
     ./starship.nix
     ./kitty.nix
-    ./bash.nix
+    ./zsh.nix
     ./git.nix
   ];
 }

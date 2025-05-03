@@ -34,6 +34,7 @@
   users.users.axel = {
     isNormalUser = true;
     description = "Axel Andres Valles Gonzalez";
+    shell = pkgs.zsh;
     extraGroups = [ "networkmanager" "wheel" "video" ];
   };
 
@@ -45,7 +46,8 @@
     neovim
     upower
     git
-
+    
+    zsh
     gst_all_1.gstreamer
     gst_all_1.gst-plugins-good
     gst_all_1.gst-plugins-bad
@@ -66,6 +68,8 @@
       }];
     };
   };
+
+  programs.zsh.enable = true;
 
   system.stateVersion = "24.11"; # Do not delete
 
