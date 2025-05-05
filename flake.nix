@@ -15,10 +15,6 @@
       url = "github:xtremethn/gtkshell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    matugen = {
-      url = "github:/InioX/Matugen";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = { nixpkgs, astal, home-manager, xtremeShell, ... } @inputs:
@@ -30,15 +26,35 @@
       };
       pkgs = import nixpkgs { inherit system; overlays = [ overlay ]; };
     in {
-      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-        inherit system pkgs;
-        modules = [ ./nixos/configuration.nix ];
+      nixosConfigurations = {
+        desktop = nixpkgs.lib.nixosSystem {
+          inherit system pkgs;
+          modules = [ 
+            ./hosts/desktop
+            ./nixos/configuration.nix 
+          ];
+        };
+        
+        laptop = nixpkgs.lib.nixosSystem {
+          inherit system pkgs;
+          modules = [
+            ./hosts/laptop
+            ./nixos/configuration.nix 
+          ];
+        };
       };
 
-      homeConfigurations.axel = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        extraSpecialArgs = inputs;
-        modules = [ ./homeManager/home.nix ];
+      homeConfigurations = {
+        desktop = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          extraSpecialArgs = inputs // {host = "desktop";};
+          modules = [ ./homeManager/home.nix ];
+        };
+        laptop = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          extraSpecialArgs = inputs // {host = "laptop";};
+          modules = [ ./homeManager/home.nix ];
+        };
       };
     };
 }

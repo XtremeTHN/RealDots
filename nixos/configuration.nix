@@ -2,7 +2,6 @@
 
 {
   imports = [
-    /etc/nixos/hardware-configuration.nix
     ./services.nix
     ./graphical/bundle.nix
   ];

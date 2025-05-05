@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, ... } @inputs:
 
 {
   wayland.windowManager.hyprland = {
@@ -10,10 +10,10 @@
       "$terminal" = "kitty";
       "$fileManager" = "nautilus";
       "$fallbackMenu" = "fuzzel";
-      "$menu" = "astal -t apprunner";
+      "$menu" = "astal -t applauncher";
       "$mainMod" = "SUPER";
 
-      monitor = ",1920x1080@60,auto,1";
+      monitor = if inputs.host == "desktop" then ",1920x1080@165,auto,1" else ",1920x1080@60,auto,1";
       env = [
         "XDG_CURRENT_DESKTOP,Hyprland"
         "XDG_SESSION_TYPE,wayland"
@@ -111,7 +111,8 @@
         "$mainMod, Q, killactive"
         "$mainMod, P, pseudo"
         "$mainMod, J, togglesplit"
-	"$mainMod, F, fullscreen"
+        "$mainMod, F, fullscreen"
+        
         ### Move window to a workspace
         "$mainMod SHIFT, 1, movetoworkspace, 1"
         "$mainMod SHIFT, 2, movetoworkspace, 2"
