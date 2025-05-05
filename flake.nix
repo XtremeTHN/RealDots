@@ -15,9 +15,13 @@
       url = "github:xtremethn/gtkshell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    matugen = {
+      url = "github:/InioX/Matugen";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, astal, home-manager, xtremeShell } @inputs:
+  outputs = { nixpkgs, astal, home-manager, xtremeShell, ... } @inputs:
     let
       system = "x86_64-linux";
       overlay = final: prev: {

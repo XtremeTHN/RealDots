@@ -1,8 +1,8 @@
-{ config, pkgs, ... } @inputs:
+{ config, pkgs, ... } @input:
 
 {
   imports = [
-    ./theming.nix
+    ./theming/bundle.nix
     ./apps/bundle.nix
     ./wm/hyprland.nix
   ];
@@ -25,6 +25,8 @@
     swww
     
     warp
+    nixd
+    nixfmt-rfc-style
     nwg-look
     nautilus
     hyprshot
@@ -35,10 +37,11 @@
     gnome-keyring
     
     # Astal
-    #inputs.astal.packages.${system}.default
-    #xtremeShell.packages.${system}.default
     astalCli
     xtremeShell
+
+    # matu
+    matugen
 
     # Custom apps
     (callPackage ./derivations/kagent.nix {})

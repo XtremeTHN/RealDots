@@ -6,6 +6,8 @@
     upower.enable = true;
     gvfs.enable = true;
     sshd.enable = true;
+    flatpak.enable = true;
+
     # Custom
     udev = {
       packages = [
