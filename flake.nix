@@ -27,6 +27,7 @@
       pkgs = import nixpkgs { inherit system; overlays = [ overlay ]; };
     in {
       nixosConfigurations = {
+        # Change host with --flake ./#HOSTNAME
         desktop = nixpkgs.lib.nixosSystem {
           inherit system pkgs;
           modules = [ 

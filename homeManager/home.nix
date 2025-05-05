@@ -43,7 +43,7 @@
     xtremeShell
 
     # matu
-    inputs.matugen.packages."x86_64-linux".default
+    matugen
 
     # Custom apps
     (callPackage ./derivations/kagent.nix {})
