@@ -1,0 +1,36 @@
+[config]
+
+[config.wallpaper]
+command = "swww"
+arguments = ["img", "--transition-type", "center"] 
+
+[templates.fuzzel]
+input_path = "~/.config/matugen/templates/fuzzel.tmp"
+output_path = "~/.config/fuzzel/fuzzel.ini"
+
+[templates.nvim]
+input_path = "~/.config/matugen/templates/nvim.tmp"
+output_path = "~/.local/share/nvim/lazy/base46/lua/base46/themes/chadwal.lua"
+post_hook = "killall -SIGUSR1 nvim; exit 0"
+
+[templates.gtk3]
+input_path = "~/.config/matugen/templates/gtk.tmp"
+output_path = "~/.themes/adw-gtk3-dark-matugen/gtk-3.0/assets/colors.css"
+
+[templates.gtk4]
+input_path = "~/.config/matugen/templates/gtk.tmp"
+output_path = "~/.themes/adw-gtk3-dark-matugen/gtk-4.0/assets/colors.css"
+
+[templates.kitty]
+input_path = "~/.config/matugen/templates/kitty.tmp"
+output_path = "~/.config/kitty/matugen.conf"
+post_hook = "killall -SIGUSR1 kitty; exit 0"
+
+[templates.hyprland]
+input_path = "~/.config/matugen/templates/hypr_colors.tmp"
+output_path = "~/.config/hypr/colors.conf"
+
+[templates.astal]
+input_path = "~/.config/matugen/templates/astal.tmp"
+output_path = "~/.config/shell/scss/colors.scss"
+

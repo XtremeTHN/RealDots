@@ -111,7 +111,7 @@
         "$mainMod, Q, killactive"
         "$mainMod, P, pseudo"
         "$mainMod, J, togglesplit"
-
+	"$mainMod, F, fullscreen"
         ### Move window to a workspace
         "$mainMod SHIFT, 1, movetoworkspace, 1"
         "$mainMod SHIFT, 2, movetoworkspace, 2"

@@ -1,8 +1,8 @@
-{ config, pkgs, ... } @input:
+{ config, pkgs, ... } @inputs:
 
 {
   imports = [
-    ./theming/bundle.nix
+    ./theming
     ./apps/bundle.nix
     ./wm/hyprland.nix
   ];
@@ -26,8 +26,10 @@
     
     warp
     nixd
+    file
     nixfmt-rfc-style
     nwg-look
+    vencord
     nautilus
     hyprshot
     fastfetch
@@ -41,7 +43,7 @@
     xtremeShell
 
     # matu
-    matugen
+    inputs.matugen.packages."x86_64-linux".default
 
     # Custom apps
     (callPackage ./derivations/kagent.nix {})

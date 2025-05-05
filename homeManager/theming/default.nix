@@ -1,6 +1,6 @@
 {
   imports = [
     ./general.nix
-    ./matugen.nix
+    ./matugen
   ];
 }
