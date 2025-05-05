@@ -3,9 +3,16 @@
 {
   wayland.windowManager.hyprland = {
     enable = true;
+    sourceFirst = true;
     xwayland.enable = true;
+    # importantPrefixes = [
+    #   "${config.xdg.configHome}/colors.conf"
+    # ];
+    # extraConfig = builtins.readFile "${config.xdg.configHome}/colors.conf";
 
     settings = {
+      source = "${config.xdg.configHome}/hypr/colors.conf";
+
       # Hyprland variables
       "$terminal" = "kitty";
       "$fileManager" = "nautilus";
@@ -35,10 +42,11 @@
         gaps_in = 5;
         gaps_out = 10;
         border_size = 1;
+
         resize_on_border = false;
         allow_tearing = false;
-
         layout = "dwindle";
+        "col.active_border" = "$primary $tertiary 45deg";
       };
 
       decoration = {
@@ -49,7 +57,17 @@
         inactive_opacity = 0.8;
 
         shadow.enabled = true;
-        blur.enabled = true;
+        blur = if inputs.host == "desktop" then {
+          enabled = true;
+          size = 10;
+          passes = 3;
+          new_optimizations = true;
+          ignore_opacity = true;
+          noise = 0;
+          brightness = 0.90;
+        } else {
+          enabled = true;
+        };
       };
 
       misc = {
@@ -152,9 +170,12 @@
         "$mainMod SHIFT, M, exit"
       ];
 
-      bindm = [
+      bindm = if inputs.host == "laptop" then [
         "$mainMod, M, movewindow"
         "$mainMod, L, resizewindow"
+      ] else [
+        "$mainMod, mouse:272, movewindow"
+        "$mainMod, mouse:273, resizewindow"
       ];
 
       windowrulev2 = [

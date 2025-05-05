@@ -11,15 +11,14 @@ output_path = "~/.config/fuzzel/fuzzel.ini"
 [templates.nvim]
 input_path = "~/.config/matugen/templates/nvim.tmp"
 output_path = "~/.local/share/nvim/lazy/base46/lua/base46/themes/chadwal.lua"
-post_hook = "killall -SIGUSR1 nvim; exit 0"
 
 [templates.gtk3]
 input_path = "~/.config/matugen/templates/gtk.tmp"
-output_path = "~/.themes/adw-gtk3-dark-matugen/gtk-3.0/assets/colors.css"
+output_path = "~/.config/gtk-3.0/colors.css"
 
 [templates.gtk4]
 input_path = "~/.config/matugen/templates/gtk.tmp"
-output_path = "~/.themes/adw-gtk3-dark-matugen/gtk-4.0/assets/colors.css"
+output_path = "~/.config/gtk-4.0/colors.css"
 
 [templates.kitty]
 input_path = "~/.config/matugen/templates/kitty.tmp"

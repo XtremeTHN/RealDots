@@ -1,0 +1,46 @@
+diff --git a/gtk-3.0/gtk-dark.css b/gtk-3.0/gtk-dark.css
+index ae8eba8..459317b 100644
+--- a/gtk-3.0/gtk-dark.css
++++ b/gtk-3.0/gtk-dark.css
+@@ -88,7 +88,7 @@
+ @define-color incognito_bg_color #1c2438;
+ @define-color new_title_bg_color #303030;
+ 
+-@import "./assets/colors.css";
++@import "@config3@/colors.css";
+ 
+ * { padding: 0; -GtkToolButton-icon-spacing: 4; -GtkTextView-error-underline-color: @error_bg_color; -GtkScrolledWindow-scrollbar-spacing: 0; -GtkToolItemGroup-expander-size: 11; -GtkWidget-text-handle-width: 20; -GtkWidget-text-handle-height: 24; -GtkDialog-button-spacing: 4; -GtkDialog-action-area-border: 0; outline-color: alpha(currentColor,0.3); outline-style: dashed; outline-offset: -3px; outline-width: 1px; -gtk-outline-radius: 4px; -gtk-secondary-caret-color: @accent_bg_color; }
+ 
+diff --git a/gtk-3.0/gtk.css b/gtk-3.0/gtk.css
+index ae8eba8..459317b 100644
+--- a/gtk-3.0/gtk.css
++++ b/gtk-3.0/gtk.css
+@@ -88,7 +88,7 @@
+ @define-color incognito_bg_color #1c2438;
+ @define-color new_title_bg_color #303030;
+ 
+-@import "./assets/colors.css";
++@import "@config3@/colors.css";
+ 
+ * { padding: 0; -GtkToolButton-icon-spacing: 4; -GtkTextView-error-underline-color: @error_bg_color; -GtkScrolledWindow-scrollbar-spacing: 0; -GtkToolItemGroup-expander-size: 11; -GtkWidget-text-handle-width: 20; -GtkWidget-text-handle-height: 24; -GtkDialog-button-spacing: 4; -GtkDialog-action-area-border: 0; outline-color: alpha(currentColor,0.3); outline-style: dashed; outline-offset: -3px; outline-width: 1px; -gtk-outline-radius: 4px; -gtk-secondary-caret-color: @accent_bg_color; }
+ 
+diff --git a/gtk-4.0/gtk-dark.css b/gtk-4.0/gtk-dark.css
+index 5f804d7..3c547f1 100644
+--- a/gtk-4.0/gtk-dark.css
++++ b/gtk-4.0/gtk-dark.css
+@@ -48,4 +48,4 @@
+ :root { --standalone-color-oklab: max(l, 0.85) a b; --accent-color: oklab(from var(--accent-bg-color) var(--standalone-color-oklab)); --destructive-color: oklab(from var(--destructive-bg-color) var(--standalone-color-oklab)); --success-color: oklab(from var(--success-bg-color) var(--standalone-color-oklab)); --warning-color: oklab(from var(--warning-bg-color) var(--standalone-color-oklab)); --error-color: oklab(from var(--error-bg-color) var(--standalone-color-oklab)); }
+ @import './assets/libadwaita.css';
+ @import './assets/libadwaita-tweaks.css';
+-@import "./assets/colors.css";
++@import "@config4@/colors.css";
+diff --git a/gtk-4.0/gtk.css b/gtk-4.0/gtk.css
+index 689d5c7..0bf4887 100644
+--- a/gtk-4.0/gtk.css
++++ b/gtk-4.0/gtk.css
+@@ -49,4 +49,4 @@
+ 
+ @import './assets/libadwaita.css';
+ @import './assets/libadwaita-tweaks.css';
+-@import './assets/colors.css';
++@import "@config4@/colors.css";

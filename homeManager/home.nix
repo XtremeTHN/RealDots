@@ -47,6 +47,9 @@
 
     # Custom apps
     (callPackage ./derivations/kagent.nix {})
+    (callPackage ./derivations/adw-gtk3-md.nix {
+      configDir = config.xdg.configHome;
+    })
   ];
   
   # Use with dotfiles
