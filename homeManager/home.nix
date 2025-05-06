@@ -3,7 +3,7 @@
 {
   imports = [
     ./theming
-    ./apps/bundle.nix
+    ./apps
     ./wm/hyprland.nix
   ];
 
