@@ -6,7 +6,7 @@ in {
   ];
 
   programs.spicetify = {
-    # enable = true;
+    enable = true;
     enabledExtensions = with spicePkgs.extensions; [
       hidePodcasts
       adblockify

@@ -1,4 +1,4 @@
-{ config, pkgs, spicetify, ... }:
+{ config, pkgs, spicetify-nix, ... }:
 
 {
   imports = [
@@ -19,7 +19,6 @@
     morewaita-icon-theme
     adwaita-icon-theme
     bibata-cursors
-    spicetify
     firefox
     fuzzel
     vscode

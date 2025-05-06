@@ -30,7 +30,6 @@
         config.allowUnfree = true;
         overlays = [ overlay ]; 
       };
-      spicetify = inputs.spicetify-nix.lib.mkSpicetify pkgs {};
     in {
       nixosConfigurations = {
         # Change host with --flake ./#HOSTNAME
@@ -54,12 +53,12 @@
       homeConfigurations = {
         desktop = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          extraSpecialArgs = inputs // {host = "desktop"; inherit spicetify;};
+          extraSpecialArgs = inputs // {host = "desktop";};
           modules = [ ./homeManager/home.nix ];
         };
         laptop = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          extraSpecialArgs = inputs // {host = "laptop"; inherit spicetify;};
+          extraSpecialArgs = inputs // {host = "laptop";};
           modules = [ ./homeManager/home.nix ];
         };
       };
