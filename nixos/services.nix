@@ -7,6 +7,7 @@
     gvfs.enable = true;
     sshd.enable = true;
     flatpak.enable = true;
+    input-remapper.enable =  true;
 
     # Custom
     udev = {
