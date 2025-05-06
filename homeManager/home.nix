@@ -24,10 +24,11 @@
     glib
     swww
     
+    bat
     warp
     nixd
     file
-    nixfmt-rfc-style
+    loupe
     nwg-look
     vencord
     nautilus
@@ -37,7 +38,8 @@
     python3Full
     wl-clipboard
     gnome-keyring
-    
+    nixfmt-rfc-style
+
     # Astal
     astalCli
     xtremeShell
