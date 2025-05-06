@@ -14,6 +14,7 @@
 
   # Enable network
   networking.networkmanager.enable = true;
+  networking.firewall.enable = false;
 
   # Enable flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
