@@ -5,10 +5,6 @@
     enable = true;
     sourceFirst = true;
     xwayland.enable = true;
-    # importantPrefixes = [
-    #   "${config.xdg.configHome}/colors.conf"
-    # ];
-    # extraConfig = builtins.readFile "${config.xdg.configHome}/colors.conf";
 
     settings = {
       source = "${config.xdg.configHome}/hypr/colors.conf";
