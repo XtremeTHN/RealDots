@@ -1,4 +1,4 @@
-{ config, pkgs, ... } @inputs:
+{ config, pkgs, ... }:
 
 {
   imports = [
@@ -16,8 +16,9 @@
 
   # User packages
   home.packages = with pkgs; [
-    bibata-cursors
+    morewaita-icon-theme
     adwaita-icon-theme
+    bibata-cursors
     firefox
     fuzzel
     vscode
