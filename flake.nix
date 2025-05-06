@@ -15,6 +15,7 @@
       url = "github:xtremethn/gtkshell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
   };
 
   outputs = { nixpkgs, astal, home-manager, xtremeShell, ... } @inputs:
@@ -24,7 +25,12 @@
         xtremeShell = xtremeShell.packages.${system}.default;
         astalCli = astal.packages.${system}.default;
       };
-      pkgs = import nixpkgs { inherit system; overlays = [ overlay ]; };
+      pkgs = import nixpkgs { 
+        inherit system; 
+        config.allowUnfree = true;
+        overlays = [ overlay ]; 
+      };
+      spicetify = inputs.spicetify-nix.lib.mkSpicetify pkgs {};
     in {
       nixosConfigurations = {
         # Change host with --flake ./#HOSTNAME
@@ -48,12 +54,12 @@
       homeConfigurations = {
         desktop = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          extraSpecialArgs = inputs // {host = "desktop";};
+          extraSpecialArgs = inputs // {host = "desktop"; inherit spicetify;};
           modules = [ ./homeManager/home.nix ];
         };
         laptop = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          extraSpecialArgs = inputs // {host = "laptop";};
+          extraSpecialArgs = inputs // {host = "laptop"; inherit spicetify;};
           modules = [ ./homeManager/home.nix ];
         };
       };
