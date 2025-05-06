@@ -193,6 +193,15 @@
         "float, title:^(Picture(-| )in(-| )[Pp]icture)$"
         "pin, title:^(Picture(-| )in(-| )[Pp]icture)$"
       ];
+
+      layerrule = [
+        "blur, kagent_background"
+        "blur, ^astal-[^\s]+"
+        # idk why hyprland is not blurring quicksettings
+        "blur, astal-quicksettings"
+        "ignorealpha 0, astal-quicksettings"
+        "ignorealpha 0.3, ^astal-[^\s]+"
+      ];
     };
   };
 }
