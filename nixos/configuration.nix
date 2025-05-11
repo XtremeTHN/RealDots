@@ -35,7 +35,11 @@
     isNormalUser = true;
     description = "Axel Andres Valles Gonzalez";
     shell = pkgs.zsh;
-    extraGroups = [ "networkmanager" "wheel" "video" ];
+    extraGroups = [ 
+      "networkmanager" 
+      "wheel" 
+      "video" # for gtkshell udev
+    ];
   };
 
   # Allow users to connect to the nix daemon
@@ -43,6 +47,7 @@
 
   # System packages
   environment.systemPackages = with pkgs; [
+    hplipWithPlugin
     neovim
     upower
     git
@@ -54,22 +59,35 @@
   ];
 
   # Dconf config
-  programs.dconf = {
-    enable = true;
-    profiles.user = {
-      databases = [{
-        lockAll = true;
-        settings = {
-          "org/gnome/desktop/interface" = {
-            color-scheme = "prefer-dark";
-            gtk-theme = "adw-gtk3-dark-matugen";
+  programs = {
+    zsh.enable = true;
+    nix-ld = {
+      enable = true;
+      libraries = with pkgs; [
+        libvlc
+        xorg.libX11
+        xorg.libXi
+        xorg.libXinerama
+        xorg.libXrandr
+        alsa-lib
+        libGL
+      ];
+    };
+    dconf = {
+      enable = true;
+      profiles.user = {
+        databases = [{
+          lockAll = true;
+          settings = {
+            "org/gnome/desktop/interface" = {
+              color-scheme = "prefer-dark";
+              gtk-theme = "adw-gtk3-dark-matugen";
+            };
           };
-        };
-      }];
+        }];
+      };
     };
   };
-
-  programs.zsh.enable = true;
 
   system.stateVersion = "24.11"; # Do not delete
 

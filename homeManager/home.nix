@@ -22,6 +22,7 @@
     firefox
     fuzzel
     vscode
+    hplip
     glib
     swww
     

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, ... } @inputs:
 
 {
   # Services
@@ -8,7 +8,12 @@
     sshd.enable = true;
     flatpak.enable = true;
     input-remapper.enable =  true;
-
+    printing = {
+      enable = true;
+      drivers = [
+        pkgs.hplipWithPlugin
+      ];
+    };
     # Custom
     udev = {
       packages = [
