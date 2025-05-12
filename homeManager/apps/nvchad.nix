@@ -10,6 +10,11 @@
     hm-activation = true;
     extraPackages = with pkgs; [
       nil
+      vscode-langservers-extracted
+      (pkgs.python313.withPackages(ps: with ps; [
+        python-lsp-server
+        ruff
+      ]))
     ];
     extraPlugins = ''
       return {

@@ -85,7 +85,9 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "nvchad-starter": "nvchad-starter"
+        "nvchad-starter": [
+          "nvchad-starter"
+        ]
       },
       "locked": {
         "lastModified": 1746861069,
@@ -136,17 +138,16 @@
     "nvchad-starter": {
       "flake": false,
       "locked": {
-        "lastModified": 1746346803,
-        "narHash": "sha256-+z0LG/N+dCQY0vFCKEeBSifvzOB7+KFKtAZGJMKQpT0=",
-        "owner": "NvChad",
-        "repo": "starter",
-        "rev": "2b4293a4c10a29cb52eefc430d3d77582c1a24fd",
+        "lastModified": 1747026935,
+        "narHash": "sha256-Rkz6pCTgGX+Y6mFUWpMmNuDK1qdZbgAxLnFmpXq8ytk=",
+        "owner": "XtremeTHN",
+        "repo": "nvchad-starter",
+        "rev": "99a7b8dd5788358344e264c84f649d25491f65b3",
         "type": "github"
       },
       "original": {
-        "owner": "NvChad",
-        "ref": "main",
-        "repo": "starter",
+        "owner": "XtremeTHN",
+        "repo": "nvchad-starter",
         "type": "github"
       }
     },
@@ -156,6 +157,7 @@
         "home-manager": "home-manager",
         "nix4nvchad": "nix4nvchad",
         "nixpkgs": "nixpkgs",
+        "nvchad-starter": "nvchad-starter",
         "spicetify-nix": "spicetify-nix",
         "xtremeShell": "xtremeShell"
       }

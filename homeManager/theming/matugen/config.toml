@@ -33,3 +33,6 @@ output_path = "~/.config/hypr/colors.conf"
 input_path = "~/.config/matugen/templates/astal.tmp"
 output_path = "~/.config/shell/scss/colors.scss"
 
+[templates.vscode]
+input_path = "~/.config/matugen/templates/vscode.tmp"
+output_path = "~/.cache/wal/colors.json"

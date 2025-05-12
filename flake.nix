@@ -16,9 +16,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
+    nvchad-starter = {
+      url = "github:XtremeTHN/nvchad-starter";
+      flake = false;
+    };
     nix4nvchad = {
       url = "github:nix-community/nix4nvchad";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nvchad-starter.follows = "nvchad-starter";
     };
   };
 
