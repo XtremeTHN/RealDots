@@ -23,10 +23,14 @@
     fuzzel
     vscode
     hplip
+    cargo
     glib
     swww
+    gcc
+    nil
     
     bat
+    eza
     warp
     nixd
     file

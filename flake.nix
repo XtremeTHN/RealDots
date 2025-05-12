@@ -16,13 +16,18 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
+    nix4nvchad = {
+      url = "github:nix-community/nix4nvchad";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, astal, home-manager, xtremeShell, ... } @inputs:
+  outputs = { nixpkgs, astal, home-manager, xtremeShell, nix4nvchad, ... } @inputs:
     let
       system = "x86_64-linux";
       overlay = final: prev: {
         xtremeShell = xtremeShell.packages.${system}.default;
+        nix4nvchad = nix4nvchad.packages.${system}.nvchad;
         astalCli = astal.packages.${system}.default;
       };
       pkgs = import nixpkgs { 
