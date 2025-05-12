@@ -25,6 +25,11 @@
       implementation = "broker";
     };
 
+    syncthing = {
+      enable = true;
+      openDefaultPorts = true;
+    };
+
     gnome = {
       glib-networking.enable = true;
       gnome-keyring.enable = true;
