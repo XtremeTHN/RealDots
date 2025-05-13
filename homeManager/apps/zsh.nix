@@ -9,8 +9,7 @@
     syntaxHighlighting.enable = true;
 
     shellAliases = {
-      rebuildSys = "sudo nixos-rebuild switch --flake $HOME/nix/";
-      rebuildHome = "home-manager switch --flake $HOME/nix/";
+      ls = "eza --icons";
     };
     history.ignoreAllDups = true;
     history.path = "$HOME/.zsh_history";
