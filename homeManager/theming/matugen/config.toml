@@ -36,3 +36,7 @@ output_path = "~/.config/shell/scss/colors.scss"
 [templates.vscode]
 input_path = "~/.config/matugen/templates/vscode.tmp"
 output_path = "~/.cache/wal/colors.json"
+
+[templates.vscode_colors]
+input_path = "~/.config/matugen/templates/vscode_colors.tmp"
+output_path = "~/.cache/wal/colors"

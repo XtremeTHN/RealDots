@@ -14,7 +14,7 @@
         "color3": "{{colors.on_primary_fixed_variant.default.hex}}",
         "color4": "{{colors.primary.default.hex}}",
         "color5": "{{colors.primary.default.hex}}",
-        "color6": "{colors.primary_container.default.hex}",
+        "color6": "{{colors.primary_container.default.hex}}",
         "color7": "{{colors.primary_container.default.hex}}",
         "color8": "{{colors.surface_dim.default.hex}}",
         "color9": "{{colors.on_primary_fixed.default.hex}}",
