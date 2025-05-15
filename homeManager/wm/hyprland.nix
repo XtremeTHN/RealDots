@@ -112,7 +112,7 @@
         "$mainMod SHIFT, R, exec, $fallbackMenu"
         "$mainMod, R, exec, $menu"
 
-        "$mainMod, H, exec, grim"
+        "$mainMod, H, exec, grim -t jpeg -q 100; notify-send screen done"
 
         ## Astal
         "$mainMod, B, exec, astal -t quicksettings"

@@ -17,7 +17,7 @@ input_path = "~/.config/matugen/templates/gtk.tmp"
 output_path = "~/.config/gtk-3.0/colors.css"
 
 [templates.gtk4]
-input_path = "~/.config/matugen/templates/gtk.tmp"
+input_path = "~/.config/matugen/templates/gtk4.tmp"
 output_path = "~/.config/gtk-4.0/colors.css"
 
 [templates.kitty]
