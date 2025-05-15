@@ -36,7 +36,7 @@
 
       general = {
         gaps_in = 5;
-        gaps_out = 10;
+        gaps_out = 15;
         border_size = 1;
 
         resize_on_border = false;
@@ -112,6 +112,8 @@
         "$mainMod SHIFT, R, exec, $fallbackMenu"
         "$mainMod, R, exec, $menu"
 
+        "$mainMod, H, exec, grim"
+
         ## Astal
         "$mainMod, B, exec, astal -t quicksettings"
         "$mainMod, N, exec, astal -t notification-center"
@@ -119,6 +121,7 @@
         ## Screenshots
         ", Print, exec, hyprshot -m region"
         "SHIFT, Print, exec, hyprshot -m window"
+        "$mainMod SHIFT, Print, exec, hyprshot -m output eDP-1"
 
         ## Window behavior
         "$mainMod, V, togglefloating"
@@ -138,12 +141,6 @@
         "$mainMod SHIFT, 8, movetoworkspace, 8"
         "$mainMod SHIFT, 9, movetoworkspace, 9"
         "$mainMod SHIFT, 0, movetoworkspace, 10"
-
-        ### Move focus with arrow keys
-        "$mainMod, left, movefocus, h"
-        "$mainMod, down, movefocus, j"
-        "$mainMod, up, movefocus, k"
-        "$mainMod, right, movefocus, l"
 
         ## Workspaces
         ### Workspace switching

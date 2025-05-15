@@ -25,6 +25,7 @@
     hplip
     cargo
     glib
+    grim
     swww
     gcc
     nil

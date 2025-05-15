@@ -1,121 +1,70 @@
 {
-  home.file.".config/fastfetch/nixos.png".source = ./nixos.png;
+  home.file.".config/fastfetch/ascii.txt".source = ./ascii.txt;
   programs.fastfetch = {
     enable = true;
     settings = {
       display = {
-        separator = "➜   ";
-      };
-      general = {
-        multithreading = true;
+        separator = " ";
       };
       logo = {
         padding = {
-          right = 10;
+          right = 6;
           top = 2;
         };
-        width = 40;
-        height = 15;
-        source = "~/.config/fastfetch/nixos.png";
-        type = "kitty";
+        source = "~/.config/fastfetch/ascii.txt";
       };
       modules = [
         "break"
+        "break"
         {
-          format = "                                {6}{7}{8}";
+          keyWidth = 10;
           type = "title";
         }
         "break"
         {
-          format = "┌──────────────────────────────────────────────────────────────────────────────┐";
-          type = "custom";
-        }
-        "break"
-        {
-          key = "     OS           ";
-          keyColor = "green";
+          key = " ";
+          keyColor = "33";
           type = "os";
         }
         {
-          key = "    󰌢 Machine      ";
-          keyColor = "cyan";
-          type = "host";
-        }
-        {
-          key = "     Kernel       ";
-          keyColor = "blue";
+          key = " ";
+          keyColor = "33";
           type = "kernel";
         }
         {
-          key = "    󰅐 Uptime       ";
-          keyColor = "green";
-          type = "uptime";
-        }
-        {
-          key = "     Packages     ";
-          keyColor = "cyan";
+          key = " ";
+          keyColor = "33";
           type = "packages";
         }
         {
-          key = "     WM           ";
-          keyColor = "blue";
-          type = "wm";
-        }
-        {
-          key = "     Shell        ";
-          keyColor = "green";
+          key = " ";
+          keyColor = "33";
           type = "shell";
         }
         {
-          key = "     Terminal     ";
-          keyColor = "cyan";
+          key = " ";
+          keyColor = "33";
           type = "terminal";
         }
         {
-          key = "     Font         ";
-          keyColor = "blue";
-          type = "terminalfont";
+          key = " ";
+          keyColor = "33";
+          type = "wm";
         }
         {
-          key = "    󰻠 CPU          ";
-          keyColor = "green";
-          type = "cpu";
+          key = " ";
+          keyColor = "33";
+          type = "uptime";
         }
         {
-          key = "    󰍛 GPU          ";
-          keyColor = "cyan";
-          type = "gpu";
-        }
-        {
-          key = "    󰑭 Memory       ";
-          keyColor = "blue";
-          type = "memory";
-        }
-        {
-          key = "     Wifi         ";
-          keyColor = "green";
-          type = "wifi";
-        }
-        {
-          compact = true;
-          key = "    󰩟 Local IP     ";
-          keyColor = "cyan";
-          type = "localip";
+          key = "󰝚 ";
+          keyColor = "33";
+          type = "media";
         }
         "break"
-        {
-          format = "└──────────────────────────────────────────────────────────────────────────────┘";
-          type = "custom";
-        }
+        "colors"
         "break"
-        {
-          block = {
-            width = 10;
-          };
-          paddingLeft = 34;
-          symbol = "circle";
-          type = "colors";
-        }
+        "break"
       ];
     };
   };
