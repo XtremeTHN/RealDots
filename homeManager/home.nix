@@ -19,6 +19,7 @@
     morewaita-icon-theme
     adwaita-icon-theme
     bibata-cursors
+    lm_sensors
     firefox
     fuzzel
     vscode
