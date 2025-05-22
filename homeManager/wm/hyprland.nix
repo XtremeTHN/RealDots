@@ -117,6 +117,7 @@
         ## Astal
         "$mainMod, B, exec, astal -t quicksettings"
         "$mainMod, N, exec, astal -t notification-center"
+        "$mainMod, Z, exec, astal -t tools"
 
         ## Screenshots
         ", Print, exec, hyprshot -m region"
