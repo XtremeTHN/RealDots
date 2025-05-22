@@ -15,6 +15,8 @@
       url = "github:xtremethn/gtkshell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    gprompt.url = "github:xtremethn/gprompt";
+
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     nvchad-starter = {
       url = "github:XtremeTHN/nvchad-starter";
@@ -27,11 +29,12 @@
     };
   };
 
-  outputs = { nixpkgs, astal, home-manager, xtremeShell, nix4nvchad, ... } @inputs:
+  outputs = { nixpkgs, astal, home-manager, xtremeShell, nix4nvchad, gprompt, ... } @inputs:
     let
       system = "x86_64-linux";
       overlay = final: prev: {
         xtremeShell = xtremeShell.packages.${system}.default;
+        gprompt = gprompt.packages.${system}.default;
         nix4nvchad = nix4nvchad.packages.${system}.nvchad;
         astalCli = astal.packages.${system}.default;
       };

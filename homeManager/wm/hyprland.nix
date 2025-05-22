@@ -29,9 +29,10 @@
 
       # Autostart
       exec-once = [
-        "kagent"
-        "shell"
-        "swww-daemon"
+        "kagent" # polkit auth agent
+        "shell" # gtk shell
+        "gprompt" # gnome-keyring prompt
+        "swww-daemon" # wallpaper
       ];
 
       general = {

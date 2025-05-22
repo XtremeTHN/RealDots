@@ -62,6 +62,8 @@
     (callPackage ./derivations/adw-gtk3-md.nix {
       configDir = config.xdg.configHome;
     })
+    gprompt
+
   ];
   
   # Use with dotfiles
