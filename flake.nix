@@ -16,8 +16,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     gprompt.url = "github:xtremethn/gprompt";
-
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
+
+    zen = {
+      url = "github:0xc000022070/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nvchad-starter = {
       url = "github:XtremeTHN/nvchad-starter";
       flake = false;
@@ -29,7 +34,7 @@
     };
   };
 
-  outputs = { nixpkgs, astal, home-manager, xtremeShell, nix4nvchad, gprompt, ... } @inputs:
+  outputs = { nixpkgs, astal, home-manager, xtremeShell, nix4nvchad, gprompt, zen, ... } @inputs:
     let
       system = "x86_64-linux";
       overlay = final: prev: {
@@ -37,6 +42,7 @@
         gprompt = gprompt.packages.${system}.default;
         nix4nvchad = nix4nvchad.packages.${system}.nvchad;
         astalCli = astal.packages.${system}.default;
+        zen = zen.packages.${system}.default;
       };
       pkgs = import nixpkgs { 
         inherit system; 

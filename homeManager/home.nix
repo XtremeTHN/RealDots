@@ -21,7 +21,6 @@
     bibata-cursors
     simple-scan
     lm_sensors
-    firefox
     fuzzel
     vscode
     direnv
@@ -32,6 +31,7 @@
     swww
     gcc
     nil
+    zen
     
     bat
     eza
