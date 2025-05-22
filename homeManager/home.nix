@@ -19,10 +19,12 @@
     morewaita-icon-theme
     adwaita-icon-theme
     bibata-cursors
+    simple-scan
     lm_sensors
     firefox
     fuzzel
     vscode
+    direnv
     hplip
     cargo
     glib

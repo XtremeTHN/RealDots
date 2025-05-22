@@ -15,4 +15,9 @@
     history.path = "$HOME/.zsh_history";
     initContent = "eval $(starship init zsh)";
   };
+
+  programs.direnv = {
+    enable = true;
+    enableZshIntegration = true;
+  };
 }
