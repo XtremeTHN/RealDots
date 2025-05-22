@@ -3,7 +3,7 @@
 {
   imports = [
     ./services.nix
-    ./graphical/bundle.nix
+    ./graphical
   ];
 
   # Bootloader
