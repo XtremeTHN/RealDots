@@ -1,15 +1,17 @@
-{ pkgs, ... } @inputs:
+{ pkgs, ... } @args:
 
-{
+let
+  ifDesktop = (args.host == "desktop");
+in {
   # Services
   services = {
     upower.enable = true;
     gvfs.enable = true;
     sshd.enable = true;
     flatpak.enable = true;
-    input-remapper.enable =  true;
+    input-remapper.enable = ifDesktop;
     printing = {
-      enable = true;
+      enable = ifDesktop;
       drivers = [
         pkgs.hplipWithPlugin
       ];

@@ -1,6 +1,9 @@
-{ config, pkgs, ... }:
-
-{
+{ config, pkgs, ... } @args: let
+  printPkgs = if args.host == "desktop" then [
+    pkgs.simple-scan
+    pkgs.hplip
+  ] else [];
+in {
   imports = [
     ./theming
     ./apps
@@ -13,24 +16,22 @@
   
   # Allow propietary programs
   nixpkgs.config.allowUnfree = true;
+  
 
   # User packages
   home.packages = with pkgs; [
     morewaita-icon-theme
     adwaita-icon-theme
-    bibata-cursors
-    simple-scan
+    bibata-cursors 
     lm_sensors
     fuzzel
     vscode
     direnv
-    hplip
     cargo
     glib
     grim
     swww
     gcc
-    nil
     zen
     
     bat
@@ -63,12 +64,8 @@
       configDir = config.xdg.configHome;
     })
     gprompt
-
-  ];
+  ] ++ printPkgs;
   
-  # Use with dotfiles
-  #home.file {};
-
   home.sessionVariables = {
     EDITOR = "nvim";
     NIXOS_OZONE_WL = "1";
