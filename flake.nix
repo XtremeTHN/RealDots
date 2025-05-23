@@ -49,11 +49,14 @@
         config.allowUnfree = true;
         overlays = [ overlay ]; 
       };
+      deskSet = { host = "desktop"; };
+      lapSet = { host = "laptop"; };
     in {
       nixosConfigurations = {
         # Change host with --flake ./#HOSTNAME
         desktop = nixpkgs.lib.nixosSystem {
           inherit system pkgs;
+          specialArgs = deskSet;
           modules = [ 
             ./hosts/desktop
             ./nixos/configuration.nix 
@@ -62,6 +65,7 @@
         
         laptop = nixpkgs.lib.nixosSystem {
           inherit system pkgs;
+          specialArgs = lapSet;
           modules = [
             ./hosts/laptop
             ./nixos/configuration.nix 
@@ -72,12 +76,12 @@
       homeConfigurations = {
         desktop = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          extraSpecialArgs = inputs // {host = "desktop";};
+          extraSpecialArgs = inputs // deskSet;
           modules = [ ./homeManager/home.nix ];
         };
         laptop = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          extraSpecialArgs = inputs // {host = "laptop";};
+          extraSpecialArgs = inputs // lapSet;
           modules = [ ./homeManager/home.nix ];
         };
       };
