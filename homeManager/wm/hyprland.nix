@@ -173,7 +173,7 @@
         "$mainMod, mouse:273, resizewindow"
       ];
 
-      windowrulev2 = [
+      windowrule = [
         "float, title:^([Pp]icture[-\s]?[Ii]n[-\s]?[Pp]icture)(.*)$"
         "float, title:^(Open File)(.*)$"
         "float, title:^(Select a File)(.*)$"
@@ -191,6 +191,8 @@
         "size 25%, title:^(Picture(-| )in(-| )[Pp]icture)$"
         "float, title:^(Picture(-| )in(-| )[Pp]icture)$"
         "pin, title:^(Picture(-| )in(-| )[Pp]icture)$"
+
+        "noblur, title:.+"
       ];
 
       layerrule = [
