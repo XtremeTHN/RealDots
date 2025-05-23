@@ -1,6 +1,6 @@
-{ config, ... } @inputs:
-
-{
+{ config, ... } @inputs: let
+  noblur = if inputs.host == "laptop" then ["noblur, title:.+"] else [];
+in {
   wayland.windowManager.hyprland = {
     enable = true;
     sourceFirst = true;
@@ -191,9 +191,7 @@
         "size 25%, title:^(Picture(-| )in(-| )[Pp]icture)$"
         "float, title:^(Picture(-| )in(-| )[Pp]icture)$"
         "pin, title:^(Picture(-| )in(-| )[Pp]icture)$"
-
-        "noblur, title:.+"
-      ];
+      ] ++ noblur;
 
       layerrule = [
         "blur, kagent_background"
