@@ -7,6 +7,7 @@
 
   programs.nvchad = {
     enable = true;
+    backup = false;
     hm-activation = true;
     extraPackages = with pkgs; [
       nil
