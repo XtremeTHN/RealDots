@@ -22,7 +22,8 @@ in {
   home.packages = with pkgs; [
     morewaita-icon-theme
     adwaita-icon-theme
-    bibata-cursors 
+    teams-for-linux
+    bibata-cursors
     lm_sensors
     fuzzel
     vscode
