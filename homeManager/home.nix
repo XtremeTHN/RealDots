@@ -32,6 +32,7 @@ in {
     glib
     grim
     swww
+    btop
     gcc
     zen
     

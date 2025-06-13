@@ -4,6 +4,7 @@
   imports = [
     ./services.nix
     ./graphical
+    ./systemApps
   ];
 
   # Bootloader
@@ -97,4 +98,7 @@
     dates = "daily";
     options = "--delete-older-than 1d";
   };
+
+  # misc options
+  hardware.xone.enable = true; # steam xbox controller USB support
 }
