@@ -1,6 +1,5 @@
 { config, pkgs, ... } @args: let
   printPkgs = if args.host == "desktop" then [
-    pkgs.simple-scan
     pkgs.hplip
   ] else [];
 in {
@@ -25,6 +24,7 @@ in {
     teams-for-linux
     bibata-cursors
     lm_sensors
+    distrobox
     fuzzel
     vscode
     direnv
