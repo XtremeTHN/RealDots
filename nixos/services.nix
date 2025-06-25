@@ -10,6 +10,8 @@ in {
     sshd.enable = true;
     flatpak.enable = true;
     input-remapper.enable = ifDesktop;
+    power-profiles-daemon.enable = true;
+
     printing = {
       enable = ifDesktop;
       drivers = [
