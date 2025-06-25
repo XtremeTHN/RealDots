@@ -91,6 +91,12 @@
     };
   };
 
+  # For distrobox
+  virtualisation.podman = {
+    enable = true;
+    dockerCompat = true;
+  };
+
   system.stateVersion = "24.11"; # Do not delete
 
   # Garbage collection
