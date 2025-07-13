@@ -56,11 +56,12 @@ in {
         shadow.enabled = true;
         blur = if inputs.host == "desktop" then {
           enabled = true;
-          size = 10;
+          size = 4;
           passes = 3;
           new_optimizations = true;
           ignore_opacity = true;
           noise = 0;
+          special = true;
           brightness = 0.90;
         } else {
           enabled = true;
@@ -119,6 +120,7 @@ in {
         "$mainMod, B, exec, astal -t quicksettings"
         "$mainMod, N, exec, astal -t notification-center"
         "$mainMod, Z, exec, astal -t tools"
+        "$mainMod, X, exec, astal -t music"
 
         ## Screenshots
         ", Print, exec, hyprshot -m region"
@@ -195,11 +197,8 @@ in {
 
       layerrule = [
         "blur, kagent_background"
-        "blur, ^astal-[^\s]+"
-        # idk why hyprland is not blurring quicksettings
-        "blur, astal-quicksettings"
-        "ignorealpha 0, astal-quicksettings"
-        "ignorealpha 0.3, ^astal-[^\s]+"
+        "blur, astal-.*"
+        "ignorealpha 0, astal-.*"
       ];
     };
   };

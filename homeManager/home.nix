@@ -19,11 +19,14 @@ in {
 
   # User packages
   home.packages = with pkgs; [
+    (btop.override { rocmSupport = true; })
     morewaita-icon-theme
     adwaita-icon-theme
     teams-for-linux
     bibata-cursors
+    hydralauncher
     lm_sensors
+    parabolic
     distrobox
     fuzzel
     vscode
@@ -32,7 +35,6 @@ in {
     glib
     grim
     swww
-    btop
     gcc
     zen
     

@@ -71,6 +71,9 @@
         xorg.libXi
         xorg.libXinerama
         xorg.libXrandr
+        xorg.libXcursor
+        xorg.libXext
+        xorg.libXrender
         alsa-lib
         libGL
       ];

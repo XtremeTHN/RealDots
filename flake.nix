@@ -46,9 +46,13 @@
       };
       pkgs = import nixpkgs { 
         inherit system; 
-        config.allowUnfree = true;
+        config = {
+          allowUnfree = true;
+          rocmSupport = true;
+        };
         overlays = [ overlay ]; 
       };
+
       deskSet = { host = "desktop"; };
       lapSet = { host = "laptop"; };
     in {
