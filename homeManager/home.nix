@@ -28,6 +28,7 @@ in {
     lm_sensors
     parabolic
     distrobox
+    amberol
     fuzzel
     vscode
     direnv
