@@ -37,7 +37,7 @@ in {
 
       general = {
         gaps_in = 5;
-        gaps_out = 15;
+        gaps_out = 25;
         border_size = 1;
 
         resize_on_border = false;
