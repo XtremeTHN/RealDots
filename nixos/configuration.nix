@@ -76,6 +76,7 @@
         xorg.libXrender
         alsa-lib
         libGL
+        luajit
       ];
     };
     dconf = {
@@ -86,7 +87,7 @@
           settings = {
             "org/gnome/desktop/interface" = {
               color-scheme = "prefer-dark";
-              gtk-theme = "adw-gtk3-dark-matugen";
+              gtk-theme = "Colloid-Dark";
             };
           };
         }];

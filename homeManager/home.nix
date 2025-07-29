@@ -6,7 +6,7 @@ in {
   imports = [
     ./theming
     ./apps
-    ./wm/hyprland.nix
+    # ./wm/hyprland.nix
   ];
 
   home.username = "axel";
@@ -45,30 +45,22 @@ in {
     nixd
     file
     loupe
-    nwg-look
+    gradia
     vencord
+    nwg-look
     nautilus
     hyprshot
     fastfetch
-    pika-backup
     python3Full
+    pika-backup
+    icon-library
     wl-clipboard
+    youtube-music
     gnome-keyring
     nixfmt-rfc-style
-
-    # Astal
-    astalCli
-    xtremeShell
-
-    # matu
-    matugen
-
-    # Custom apps
-    (callPackage ./derivations/kagent.nix {})
-    (callPackage ./derivations/adw-gtk3-md.nix {
-      configDir = config.xdg.configHome;
-    })
-    gprompt
+    colloid-gtk-theme
+    gnome-text-editor
+    gnome-extension-manager
   ] ++ printPkgs;
   
   home.sessionVariables = {
