@@ -7,15 +7,9 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    astal = {
-      url = "github:aylur/astal";
-      inputs.nixpkgs.follows = "nixpkgs";
+    vanana = {
+      url = "github:xtremethn/vanana";
     };
-    xtremeShell = {
-      url = "github:xtremethn/gtkshell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    gprompt.url = "github:xtremethn/gprompt";
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
 
     zen = {
@@ -23,10 +17,16 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    winapps = {
+      url = "github:winapps-org/winapps";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nvchad-starter = {
       url = "github:XtremeTHN/nvchad-starter";
       flake = false;
     };
+
     nix4nvchad = {
       url = "github:nix-community/nix4nvchad";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -34,15 +34,14 @@
     };
   };
 
-  outputs = { nixpkgs, astal, home-manager, xtremeShell, nix4nvchad, gprompt, zen, ... } @inputs:
+  outputs = { nixpkgs, home-manager, winapps, nix4nvchad, zen, vanana, ... } @inputs:
     let
       system = "x86_64-linux";
       overlay = final: prev: {
-        xtremeShell = xtremeShell.packages.${system}.default;
-        gprompt = gprompt.packages.${system}.default;
+        vanana = vanana.packages.${system}.default;
         nix4nvchad = nix4nvchad.packages.${system}.nvchad;
-        astalCli = astal.packages.${system}.default;
         zen = zen.packages.${system}.default;
+        winapps = winapps.packages.${system};
       };
       pkgs = import nixpkgs { 
         inherit system; 

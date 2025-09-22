@@ -24,6 +24,8 @@ in {
     adwaita-icon-theme
     teams-for-linux
     bibata-cursors
+    podman-compose
+    osu-lazer-bin
     hydralauncher
     lm_sensors
     parabolic
@@ -41,10 +43,12 @@ in {
     
     bat
     eza
+    crun
     warp
     nixd
     file
     loupe
+    unzip
     gradia
     vencord
     nwg-look
@@ -56,11 +60,18 @@ in {
     icon-library
     wl-clipboard
     youtube-music
+    gnome-builder
     gnome-keyring
     nixfmt-rfc-style
     colloid-gtk-theme
     gnome-text-editor
     gnome-extension-manager
+    
+    winapps.winapps
+    winapps.winapps-launcher
+
+
+    vanana
   ] ++ printPkgs;
   
   home.sessionVariables = {

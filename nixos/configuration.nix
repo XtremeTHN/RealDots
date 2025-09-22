@@ -39,7 +39,7 @@
     extraGroups = [ 
       "networkmanager" 
       "wheel" 
-      "video" # for gtkshell udev
+      "kvm"
     ];
   };
 
@@ -55,6 +55,7 @@
     
     zsh
     mangohud
+    sysprof
     gst_all_1.gstreamer
     gst_all_1.gst-plugins-good
     gst_all_1.gst-plugins-bad

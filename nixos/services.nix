@@ -11,17 +11,12 @@ in {
     flatpak.enable = true;
     input-remapper.enable = ifDesktop;
     power-profiles-daemon.enable = true;
+    sysprof.enable = true;
 
     printing = {
       enable = ifDesktop;
       drivers = [
         pkgs.hplipWithPlugin
-      ];
-    };
-    # Custom
-    udev = {
-      packages = [
-        pkgs.xtremeShell
       ];
     };
     dbus = {

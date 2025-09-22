@@ -12,6 +12,7 @@
     enable = true; 
     gtk3.extraConfig = {
       gtk-application-prefer-dark-theme = 1;
+      gtk-error-bell = 0;
     };
     iconTheme = {
       package = pkgs.morewaita-icon-theme;
