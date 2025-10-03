@@ -78,20 +78,6 @@
         libGL
       ];
     };
-    dconf = {
-      enable = true;
-      profiles.user = {
-        databases = [{
-          lockAll = true;
-          settings = {
-            "org/gnome/desktop/interface" = {
-              color-scheme = "prefer-dark";
-              gtk-theme = "adw-gtk3-dark-matugen";
-            };
-          };
-        }];
-      };
-    };
   };
 
   # For distrobox

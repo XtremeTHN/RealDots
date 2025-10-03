@@ -44,6 +44,7 @@ in {
     warp
     nixd
     file
+    dconf
     loupe
     nwg-look
     vencord
@@ -76,8 +77,6 @@ in {
     NIXOS_OZONE_WL = "1";
   };
 
-  dconf.enable = true;
-  
   # Let home manager install and manage itself.
   programs.home-manager.enable = true;
 }

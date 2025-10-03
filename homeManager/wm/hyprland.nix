@@ -1,6 +1,18 @@
-{ config, ... } @inputs: let
+{ config, pkgs, ... } @inputs: let
   noblur = if inputs.host == "laptop" then ["noblur, title:.+"] else [];
 in {
+  xdg.portal = {
+    enable = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-hyprland
+    ];
+    configPackages = [
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-hyprland
+    ];
+  };
+
   wayland.windowManager.hyprland = {
     enable = true;
     sourceFirst = true;

@@ -10,9 +10,6 @@
 
   gtk = {
     enable = true;
-    gtk4.extraConfig = {
-      gtk-application-prefer-dark-theme = 1;
-    };
     gtk3.extraConfig = {
       gtk-application-prefer-dark-theme = 1;
     };
@@ -24,6 +21,13 @@
     font = {
       name = "Adwaita Sans";
       size = 11;
+    };
+  };
+
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      gtk-theme = "Adwaita-dark";
+      color-scheme = "prefer-dark";
     };
   };
 }
