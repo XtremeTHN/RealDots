@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 {
   home.pointerCursor = {
@@ -12,6 +12,15 @@
     enable = true;
     gtk3.extraConfig = {
       gtk-application-prefer-dark-theme = 1;
+    };
+
+    gtk4.theme = {
+      name = "adw-gtk-matugen";
+      package = (
+        pkgs.callPackage ../derivations/adw-gtk-matugen.nix {
+          configDir = config.xdg.configHome;
+        }
+      );
     };
     iconTheme = {
       package = pkgs.morewaita-icon-theme;

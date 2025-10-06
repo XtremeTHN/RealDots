@@ -25,7 +25,7 @@ in {
       "$terminal" = "kitty";
       "$fileManager" = "nautilus";
       "$fallbackMenu" = "fuzzel";
-      "$menu" = "astal -t applauncher";
+      "$menu" = "shell -t app-runner";
       "$mainMod" = "SUPER";
 
       monitor = if inputs.host == "desktop" then ",1920x1080@165,auto,1" else ",1920x1080@60,auto,1";
@@ -129,10 +129,10 @@ in {
         "$mainMod, H, exec, grim -t jpeg -q 100; notify-send screen done"
 
         ## Astal
-        "$mainMod, B, exec, astal -t quicksettings"
-        "$mainMod, N, exec, astal -t notification-center"
-        "$mainMod, Z, exec, astal -t tools"
-        "$mainMod, X, exec, astal -t music"
+        # "$mainMod, B, exec, astal -t quicksettings"
+        # "$mainMod, N, exec, astal -t notification-center"
+        # "$mainMod, Z, exec, astal -t tools"
+        # "$mainMod, X, exec, astal -t music"
 
         ## Screenshots
         ", Print, exec, hyprshot -m region"

@@ -7,15 +7,11 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    astal = {
-      url = "github:aylur/astal";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     xtremeShell = {
-      url = "github:xtremethn/gtkshell";
-      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:xtremethn/gtkshell/adw";
     };
     gprompt.url = "github:xtremethn/gprompt";
+    kagent.url = "github:xtremethn/kagent";
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
 
     zen = {
@@ -34,45 +30,60 @@
     };
   };
 
-  outputs = { nixpkgs, astal, home-manager, xtremeShell, nix4nvchad, gprompt, zen, ... } @inputs:
+  outputs =
+    {
+      nixpkgs,
+      home-manager,
+      xtremeShell,
+      nix4nvchad,
+      gprompt,
+      kagent,
+      zen,
+      ...
+    }@inputs:
     let
       system = "x86_64-linux";
       overlay = final: prev: {
         xtremeShell = xtremeShell.packages.${system}.default;
         gprompt = gprompt.packages.${system}.default;
         nix4nvchad = nix4nvchad.packages.${system}.nvchad;
-        astalCli = astal.packages.${system}.default;
         zen = zen.packages.${system}.default;
+        kagent = kagent.packages.${system}.default;
       };
-      pkgs = import nixpkgs { 
-        inherit system; 
+      pkgs = import nixpkgs {
+        inherit system;
         config = {
           allowUnfree = true;
           rocmSupport = true;
         };
-        overlays = [ overlay ]; 
+        overlays = [ overlay ];
       };
 
-      deskSet = { host = "desktop"; };
-      lapSet = { host = "laptop"; };
-    in {
+      deskSet = {
+        host = "desktop";
+      };
+      lapSet = {
+        host = "laptop";
+      };
+    in
+    {
       nixosConfigurations = {
         # Change host with --flake ./#HOSTNAME
         desktop = nixpkgs.lib.nixosSystem {
           inherit system pkgs;
           specialArgs = deskSet;
-          modules = [ 
+          modules = [
             ./hosts/desktop
-            ./nixos/configuration.nix 
+            ./nixos/configuration.nix
           ];
         };
-        
+
         laptop = nixpkgs.lib.nixosSystem {
           inherit system pkgs;
           specialArgs = lapSet;
           modules = [
             ./hosts/laptop
-            ./nixos/configuration.nix 
+            ./nixos/configuration.nix
           ];
         };
       };
