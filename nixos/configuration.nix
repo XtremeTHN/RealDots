@@ -18,7 +18,10 @@
   networking.firewall.enable = false;
 
   # Enable flakes
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   time.timeZone = "America/Monterrey";
 
@@ -36,9 +39,9 @@
     isNormalUser = true;
     description = "Axel Andres Valles Gonzalez";
     shell = pkgs.zsh;
-    extraGroups = [ 
-      "networkmanager" 
-      "wheel" 
+    extraGroups = [
+      "networkmanager"
+      "wheel"
       "video" # for gtkshell udev
     ];
   };
@@ -52,7 +55,7 @@
     neovim
     upower
     git
-    
+
     zsh
     mangohud
     gst_all_1.gstreamer
@@ -97,4 +100,5 @@
 
   # misc options
   hardware.xone.enable = true; # steam xbox controller USB support
+  hardware.bluetooth.enable = true; # bluetooth
 }

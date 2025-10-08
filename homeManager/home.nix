@@ -13,6 +13,9 @@ in
     ./theming
     ./apps
     ./wm/hyprland.nix
+    ./services
+    args.nix-flatpak.homeManagerModules.nix-flatpak
+
   ];
 
   home.username = "axel";
@@ -79,6 +82,17 @@ in
       gprompt
     ]
     ++ printPkgs;
+
+  services.flatpak.packages = [
+    {
+      flatpakref = "https://valent.andyholmes.ca/valent.flatpakref";
+      sha256 = "1v5xxaszxir44ymihwrb8yj2rg9bsz96khl5if0si5xnjcja3ygh";
+    }
+    "com.usebottles.Bottles"
+    "com.github.tchx84.Flatseal"
+    "org.vinegarhq.Sober"
+    "re.sonny.Workbench"
+  ];
 
   home.sessionVariables = {
     EDITOR = "nvim";

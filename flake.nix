@@ -13,7 +13,7 @@
     gprompt.url = "github:xtremethn/gprompt";
     kagent.url = "github:xtremethn/kagent";
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
-
+    nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
     zen = {
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -35,6 +35,7 @@
       nixpkgs,
       home-manager,
       xtremeShell,
+      nix-flatpak,
       nix4nvchad,
       gprompt,
       kagent,
@@ -92,12 +93,16 @@
         desktop = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = inputs // deskSet;
-          modules = [ ./homeManager/home.nix ];
+          modules = [
+            ./homeManager/home.nix
+          ];
         };
         laptop = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = inputs // lapSet;
-          modules = [ ./homeManager/home.nix ];
+          modules = [
+            ./homeManager/home.nix
+          ];
         };
       };
     };

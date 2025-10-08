@@ -1,5 +1,4 @@
 { pkgs, config, ... }:
-
 {
   home.pointerCursor = {
     gtk.enable = true;
@@ -14,14 +13,6 @@
       gtk-application-prefer-dark-theme = 1;
     };
 
-    gtk4.theme = {
-      name = "adw-gtk-matugen";
-      package = (
-        pkgs.callPackage ../derivations/adw-gtk-matugen.nix {
-          configDir = config.xdg.configHome;
-        }
-      );
-    };
     iconTheme = {
       package = pkgs.morewaita-icon-theme;
       name = "MoreWaita";
@@ -35,7 +26,7 @@
 
   dconf.settings = {
     "org/gnome/desktop/interface" = {
-      gtk-theme = "Adwaita-dark";
+      gtk-theme = "adw-gtk-matugen";
       color-scheme = "prefer-dark";
     };
   };

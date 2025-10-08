@@ -1,26 +1,20 @@
 {
   stdenv,
-  replaceVars,
-  # fetchFromGitHub,
+  fetchFromGitHub,
   configDir,
 }:
 
 stdenv.mkDerivation {
-  pname = "adw-gtk3-dark-matugen";
-  version = "0.1";
-  src = /home/axel/Git/adw-gtk-dark-matugen;
-  # src = fetchFromGitHub {
-  #   owner = "XtremeTHN";
-  #   repo = "adw-gtk3-dark-matugen";
-  #   rev = "v0.1";#
-  #   sha256 = "sha256-6kWz54Yx8eu5SvBwh6le2OQDWF9aVjGSrikdqTMBJ90=";
-  # };
+  pname = "adw-gtk-matugen";
+  version = "0.2";
+  src = fetchFromGitHub {
+    owner = "XtremeTHN";
+    repo = "adw-gtk3-dark-matugen";
+    rev = "v0.1";
+    sha256 = "sha256-1MZMyvYyXw9d/eOcB3BldKx3lDpvVemTiUtLvwbYUIQ=";
+  };
+
   dontBuild = false;
-  # patches = [
-  #   (replaceVars ./patches/changePaths.patch {
-  #     CONFIG = configDir;
-  #   })
-  # ];
 
   postPatch = ''
     for f in 3 4; do
