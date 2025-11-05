@@ -77,7 +77,7 @@ in
       matugen
 
       # polkit agent
-      kagent
+      vagent
 
       # Custom apps
       # (callPackage ./derivations/kagent.nix {})

@@ -116,24 +116,6 @@
         "type": "github"
       }
     },
-    "kagent": {
-      "inputs": {
-        "nixpkgs": "nixpkgs_3"
-      },
-      "locked": {
-        "lastModified": 1759710147,
-        "narHash": "sha256-M3WuV2rFXhF4hzLlFLTUH7q6mSxT52MSkQq8gUkSmZ4=",
-        "owner": "xtremethn",
-        "repo": "kagent",
-        "rev": "68390751a5304c588a25df754553619f1eb07eb3",
-        "type": "github"
-      },
-      "original": {
-        "owner": "xtremethn",
-        "repo": "kagent",
-        "type": "github"
-      }
-    },
     "nix4nvchad": {
       "inputs": {
         "flake-utils": "flake-utils",
@@ -192,22 +174,6 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1759381078,
-        "narHash": "sha256-gTrEEp5gEspIcCOx9PD8kMaF1iEmfBcTbO0Jag2QhQs=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "7df7ff7d8e00218376575f0acdcc5d66741351ee",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_4": {
-      "locked": {
         "lastModified": 1762111121,
         "narHash": "sha256-4vhDuZ7OZaZmKKrnDpxLZZpGIJvAeMtK6FKLJYUtAdw=",
         "owner": "nixos",
@@ -222,7 +188,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_5": {
+    "nixpkgs_4": {
       "locked": {
         "lastModified": 1761907660,
         "narHash": "sha256-kJ8lIZsiPOmbkJypG+B5sReDXSD1KGu2VEPNqhRa/ew=",
@@ -233,6 +199,22 @@
       },
       "original": {
         "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_5": {
+      "locked": {
+        "lastModified": 1762111121,
+        "narHash": "sha256-4vhDuZ7OZaZmKKrnDpxLZZpGIJvAeMtK6FKLJYUtAdw=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "b3d51a0365f6695e7dd5cdf3e180604530ed33b4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
         "ref": "nixos-unstable",
         "repo": "nixpkgs",
         "type": "github"
@@ -291,11 +273,11 @@
         "gprompt": "gprompt",
         "gtk-utils": "gtk-utils",
         "home-manager": "home-manager",
-        "kagent": "kagent",
         "nix4nvchad": "nix4nvchad",
-        "nixpkgs": "nixpkgs_4",
+        "nixpkgs": "nixpkgs_3",
         "nvchad-starter": "nvchad-starter",
         "spicetify-nix": "spicetify-nix",
+        "vagent": "vagent",
         "vanana": "vanana",
         "vshell": "vshell",
         "zen": "zen"
@@ -303,7 +285,7 @@
     },
     "spicetify-nix": {
       "inputs": {
-        "nixpkgs": "nixpkgs_5",
+        "nixpkgs": "nixpkgs_4",
         "systems": "systems_2"
       },
       "locked": {
@@ -347,6 +329,24 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "vagent": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_5"
+      },
+      "locked": {
+        "lastModified": 1762381073,
+        "narHash": "sha256-wumnrDMbBa9/rokanQLMgQHndr1/xMwK3V5Sl+Hp1fM=",
+        "owner": "xtremethn",
+        "repo": "vagent",
+        "rev": "0cc5295c7e22eaa9299ebbf2ad4245f6109cec87",
+        "type": "github"
+      },
+      "original": {
+        "owner": "xtremethn",
+        "repo": "vagent",
         "type": "github"
       }
     },

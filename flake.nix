@@ -11,7 +11,7 @@
       url = "github:xtremethn/vshell";
     };
     gprompt.url = "github:xtremethn/gprompt";
-    kagent.url = "github:xtremethn/kagent";
+    vagent.url = "github:xtremethn/vagent";
     vanana.url = "github:xtremethn/vanana";
     gtk-utils.url = "github:xtremethn/hyprgtkutils";
 
@@ -40,7 +40,7 @@
       gtk-utils,
       gprompt,
       vanana,
-      kagent,
+      vagent,
       vshell,
       zen,
       ...
@@ -52,7 +52,7 @@
         gprompt = gprompt.packages.${system}.default;
         nix4nvchad = nix4nvchad.packages.${system}.nvchad;
         zen = zen.packages.${system}.default;
-        kagent = kagent.packages.${system}.default;
+        vagent = vagent.packages.${system}.default;
         vanana = vanana.packages.${system}.default;
         hyprland-qtutils = gtk-utils.packages.${system}.default;
       };
