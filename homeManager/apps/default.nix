@@ -3,7 +3,7 @@
     ./fastfetch
     ./starship.nix
     ./spicetify.nix
-    ./nvchad.nix
+    ./nvim.nix
     ./kitty.nix
     ./zsh.nix
     ./git.nix

@@ -7,13 +7,15 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    xtremeShell = {
-      url = "github:xtremethn/gtkshell/adw";
+    vshell = {
+      url = "github:xtremethn/vshell";
     };
     gprompt.url = "github:xtremethn/gprompt";
     kagent.url = "github:xtremethn/kagent";
+    vanana.url = "github:xtremethn/vanana";
+    gtk-utils.url = "github:xtremethn/hyprgtkutils";
+
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
-    nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
     zen = {
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -34,22 +36,25 @@
     {
       nixpkgs,
       home-manager,
-      xtremeShell,
-      nix-flatpak,
       nix4nvchad,
+      gtk-utils,
       gprompt,
+      vanana,
       kagent,
+      vshell,
       zen,
       ...
     }@inputs:
     let
       system = "x86_64-linux";
       overlay = final: prev: {
-        xtremeShell = xtremeShell.packages.${system}.default;
+        vshell = vshell.packages.${system}.default;
         gprompt = gprompt.packages.${system}.default;
         nix4nvchad = nix4nvchad.packages.${system}.nvchad;
         zen = zen.packages.${system}.default;
         kagent = kagent.packages.${system}.default;
+        vanana = vanana.packages.${system}.default;
+        hyprland-qtutils = gtk-utils.packages.${system}.default;
       };
       pkgs = import nixpkgs {
         inherit system;

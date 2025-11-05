@@ -14,8 +14,6 @@ in
     ./apps
     ./wm/hyprland.nix
     ./services
-    args.nix-flatpak.homeManagerModules.nix-flatpak
-
   ];
 
   home.username = "axel";
@@ -38,6 +36,7 @@ in
       lm_sensors
       parabolic
       distrobox
+      showtime
       fuzzel
       vscode
       direnv
@@ -55,20 +54,24 @@ in
       file
       dconf
       loupe
-      nwg-look
+      neovim
+      neovide
       vencord
+      nwg-look
       nautilus
       hyprshot
       fastfetch
-      pika-backup
       python314
+      adwsteamgtk
+      pika-backup
       wl-clipboard
       osu-lazer-bin
       gnome-keyring
       nixfmt-rfc-style
+      gnome-text-editor
 
       # Astal
-      xtremeShell
+      vshell
 
       # matu
       matugen
@@ -78,21 +81,10 @@ in
 
       # Custom apps
       # (callPackage ./derivations/kagent.nix {})
-
+      vanana
       gprompt
     ]
     ++ printPkgs;
-
-  services.flatpak.packages = [
-    {
-      flatpakref = "https://valent.andyholmes.ca/valent.flatpakref";
-      sha256 = "1v5xxaszxir44ymihwrb8yj2rg9bsz96khl5if0si5xnjcja3ygh";
-    }
-    "com.usebottles.Bottles"
-    "com.github.tchx84.Flatseal"
-    "org.vinegarhq.Sober"
-    "re.sonny.Workbench"
-  ];
 
   home.sessionVariables = {
     EDITOR = "nvim";
