@@ -1,5 +1,5 @@
 { config, pkgs, ... } @inputs: let
-  noblur = if inputs.host == "laptop" then ["noblur, title:.+"] else [];
+  noblur = if inputs.host == "laptop" then ["blur off, match:title .+"] else [];
 in {
   xdg.portal = {
     enable = true;
@@ -25,7 +25,7 @@ in {
       "$terminal" = "kitty";
       "$fileManager" = "nautilus";
       "$fallbackMenu" = "fuzzel";
-      "$menu" = "shell -t app-runner";
+      "$menu" = "vshell -t app-runner";
       "$mainMod" = "SUPER";
 
       monitor = if inputs.host == "desktop" then ",1920x1080@165,auto,1" else ",1920x1080@60,auto,1";
@@ -41,9 +41,7 @@ in {
 
       # Autostart
       exec-once = [
-        "kagent" # polkit auth agent
-        "shell" # gtk shell
-        "gprompt" # gnome-keyring prompt
+        "vshell" # gtk shell
         "swww-daemon" # wallpaper
       ];
 
@@ -188,29 +186,29 @@ in {
       ];
 
       windowrule = [
-        "float, title:^([Pp]icture[-\s]?[Ii]n[-\s]?[Pp]icture)(.*)$"
-        "float, title:^(Open File)(.*)$"
-        "float, title:^(Select a File)(.*)$"
-        "float, title:^(Choose wallpaper)(.*)$"
-        "float, title:^(Open Folder)(.*)$"
-        "float, title:^(Save As)(.*)$"
-        "float, title:^(Library)(.*)$"
-        "float, title:^(File Upload)(.*)$"
+        "float on, match:title ^([Pp]icture[-\s]?[Ii]n[-\s]?[Pp]icture)(.*)$"
+        "float on, match:title ^(Open File)(.*)$"
+        "float on, match:title ^(Select a File)(.*)$"
+        "float on, match:title ^(Choose wallpaper)(.*)$"
+        "float on, match:title ^(Open Folder)(.*)$"
+        "float on, match:title ^(Save As)(.*)$"
+        "float on, match:title ^(Library)(.*)$"
+        "float on, match:title ^(File Upload)(.*)$"
         
-        "float, class:^(io.bassi.Amberol)$"
-        "opacity 1 override, class:^(firefox)$"
+        "float on, match:class ^(io.bassi.Amberol)$"
+        "opacity 1 override, match:class ^(firefox)$"
 
-        "keepaspectratio, title:^(Picture(-| )in(-| )[Pp]icture)$"
-        "move 73% 72%,title:^(Picture(-| )in(-| )[Pp]icture)$ "
-        "size 25%, title:^(Picture(-| )in(-| )[Pp]icture)$"
-        "float, title:^(Picture(-| )in(-| )[Pp]icture)$"
-        "pin, title:^(Picture(-| )in(-| )[Pp]icture)$"
+        "keep_aspect_ratio on, match:title ^(Picture(-| )in(-| )[Pp]icture)$"
+        "move 73% 72%, match:title ^(Picture(-| )in(-| )[Pp]icture)$ "
+        "size 25%, match:title ^(Picture(-| )in(-| )[Pp]icture)$"
+        "float on, match:title ^(Picture(-| )in(-| )[Pp]icture)$"
+        "pin on, match:title ^(Picture(-| )in(-| )[Pp]icture)$"
       ] ++ noblur;
 
       layerrule = [
-        "blur, kagent_background"
-        "blur, astal-.*"
-        "ignorealpha 0, astal-.*"
+        "blur on, match:namespace kagent_background"
+        "blur on, match:namespace vshell-.*"
+        "ignore_alpha 0.0, match:namespace vshell-.*"
       ];
     };
   };

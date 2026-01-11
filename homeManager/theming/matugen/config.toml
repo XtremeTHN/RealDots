@@ -19,11 +19,12 @@ output_path = "~/.config/gtk-3.0/colors.css"
 [templates.gtk4]
 input_path = "~/.config/matugen/templates/gtk4.tmp"
 output_path = "~/.config/gtk-4.0/colors.css"
+post_hook = "systemctl restart vala-gcr-prompt vala-polkit-authentication-agent --user && vshell -r"
 
 [templates.kitty]
 input_path = "~/.config/matugen/templates/kitty.tmp"
 output_path = "~/.config/kitty/matugen.conf"
-post_hook = "killall -SIGUSR1 kitty; exit 0"
+post_hook = "pgrep --signal SIGUSR1 kitty; exit 0"
 
 [templates.hyprland]
 input_path = "~/.config/matugen/templates/hypr_colors.tmp"

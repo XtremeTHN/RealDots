@@ -13,6 +13,7 @@ in
     ./theming
     ./apps
     ./wm/hyprland.nix
+    ./wm/wayfire.nix
     ./services
   ];
 
@@ -32,11 +33,13 @@ in
       adwaita-icon-theme
       teams-for-linux
       bibata-cursors
+      prismlauncher
       hydralauncher
       lm_sensors
       parabolic
       distrobox
       showtime
+      vesktop
       fuzzel
       vscode
       direnv
@@ -61,10 +64,11 @@ in
       nautilus
       hyprshot
       fastfetch
-      python314
+      python314 
       adwsteamgtk
       pika-backup
       wl-clipboard
+      icon-library
       osu-lazer-bin
       gnome-keyring
       nixfmt-rfc-style
@@ -83,6 +87,7 @@ in
       # (callPackage ./derivations/kagent.nix {})
       vanana
       gprompt
+      svgtheme
     ]
     ++ printPkgs;
 
@@ -90,6 +95,8 @@ in
     EDITOR = "nvim";
     NIXOS_OZONE_WL = "1";
   };
+
+  xdg.configFile."gtk-4.0/settings.ini".force = true;
 
   # Let home manager install and manage itself.
   programs.home-manager.enable = true;

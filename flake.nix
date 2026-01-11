@@ -13,7 +13,6 @@
     gprompt.url = "github:xtremethn/gprompt";
     vagent.url = "github:xtremethn/vagent";
     vanana.url = "github:xtremethn/vanana";
-    gtk-utils.url = "github:xtremethn/hyprgtkutils";
 
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     zen = {
@@ -21,6 +20,16 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    svgtheme = {
+      url = "github:XtremeTHN/SvgTheme";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    silentSDDM = {
+      url = "github:XtremeTHN/SilentSDDM";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-std.url = "github:chessai/nix-std";
     nvchad-starter = {
       url = "github:XtremeTHN/nvchad-starter";
       flake = false;
@@ -37,8 +46,10 @@
       nixpkgs,
       home-manager,
       nix4nvchad,
-      gtk-utils,
+      silentSDDM,
+      svgtheme,
       gprompt,
+      nix-std,
       vanana,
       vagent,
       vshell,
@@ -54,7 +65,19 @@
         zen = zen.packages.${system}.default;
         vagent = vagent.packages.${system}.default;
         vanana = vanana.packages.${system}.default;
-        hyprland-qtutils = gtk-utils.packages.${system}.default;
+        svgtheme = svgtheme.packages.${system}.default;
+        nix-std = nix-std.lib;
+        silentSDDM = silentSDDM.packages.${system}.default.override {
+          theme = "default";
+          theme-overrides = {
+            "LoginScreen" = {
+              background = "ori.jpeg";
+            };
+            "LockScreen" = {
+              background = "ori.jpeg";
+            };
+          };
+        };
       };
       pkgs = import nixpkgs {
         inherit system;

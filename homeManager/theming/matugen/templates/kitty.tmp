@@ -13,7 +13,7 @@ color0   {{colors.background.default.hex}}
 
 # red
 color1   {{colors.error.default.hex}}
-color9   {{colors.error.default.hex | set_lightness: 10.0}}
+color9   {{colors.error.default.hex}}
 
 # green
 color2   {{colors.secondary.default.hex}}
@@ -24,16 +24,15 @@ color13    {{colors.tertiary.default.hex}}
 color11    {{colors.tertiary.default.hex | set_lightness: 5.0}}
 
 # blue
-/* color4  #8f8aac */
 color4  {{colors.primary.default.hex}}
-color12 {{colors.primary.default.hex | set_lightness: 10.0}}
+color12 {{colors.secondary.default.hex}}
 
 # magenta
-color5   {{colors.tertiary.default.hex | set_lightness: -10.0}}
+color5   {{colors.tertiary.default.hex}}
 color13  {{colors.tertiary.default.hex}}
 
 # cyan
-color6   {{colors.secondary.default.hex | set_lightness: -10.0}}
+color6   {{colors.secondary.default.hex}}
 color14  {{colors.secondary.default.hex | set_lightness: 10.0}}
 
 # white

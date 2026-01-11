@@ -1,22 +1,15 @@
 { pkgs, inputs, ... }:
 
 let
-  tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
   hyprland-session = "${pkgs.hyprland}/share/wayland-sessions";
-in  {
-  services.greetd = {
+in
+{
+  services.displayManager.sddm = {
     enable = true;
-    settings = {
-      default_session = {
-        command = "${tuigreet} \
-          --time\
-          --remember\
-          --remember-session\
-          --sessions ${hyprland-session}
-        ";
-        user = "greeter";
-      };
-    };
+    package = pkgs.kdePackages.sddm;
+    wayland.enable = true;
+    theme = pkgs.silentSDDM.pname;
+    extraPackages = pkgs.silentSDDM.propagatedBuildInputs;
   };
 
   # GNOME keyring

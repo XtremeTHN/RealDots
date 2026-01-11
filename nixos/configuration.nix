@@ -52,6 +52,7 @@
   # System packages
   environment.systemPackages = with pkgs; [
     hplipWithPlugin
+    silentSDDM
     neovim
     upower
     git
