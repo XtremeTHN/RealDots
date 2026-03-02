@@ -126,8 +126,8 @@ in {
 
         "$mainMod, H, exec, grim -t jpeg -q 100; notify-send screen done"
 
+        "$mainMod, B, exec, vshell -t quicksettings"
         ## Astal
-        # "$mainMod, B, exec, astal -t quicksettings"
         # "$mainMod, N, exec, astal -t notification-center"
         # "$mainMod, Z, exec, astal -t tools"
         # "$mainMod, X, exec, astal -t music"
@@ -143,7 +143,8 @@ in {
         "$mainMod, P, pseudo"
         "$mainMod, J, togglesplit"
         "$mainMod, F, fullscreen"
-        
+        "$mainMod, O, pin"
+
         ### Move window to a workspace
         "$mainMod SHIFT, 1, movetoworkspace, 1"
         "$mainMod SHIFT, 2, movetoworkspace, 2"
@@ -208,7 +209,7 @@ in {
       layerrule = [
         "blur on, match:namespace kagent_background"
         "blur on, match:namespace vshell-.*"
-        "ignore_alpha 0.0, match:namespace vshell-.*"
+        "ignore_alpha 0.32, match:namespace vshell-.*"
       ];
     };
   };

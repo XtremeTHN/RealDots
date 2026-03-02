@@ -8,11 +8,16 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     vshell = {
-      url = "github:xtremethn/vshell";
+      url = "github:xtremethn/vshell/rewrite";
     };
     gprompt.url = "github:xtremethn/gprompt";
     vagent.url = "github:xtremethn/vagent";
     vanana.url = "github:xtremethn/vanana";
+
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     zen = {
@@ -39,15 +44,20 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.nvchad-starter.follows = "nvchad-starter";
     };
+    nxloader = {
+      url = "github:xtremethn/nxloader";
+    };
   };
 
   outputs =
     {
       nixpkgs,
+      nix-index-database,
       home-manager,
       nix4nvchad,
       silentSDDM,
       svgtheme,
+      nxloader,
       gprompt,
       nix-std,
       vanana,
@@ -67,6 +77,7 @@
         vanana = vanana.packages.${system}.default;
         svgtheme = svgtheme.packages.${system}.default;
         nix-std = nix-std.lib;
+        nxloader = nxloader.packages.${system}.default;
         silentSDDM = silentSDDM.packages.${system}.default.override {
           theme = "default";
           theme-overrides = {
@@ -123,6 +134,7 @@
           extraSpecialArgs = inputs // deskSet;
           modules = [
             ./homeManager/home.nix
+            nix-index-database.homeModules.default
           ];
         };
         laptop = home-manager.lib.homeManagerConfiguration {

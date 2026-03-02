@@ -59,6 +59,7 @@
 
     zsh
     mangohud
+    polkit
     gst_all_1.gstreamer
     gst_all_1.gst-plugins-good
     gst_all_1.gst-plugins-bad
@@ -82,12 +83,6 @@
         libGL
       ];
     };
-  };
-
-  # For distrobox
-  virtualisation.podman = {
-    enable = true;
-    dockerCompat = true;
   };
 
   system.stateVersion = "24.11"; # Do not delete

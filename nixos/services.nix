@@ -20,11 +20,11 @@ in
       ];
     };
     # Custom
-    # udev = {
-    #   packages = [
-    #     pkgs.xtremeShell
-    #   ];
-    # };
+    udev = {
+      packages = [
+        pkgs.nxloader
+      ];
+    };
     dbus = {
       enable = true;
       implementation = "broker";

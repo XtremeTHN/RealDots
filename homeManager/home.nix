@@ -28,6 +28,8 @@ in
   home.packages =
     with pkgs;
     [
+      hyprpaper
+      nxloader
       (btop.override { rocmSupport = true; })
       morewaita-icon-theme
       adwaita-icon-theme
@@ -36,6 +38,8 @@ in
       prismlauncher
       hydralauncher
       lm_sensors
+      libreoffice
+      notion-app-enhanced
       parabolic
       distrobox
       showtime
@@ -57,9 +61,11 @@ in
       file
       dconf
       loupe
+      nixfmt
       neovim
       neovide
       vencord
+      amberol
       nwg-look
       nautilus
       hyprshot
@@ -71,7 +77,6 @@ in
       icon-library
       osu-lazer-bin
       gnome-keyring
-      nixfmt-rfc-style
       gnome-text-editor
 
       # Astal
@@ -97,7 +102,7 @@ in
   };
 
   xdg.configFile."gtk-4.0/settings.ini".force = true;
-
+  
   # Let home manager install and manage itself.
   programs.home-manager.enable = true;
 }
