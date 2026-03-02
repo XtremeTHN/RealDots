@@ -17,11 +17,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    winapps = {
-      url = "github:winapps-org/winapps";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nvchad-starter = {
       url = "github:XtremeTHN/nvchad-starter";
       flake = false;
@@ -34,14 +29,13 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, winapps, nix4nvchad, zen, vanana, ... } @inputs:
+  outputs = { nixpkgs, home-manager, nix4nvchad, zen, vanana, ... } @inputs:
     let
       system = "x86_64-linux";
       overlay = final: prev: {
         vanana = vanana.packages.${system}.default;
         nix4nvchad = nix4nvchad.packages.${system}.nvchad;
         zen = zen.packages.${system}.default;
-        winapps = winapps.packages.${system};
       };
       pkgs = import nixpkgs { 
         inherit system; 

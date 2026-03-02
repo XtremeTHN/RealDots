@@ -55,21 +55,17 @@ in {
     nautilus
     hyprshot
     fastfetch
-    python3Full
+    python314
     pika-backup
     icon-library
     wl-clipboard
     youtube-music
     gnome-builder
     gnome-keyring
-    nixfmt-rfc-style
+    nixfmt
     colloid-gtk-theme
     gnome-text-editor
     gnome-extension-manager
-    
-    winapps.winapps
-    winapps.winapps-launcher
-
 
     vanana
   ] ++ printPkgs;
