@@ -72,13 +72,13 @@
       enable = true;
       libraries = with pkgs; [
         libvlc
-        xorg.libX11
-        xorg.libXi
-        xorg.libXinerama
-        xorg.libXrandr
-        xorg.libXcursor
-        xorg.libXext
-        xorg.libXrender
+        libX11
+        libXi
+        libxinerama
+        libxrandr
+        libxcursor
+        libxext
+        libxrender
         alsa-lib
         libGL
       ];

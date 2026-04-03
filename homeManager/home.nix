@@ -12,8 +12,7 @@ in
   imports = [
     ./theming
     ./apps
-    ./wm/hyprland.nix
-    ./wm/wayfire.nix
+    ./wm/niri.nix
     ./services
   ];
 
@@ -30,6 +29,7 @@ in
     [
       hyprpaper
       nxloader
+      swaybg
       (btop.override { rocmSupport = true; })
       morewaita-icon-theme
       adwaita-icon-theme
@@ -102,6 +102,9 @@ in
   };
 
   xdg.configFile."gtk-4.0/settings.ini".force = true;
+
+
+  programs.niri.package = pkgs.niri-unstable;
   
   # Let home manager install and manage itself.
   programs.home-manager.enable = true;

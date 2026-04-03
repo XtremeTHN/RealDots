@@ -47,6 +47,7 @@
     nxloader = {
       url = "github:xtremethn/nxloader";
     };
+    niri.url = "github:sodiboo/niri-flake";
   };
 
   outputs =
@@ -63,12 +64,17 @@
       vanana,
       vagent,
       vshell,
+      niri,
       zen,
       ...
     }@inputs:
     let
       system = "x86_64-linux";
-      overlay = final: prev: {
+      overlay = final: prev: let
+        niri-ovrl = niri.overlays.niri;
+      in {
+        inherit niri-ovrl;
+        
         vshell = vshell.packages.${system}.default;
         gprompt = gprompt.packages.${system}.default;
         nix4nvchad = nix4nvchad.packages.${system}.nvchad;
@@ -96,7 +102,10 @@
           allowUnfree = true;
           rocmSupport = true;
         };
-        overlays = [ overlay ];
+        overlays = [
+          overlay
+          niri.overlays.niri
+        ];
       };
 
       deskSet = {
@@ -133,6 +142,7 @@
           inherit pkgs;
           extraSpecialArgs = inputs // deskSet;
           modules = [
+            niri.homeModules.niri
             ./homeManager/home.nix
             nix-index-database.homeModules.default
           ];

@@ -1,7 +1,7 @@
 {
   imports = [
     ./greetd.nix
-    ./hyprland.nix
+    ./niri.nix
     ./fonts.nix
   ];
 
