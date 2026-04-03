@@ -95,6 +95,10 @@
       };
     };
   };
+  
+  services.udev.extraRules = ''
+    SUBSYSTEM=="usb", ATTRS{idVendor}=="057e", ATTRS{idProduct}=="3000", MODE="0666"
+  '';
 
   # For distrobox
   virtualisation.podman = {
@@ -109,6 +113,15 @@
     automatic = true;
     dates = "daily";
     options = "--delete-older-than 1d";
+  };
+  
+  programs.steam = {
+    enable = true;
+  };
+  
+  virtualisation.waydroid = {
+    enable = true;
+    package = pkgs.waydroid-nftables;
   };
 
   # misc options

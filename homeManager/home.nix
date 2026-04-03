@@ -56,6 +56,7 @@ in {
     hyprshot
     fastfetch
     python314
+    prismlauncher
     pika-backup
     icon-library
     wl-clipboard
