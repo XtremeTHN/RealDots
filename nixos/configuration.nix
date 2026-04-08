@@ -93,7 +93,12 @@
     dates = "daily";
     options = "--delete-older-than 1d";
   };
-
+  
+  virtualisation.waydroid = {
+    enable = true;
+    package = pkgs.waydroid-nftables;
+  };
+  
   # misc options
   hardware.xone.enable = true; # steam xbox controller USB support
   hardware.bluetooth.enable = true; # bluetooth

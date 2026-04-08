@@ -30,6 +30,7 @@ in
       hyprpaper
       nxloader
       swaybg
+      xwayland-satellite
       (btop.override { rocmSupport = true; })
       morewaita-icon-theme
       adwaita-icon-theme
@@ -50,7 +51,7 @@ in
       cargo
       glib
       grim
-      swww
+      awww
       gcc
       zen
 
@@ -65,7 +66,6 @@ in
       neovim
       neovide
       vencord
-      amberol
       nwg-look
       nautilus
       hyprshot
@@ -79,8 +79,8 @@ in
       gnome-keyring
       gnome-text-editor
 
-      # Astal
-      vshell
+      # Desktop Shell
+      rshell
 
       # matu
       matugen

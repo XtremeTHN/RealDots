@@ -6,12 +6,9 @@
   matugenConf = {
     config = {
       wallpaper = {
-        arguments = [
-          "img"
-          "--transition-type"
-          "center"
-        ];
-        command = "swww";
+        command = "awww img --transition-type center {{ image }}";
+
+        set = true;
       };
     };
     templates = {
@@ -30,7 +27,7 @@
       gtk4 = {
         input_path = "~/.config/matugen/templates/gtk4.tmp";
         output_path = "~/.config/gtk-4.0/colors.css";
-        post_hook = "systemctl restart vala-gcr-prompt vala-polkit-authentication-agent --user && vshell -r";
+        post_hook = "systemctl restart vala-gcr-prompt vala-polkit-authentication-agent --user";
       };
       svgtheme = {
         input_path = "~/.config/matugen/templates/svgtheme.tmp";

@@ -7,8 +7,8 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    vshell = {
-      url = "github:xtremethn/vshell/rewrite";
+    rshell = {
+      url = "github:xtremethn/RShell";
     };
     gprompt.url = "github:xtremethn/gprompt";
     vagent.url = "github:xtremethn/vagent";
@@ -63,7 +63,7 @@
       nix-std,
       vanana,
       vagent,
-      vshell,
+      rshell,
       niri,
       zen,
       ...
@@ -75,7 +75,7 @@
       in {
         inherit niri-ovrl;
         
-        vshell = vshell.packages.${system}.default;
+        rshell = rshell.packages.${system}.default;
         gprompt = gprompt.packages.${system}.default;
         nix4nvchad = nix4nvchad.packages.${system}.nvchad;
         zen = zen.packages.${system}.default;
