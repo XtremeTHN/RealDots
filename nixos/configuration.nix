@@ -8,8 +8,13 @@
   ];
 
   # Bootloader
-  boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.enable = pkgs.lib.mkForce false;
   boot.loader.efi.canTouchEfiVariables = true;
+  
+  boot.lanzaboote = {
+    enable = true;
+    pkiBundle = "/var/lib/sbctl";
+  };
 
   networking.hostName = "nixos";
 
@@ -55,6 +60,7 @@
     silentSDDM
     neovim
     upower
+    sbctl
     git
 
     zsh
@@ -100,6 +106,6 @@
   };
   
   # misc options
-  hardware.xone.enable = true; # steam xbox controller USB support
+  # hardware.xone.enable = true; # steam xbox controller USB support
   hardware.bluetooth.enable = true; # bluetooth
 }

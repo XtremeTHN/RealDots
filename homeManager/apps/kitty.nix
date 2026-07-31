@@ -7,7 +7,7 @@
     font_family = "JetBrainsMono Nerd Font";
     window_padding_width = 10;
     enable_audio_bell = "no";
-    background_opacity = 0.93;
+    background_opacity = 0.7;
     allow_remote_control = true;
   };
 }

@@ -1,0 +1,109 @@
+output "HDMI-A-2" {
+    mode "1920x1080@164.999"
+    variable-refresh-rate
+}
+
+spawn-at-startup "awww-daemon";
+spawn-at-startup "xwayland-satellite";
+
+window-rule {
+    match app-id="steam_proton$"
+    open-floating true
+}
+
+window-rule {
+    match app-id="zen-beta$" title="^Picture-in-Picture$"
+    open-floating true
+}
+
+window-rule {
+    geometry-corner-radius 14
+    clip-to-geometry true
+}
+
+layout {
+    preset-column-widths {
+        proportion 1.0
+        proportion 0.5
+        proportion 0.33333
+    }
+
+    preset-window-heights {
+        proportion 1.0
+        proportion 0.5
+        proportion 0.33333
+    }
+
+    default-column-width {
+        proportion 0.5
+    }
+
+    focus-ring {
+        on
+        width 0
+        active-gradient from="#A9C7FF" to="#DCBCE1" angle=45
+    }
+
+    border {
+        on
+        width 2
+        active-gradient from="#A9C7FF" to="#DCBCE1" angle=45 
+    }
+
+    shadow {
+        on
+    }
+}
+
+binds {
+    Mod+WheelScrollDown { focus-column-right; }
+    Mod+WheelScrollUp { focus-column-left; }
+
+    Mod+T { spawn "kitty"; }
+    Mod+R { spawn "fuzzel"; }
+    Mod+E { spawn "nautilus"; }
+
+    Mod+1 { focus-workspace 1; }
+    Mod+2 { focus-workspace 2; }
+    Mod+3 { focus-workspace 3; }
+    Mod+4 { focus-workspace 4; }
+    Mod+5 { focus-workspace 5; }
+    Mod+6 { focus-workspace 6; }
+    Mod+7 { focus-workspace 7; }
+    Mod+8 { focus-workspace 8; }
+    Mod+9 { focus-workspace 9; }
+
+    Mod+Shift+1 { move-window-to-workspace 1; }
+    Mod+Shift+2 { move-window-to-workspace 2; }
+    Mod+Shift+3 { move-window-to-workspace 3; }
+    Mod+Shift+4 { move-window-to-workspace 4; }
+    Mod+Shift+5 { move-window-to-workspace 5; }
+    Mod+Shift+6 { move-window-to-workspace 6; }
+    Mod+Shift+7 { move-window-to-workspace 7; }
+    Mod+Shift+8 { move-window-to-workspace 8; }
+    Mod+Shift+9 { move-window-to-workspace 9; }
+
+    Mod+BracketLeft { consume-or-expel-window-left; }
+    Mod+BracketRight { consume-or-expel-window-left; }
+
+    Mod+Shift+BracketLeft { set-column-width "-10%"; }
+    Mod+Shift+BracketRight { set-window-width "+10%"; }
+    Mod+Ctrl+BracketLeft { set-window-height "-10%"; }
+    Mod+Ctrl+BracketRight { set-window-height "+10%"; }
+
+    Mod+F { maximize-column; }
+    Mod+Shift+F { maximize-window-to-edges; }
+    
+    Mod+D { switch-preset-window-width; }
+    Mod+Shift+D { switch-preset-window-height; }
+
+    Mod+V { toggle-window-floating; }
+    Mod+Slash { show-hotkey-overlay; }
+}
+
+window-rule {
+    background-effect {
+        blur true
+        xray false
+    }
+}

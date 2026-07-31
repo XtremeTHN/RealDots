@@ -10,7 +10,6 @@ in
     gvfs.enable = true;
     sshd.enable = true;
     flatpak.enable = true;
-    input-remapper.enable = ifDesktop;
     power-profiles-daemon.enable = true;
 
     printing = {

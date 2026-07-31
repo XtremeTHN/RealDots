@@ -69,13 +69,16 @@ in
       nwg-look
       nautilus
       hyprshot
+      waycorner
       fastfetch
       python314 
+      quickshell
+      # nxthumbnail
       adwsteamgtk
       pika-backup
       wl-clipboard
       icon-library
-      osu-lazer-bin
+      authenticator
       gnome-keyring
       gnome-text-editor
 
@@ -102,9 +105,6 @@ in
   };
 
   xdg.configFile."gtk-4.0/settings.ini".force = true;
-
-
-  programs.niri.package = pkgs.niri-unstable;
   
   # Let home manager install and manage itself.
   programs.home-manager.enable = true;

@@ -3,12 +3,19 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v1.1.0";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    rshell = {
-      url = "github:xtremethn/RShell";
+    # rshell = {
+    #   url = "github:xtremethn/RShell";
+    # };
+    nxthumbnail = {
+      url = "github:xtremethn/nxthumbnailer";
     };
     gprompt.url = "github:xtremethn/gprompt";
     vagent.url = "github:xtremethn/vagent";
@@ -27,9 +34,7 @@
 
     svgtheme = {
       url = "github:XtremeTHN/SvgTheme";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
-
     silentSDDM = {
       url = "github:XtremeTHN/SilentSDDM";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -47,13 +52,14 @@
     nxloader = {
       url = "github:xtremethn/nxloader";
     };
-    niri.url = "github:sodiboo/niri-flake";
   };
 
   outputs =
     {
       nixpkgs,
       nix-index-database,
+      nxthumbnail,
+      lanzaboote,
       home-manager,
       nix4nvchad,
       silentSDDM,
@@ -63,19 +69,14 @@
       nix-std,
       vanana,
       vagent,
-      rshell,
-      niri,
+      # rshell,
       zen,
       ...
     }@inputs:
     let
       system = "x86_64-linux";
-      overlay = final: prev: let
-        niri-ovrl = niri.overlays.niri;
-      in {
-        inherit niri-ovrl;
-        
-        rshell = rshell.packages.${system}.default;
+      overlay = final: prev: {        
+        # rshell = rshell.packages.${system}.default;
         gprompt = gprompt.packages.${system}.default;
         nix4nvchad = nix4nvchad.packages.${system}.nvchad;
         zen = zen.packages.${system}.default;
@@ -84,6 +85,7 @@
         svgtheme = svgtheme.packages.${system}.default;
         nix-std = nix-std.lib;
         nxloader = nxloader.packages.${system}.default;
+        # nxthumbnail = nxthumbnail.packages.${system}.default;
         silentSDDM = silentSDDM.packages.${system}.default.override {
           theme = "default";
           theme-overrides = {
@@ -100,11 +102,9 @@
         inherit system;
         config = {
           allowUnfree = true;
-          rocmSupport = true;
         };
         overlays = [
           overlay
-          niri.overlays.niri
         ];
       };
 
@@ -122,6 +122,7 @@
           inherit system pkgs;
           specialArgs = deskSet;
           modules = [
+            lanzaboote.nixosModules.lanzaboote
             ./hosts/desktop
             ./nixos/configuration.nix
           ];
@@ -142,7 +143,6 @@
           inherit pkgs;
           extraSpecialArgs = inputs // deskSet;
           modules = [
-            niri.homeModules.niri
             ./homeManager/home.nix
             nix-index-database.homeModules.default
           ];
