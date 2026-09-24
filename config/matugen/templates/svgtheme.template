@@ -1,0 +1,7 @@
+[
+  "{{colors.on_primary.default.hex}}",
+  "{{colors.primary_container.default.hex}}",
+  "{{colors.inverse_primary.default.hex}}",
+  "{{colors.on_primary_fixed_variant.default.hex}}",
+  "{{colors.on_primary_fixed_variant.default.hex}}"
+]

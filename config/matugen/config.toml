@@ -1,0 +1,24 @@
+[config]
+[config.wallpaper]
+command = "awww"
+arguments = ["img"]
+set = true
+
+[templates]
+[templates.gtk4]
+input_path = "~/.config/matugen/templates/gtk4.template"
+output_path = "~/.config/gtk-4.0/colors.css"
+
+[templates.mango]
+input_path = "~/.config/matugen/templates/mango.template"
+output_path = "~/.config/mango/theme.conf"
+post_hook = "mmsg dispatch reload_config"
+
+[templates.svgtheme]
+input_path = "~/.config/matugen/templates/svgtheme.template"
+output_path = "~/.config/svgtheme/config.json"
+post_hook = "svgtheme ~/.config/svgtheme/adwaita-icon-theme/scalable/places -o ~/.icons/Adwaita/scalable/places && svgtheme ~/.config/svgtheme/adwaita-icon-theme/scalable/mimetypes/inode-directory.svg -o ~/.icons/Adwaita/scalable/mimetypes"
+
+[templates.quickshell]
+input_path = "~/.config/matugen/templates/quickshell.template"
+output_path = "~/.config/quickshell/constants/Colors.qml"

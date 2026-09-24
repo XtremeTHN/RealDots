@@ -1,0 +1,3 @@
+focuscolor = 0x{{colors.tertiary.default.hex_stripped}}FF
+bordercolor = 0x{{colors.outline.default.hex_stripped}}FF
+urgentcolor = 0x{{colors.primary.default.hex_stripped}}FF
