@@ -14,6 +14,9 @@ PanelWindow {
         top: true
     }
 
+    mask: Region {}
+
+
     color: "transparent"
     implicitWidth: 600
     implicitHeight: 1080

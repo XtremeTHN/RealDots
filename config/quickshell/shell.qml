@@ -6,6 +6,7 @@ import QtQuick
 
 import "components"
 import "components/bar"
+import "components/quicksettings"
 import "components/notifications"
 import "services"
 
@@ -51,5 +52,6 @@ Scope {
         exclusiveZone: -1
     }
 
+    Quicksettings {}
     NotificationList {}
 }

@@ -8,6 +8,7 @@ import Quickshell.Networking
 import Quickshell.Wayland
 import Quickshell.Services.Mpris
 
+import "../statusicons"
 import "../../constants"
 import "../../services"
 import "../"

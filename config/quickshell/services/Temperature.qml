@@ -65,7 +65,7 @@ Scope {
     FileView {
         id: tempReader
         onLoaded: {
-            if (!loaded && text.length == 0) return
+            if (!loaded && text().length == 0) return
 
             root.temperature = parseFloat(text().trim())
         }
@@ -74,7 +74,7 @@ Scope {
     FileView {
         id: maxTempReader
         onLoaded: {
-            if (!loaded && text.length == 0) return
+            if (!loaded && text().length == 0) return
             root.temperature = parseFloat(text().trim())
         }
     }
