@@ -1,22 +1,12 @@
 import QtQuick
-import QtQuick.Effects
-import Quickshell
-import Quickshell.Widgets
+import "root:/"
 
-IconImage {
-    id: icon
-    property string icon_name
-    property color color
+Text {
+    id: root
 
-    function getLocalIcon(icon_name) {
-        return Quickshell.shellDir + "/icons/" + icon_name + ".svg"
-    }
+    property alias size: root.font.pixelSize
+    property alias iconName: root.text
 
-    source: Quickshell.iconPath(icon_name, "image-missing")
-
-    backer.layer.enabled: true
-    backer.layer.effect: MultiEffect {
-        colorization: color != undefined ? 1 : 0
-        colorizationColor: icon.color != undefined ? icon.color : "white" // your desired icon color
-    }
+    color: Colors.on_background
+    font.family: "Material Symbols Rounded"
 }

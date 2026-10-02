@@ -1,80 +1,119 @@
-import QtQuick.Controls
-import QtQuick.Layouts
 import QtQuick
+import QtQuick.Layouts
+import QtQuick.Controls
 
-import "../"
-import "../../constants"
+import "root:/components/statusicons"
+import "root:/components"
+import "root:/"
 
-Button {
+RowLayout {
     id: root
-    implicitHeight: layout.height + 30
-    property string title
-    property string subtitle
-    property string iconName
-    property bool hasMenu: true
 
-    property color textColor: Color.on_surface
-    Layout.fillWidth: true
+    property bool checked: btt.checked
+    property alias iconItem: iconHost.data
 
-    background: Rectangle {
-        Behavior on color {
-            ColorAnimation {
-                duration: 100
-            }
-        }
-        color: {
-            if (root.pressed || root.checked) {
-                root.textColor = Colors.on_primary
-                return Colors.primary
-            }
-            root.textColor = Colors.on_surface
-            return Colors.surface_container
-        }
-        radius: 18
+    required property string title
+    property string subtitle: ""
+
+    readonly property color backgroundColor: checked ? Colors.primary : Colors.surface_container
+    readonly property color foregroundColor: checked ? Colors.on_primary : Colors.on_surface
+
+    spacing: 0
+
+    function click() {
+        let cond = !btt.checked
+
+        btt.checked = cond
+        menu.checked = cond
     }
 
-    contentItem: Item {
-        RowLayout {
-            id: layout
-            anchors.verticalCenter: parent.verticalCenter
-            width: root.width
+    Button {
+        id: btt
+        Layout.fillWidth: true
+        
+        background: ButtonBackground {
+            btt: btt
+            topLeftRadius: 16
+            bottomLeftRadius: 16
+
+            color: root.backgroundColor
+        }
+
+        padding: 13
+        leftPadding: 15
+
+        onClicked: root.click()
+
+        contentItem: RowLayout {
             spacing: 10
 
-            Icon {
-                Layout.alignment: Qt.AlignLeft
-                Layout.leftMargin: 10
-                icon_name: root.iconName
-                implicitSize: 22
-                color: root.textColor
+            Item {
+                Layout.alignment: Qt.AlignCenter
+                id: iconHost
+
+                implicitWidth: childrenRect.width
+                implicitHeight: childrenRect.height
+
+                Binding {
+                    target: iconHost.children.length > 0 ? iconHost.children[0] : null
+                    property: "color"
+                    value: root.foregroundColor
+                }
             }
-            
+
             ColumnLayout {
                 spacing: 0
-                Text {
-                    font.pixelSize: 14
-                    font.weight: 600
-
-                    color: root.textColor
+                Label {
                     text: root.title
+                    font.pixelSize: 16
+                    font.weight: 650
+                    color: root.foregroundColor
                 }
 
-                Text {
-                    color: root.textColor
+                Label {
                     text: root.subtitle
+                    visible: root.subtitle != undefined || root.subtitle != "" 
+                    font.weight: 400
+                    font.pixelSize: 11
+                    color: root.foregroundColor
                 }
             }
+        }
+    }
 
-            Rectangle {
-                Layout.fillWidth: true
+    Button {
+        id: menu
+        checked: root.checked
+        Layout.fillHeight: true
+        Layout.alignment: Qt.AlignCenter
+        background: ButtonBackground {
+            btt: menu
+
+            bottomRightRadius: 16
+            topRightRadius: 16
+
+            color: root.backgroundColor
+        }
+
+        onClicked: {
+            if (!root.hasMenu) {
+                root.click()
+                return
             }
+
+            // TODO
+        }
+        
+        contentItem: Item {
+            implicitHeight: 24
+            implicitWidth: 28
 
             Icon {
-                Layout.rightMargin: 8
-                Layout.alignment: Qt.AlignRight
-                icon_name: getLocalIcon("right")
-                color: root.textColor
-                visible: root.hasMenu
-                implicitSize: 24
+                anchors.centerIn: parent
+                iconName: "keyboard_arrow_right"
+                size: 24
+
+                color: root.foregroundColor
             }
         }
     }
