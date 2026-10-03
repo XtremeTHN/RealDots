@@ -1,5 +1,6 @@
 import QtQuick.Layouts
 import Quickshell.Bluetooth
+import "root:/components/statusicons"
 import "root:/components"
 
 QuickButton {
@@ -20,8 +21,7 @@ QuickButton {
 
     onToggle: cond => adapter.enabled = cond
 
-    iconItem: Icon {
-        iconName: "bluetooth"
+    iconItem: BluetoothIcon {
         size: 24
     }
 }

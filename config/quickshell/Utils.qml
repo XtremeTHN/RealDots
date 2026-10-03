@@ -8,6 +8,16 @@ Singleton {
     readonly property var wifiDevice: Networking.devices.values.find(item => item.type == DeviceType.Wifi)
     readonly property var wiredDevice: Networking.devices.values.find(item => item.type == DeviceType.Wired)
 
+
+    function formatTime(totalSeconds) {
+        const hours = Math.floor(totalSeconds / 3600);
+        const minutes = Math.floor((totalSeconds % 3600) / 60);
+
+        const mm = minutes.toString().padStart(2, '0');
+
+        return `${hours}:${mm}`;
+    }
+
     function getActiveNetwork() {
         for (let x of wifiDevice.networks.values) {
             if (x.connected) return x;

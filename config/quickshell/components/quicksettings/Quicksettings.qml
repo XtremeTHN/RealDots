@@ -1,4 +1,5 @@
-import QtQuick.Controls
+import QtQuick.Controls as Controls
+import Quickshell.Services.UPower
 import Quickshell.Wayland
 import QtQuick.Layouts
 import Quickshell
@@ -27,9 +28,9 @@ PanelWindow {
 
     color: "transparent"
     implicitWidth: 355
-    implicitHeight: 200
+    implicitHeight: 300
 
-    Control {
+    Controls.Control {
         id: content
 
         background: Rectangle {
@@ -75,6 +76,10 @@ PanelWindow {
                         }
                     }
                 }
+
+                QuickBacklightSlider {
+                    Layout.fillWidth: true
+                }
             }
 
             RowLayout {
@@ -82,6 +87,17 @@ PanelWindow {
 
                 Rectangle {
                     Layout.fillWidth: true
+                }
+
+                Label {
+                    visible: UPower.displayDevice.isLaptopBattery
+                    text: {
+                        let percentage = Math.round(UPower.displayDevice.percentage * 100)
+                        let battery = UPower.displayDevice
+                        let charging = battery.state == UPowerDeviceState.Charging
+                        let time = Utils.formatTime(charging ? battery.timeToFull : battery.timeToEmpty)
+                        return `${percentage}% - ${time} ${charging ? "left to charge" : "left"}`
+                    }
                 }
 
                 CircularButton {

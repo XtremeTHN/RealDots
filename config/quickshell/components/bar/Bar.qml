@@ -117,6 +117,10 @@ PanelWindow {
                     AudioIcon {
                         size: 16
                     }
+
+                    BatteryIcon {
+                        size: 16
+                    }
                 }
             }
         }
