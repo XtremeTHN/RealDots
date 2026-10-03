@@ -1,6 +1,6 @@
-import Quickshell.Hyprland
 import "root:/components"
+import "root:/services"
 
 Label {
-    text: Hyprland.activeToplevel == undefined ? "ArchLinux" : Hyprland.activeToplevel.title
+    text: (Wc.activeToplevel == undefined || Wc.activeToplevel.title == "") ? "ArchLinux" : Wc.activeToplevel.title
 }

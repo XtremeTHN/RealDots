@@ -18,9 +18,9 @@ PanelWindow {
     }
 
     implicitHeight: 45
-    color: Qt.alpha(Colors.background, 0.8)
+    color: Qt.alpha(Colors.background, 1)
 
-    BackgroundEffect.blurRegion: Region { item: content }
+    // BackgroundEffect.blurRegion: Region { item: content }
 
     SystemClock {
         id: clock
@@ -45,7 +45,7 @@ PanelWindow {
             }
 
             BarContainer {
-                padding: 7
+                padding: 6
 
                 isLast: true
                 
@@ -83,7 +83,7 @@ PanelWindow {
 
             BarContainer {
                 radius: 4
-                padding: 8
+                padding: 7
 
                 contentItem: Label {
                     text: Qt.formatDateTime(clock.date, "MMM dd")

@@ -1,9 +1,19 @@
 pragma Singleton
 
 import Quickshell
+import Quickshell.Networking
 import Quickshell.Services.Pipewire
 
 Singleton {
+    readonly property var wifiDevice: Networking.devices.values.find(item => item.type == DeviceType.Wifi)
+    readonly property var wiredDevice: Networking.devices.values.find(item => item.type == DeviceType.Wired)
+
+    function getActiveNetwork() {
+        for (let x of wifiDevice.networks.values) {
+            if (x.connected) return x;
+        }
+    }
+
     function getAudioIcon() {
         if (!Pipewire.ready) return "volume_mute"
 
@@ -21,6 +31,7 @@ Singleton {
         if (vol < 0.6) return "volume_down"
         return "volume_up"
     }
+
     function toTitleCase(text) {
         return String(text ?? "").toLowerCase().replace(/\b\w/g, character => character.toUpperCase())
     }

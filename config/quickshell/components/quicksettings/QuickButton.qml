@@ -20,11 +20,15 @@ RowLayout {
 
     spacing: 0
 
+    signal toggle(cond: bool)
+
     function click() {
         let cond = !btt.checked
 
         btt.checked = cond
         menu.checked = cond
+
+        toggle(cond)
     }
 
     Button {
@@ -64,10 +68,13 @@ RowLayout {
             ColumnLayout {
                 spacing: 0
                 Label {
+                    Layout.maximumWidth: 80
                     text: root.title
                     font.pixelSize: 16
                     font.weight: 650
                     color: root.foregroundColor
+                    elide: Text.ElideRight
+                    maximumLineCount: 1
                 }
 
                 Label {

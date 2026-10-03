@@ -1,5 +1,6 @@
 import Quickshell.Networking
 import "root:/components"
+import "root:/"
 
 Icon {
     function getIcon(strength) {
@@ -30,10 +31,7 @@ Icon {
         }
 
         if (wifi != undefined) {
-            let active_network = undefined;
-            for (let x of wifi.networks.values) {
-                if (x.connected) active_network = x;
-            }
+            let active_network = Utils.getActiveNetwork()
 
             if (active_network == undefined) {
                 return "signal_wifi_bad"

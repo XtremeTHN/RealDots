@@ -33,7 +33,7 @@ PanelWindow {
         id: content
 
         background: Rectangle {
-            color: Qt.alpha(Colors.background, 0.8)
+            color: Qt.alpha(Colors.background, 1)
             radius: 16
         }
 
@@ -52,26 +52,9 @@ PanelWindow {
                 columnSpacing: 5
                 uniformCellWidths: true
 
-                QuickButton {
-                    Layout.fillWidth: true
-                    title: "Ethernet"
-                    subtitle: "Connected"
-                    
-                    iconItem: NetworkIcon {
-                        size: 24
-                    }
-                }
+                QuickNetwork {}
 
-                QuickButton {
-                    Layout.fillWidth: true
-                    title: "Bluetooth"
-                    subtitle: "Off"
-
-                    iconItem: Icon {
-                        iconName: "bluetooth"
-                        size: 24
-                    }
-                }
+                QuickBluetooth {}
             }
 
             ColumnLayout {

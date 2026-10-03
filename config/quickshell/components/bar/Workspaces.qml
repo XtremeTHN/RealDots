@@ -1,7 +1,6 @@
-import Quickshell.Hyprland
-
 import QtQuick
 
+import "root:/services"
 import "root:/"
 
 Row {
@@ -9,12 +8,12 @@ Row {
 
     Repeater {
         model: {
-            return Hyprland.workspaces.values.filter(o => !o.name.startsWith("special:"))
+            return Wc.workspaces.filter(o => !o.name.startsWith("special:"))
         }
 
         delegate: Rectangle {
             required property var modelData
-            property bool isActive: Hyprland.focusedWorkspace != undefined && Hyprland.focusedWorkspace.id === modelData.id
+            property bool isActive: Wc.focusedWorkspace != undefined && Wc.focusedWorkspace.id === modelData.id
 
             width: isActive ? 32 : 14
             height: 14
