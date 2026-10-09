@@ -71,14 +71,6 @@ BarContainer {
                 if (!music.activePlayer) return false
                 return music.activePlayer.trackArtUrl != ""
             }
-
-            NumberAnimation on rotation {
-                from: 0
-                to: 360
-                duration: 6000
-                loops: Animation.Infinite
-                running: music.activePlayer ? music.activePlayer.isPlaying : false
-            }
         }
 
         Item {

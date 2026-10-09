@@ -3,13 +3,15 @@ import QtQuick
 import "root:/"
 
 Rectangle {
-    required property var btt
+    property var btt: parent
     property bool flat: false
+    property color idleColor: flat ? "transparent" : Colors.surface_container
+    property color hoverColor: Colors.surface_container_high
 
     color: {
         if (btt.pressed) return Colors.surface_container_highest
-        if (btt.hovered) return Colors.surface_container_high
-        return flat ? "transparent" : Colors.surface_container
+        if (btt.hovered) return hoverColor
+        return idleColor
         // btt.pressed ? Colors.surface_container_highest : Colors.surface_container
     }
 

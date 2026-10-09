@@ -2,6 +2,7 @@ import "root:/components"
 import "root:/services"
 
 MaterialSlider {
+    visible: Backlight.backlightAvailable
     
     iconName: {
         let percent = Backlight.brightnessPercentage

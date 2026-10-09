@@ -1,6 +1,7 @@
 pragma Singleton
 
 import Quickshell
+import Quickshell.Io
 import Quickshell.Networking
 import Quickshell.Services.Pipewire
 
@@ -8,6 +9,29 @@ Singleton {
     readonly property var wifiDevice: Networking.devices.values.find(item => item.type == DeviceType.Wifi)
     readonly property var wiredDevice: Networking.devices.values.find(item => item.type == DeviceType.Wired)
 
+    Process {
+        id: executor
+        signal stdoutReady(data: string)
+
+        stdout: StdioCollector {
+            onStreamFinished: executor.stdoutReady(text)
+        }
+    }
+
+    function notify(title, body, actions) {
+        let _actions = []
+        for (let x of actions) {
+            _actions.push("-A")
+            _actions.push(x.label)
+        }
+
+        executor.exec(["notify-send", title, body, ..._actions])
+        executor.exited.connect((exitCode, _) => {
+            if (actions.length == 0) return;
+            
+
+        })
+    }
 
     function formatTime(totalSeconds) {
         const hours = Math.floor(totalSeconds / 3600);
@@ -19,6 +43,7 @@ Singleton {
     }
 
     function getActiveNetwork() {
+        if (wiredDevice && wiredDevice.network) return wiredDevice.network
         for (let x of wifiDevice.networks.values) {
             if (x.connected) return x;
         }

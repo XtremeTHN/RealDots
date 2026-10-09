@@ -1,5 +1,7 @@
 import QtQuick
+import Quickshell
 import QtQuick.Controls
+import QtQuick.Layouts
 
 import "root:/components"
 import "root:/"
@@ -35,6 +37,15 @@ Row {
         contentItem: Icon {
             size: 16
             iconName: "keyboard_arrow_down"
+        }
+
+        PowerPopup {
+            id: pop_menu
+            anchorItem: power_menu
+        }
+
+        onClicked: {
+            pop_menu.visible = !pop_menu.visible
         }
     }
 }

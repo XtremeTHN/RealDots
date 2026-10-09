@@ -16,6 +16,8 @@ Singleton {
     property int maxBrightness
     property int currBrightness
 
+    property bool backlightAvailable: false
+
     property int brightnessPercentage: {
         ((currBrightness * 100) / maxBrightness)
     }
@@ -33,13 +35,16 @@ Singleton {
         watchChanges: true
 
         onFileChanged: reload()
+        printErrors: false
         onLoaded: {
+            root.backlightAvailable = true
             root.currBrightness = parseInt(text())
         }
     }
 
     FileView {
         path: Utils.joinPath(root.backlightDevicePath, "max_brightness")
+        printErrors: false
         onLoaded: {
             root.maxBrightness = parseInt(text())
         }

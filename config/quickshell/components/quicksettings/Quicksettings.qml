@@ -2,14 +2,18 @@ import QtQuick.Controls as Controls
 import Quickshell.Services.UPower
 import Quickshell.Wayland
 import QtQuick.Layouts
+import Quickshell.Io
 import Quickshell
 import QtQuick
 
 import "root:/components/statusicons"
 import "root:/components"
+import "root:/services"
 import "root:/"
 
 PanelWindow {
+    id: quicksettings
+
     anchors {
         right: true
         top: true
@@ -20,21 +24,29 @@ PanelWindow {
         right: 10
     }
 
-    WlrLayershell.namespace: "quickshell-quicksettings"
+    IpcHandler {
+        target: "quicksettings"
+
+        function toggleQuickSettings() {
+            quicksettings.visible = !quicksettings.visible
+        }
+    }
 
     mask: Region {
         item: content
     }
 
+    WlrLayershell.namespace: "quickshell-quicksettings"
     color: "transparent"
     implicitWidth: 355
     implicitHeight: 300
+    visible: false
 
     Controls.Control {
         id: content
 
         background: Rectangle {
-            color: Qt.alpha(Colors.background, 1)
+            color: Qt.alpha(Colors.background, Settings.s.quickSettings.opacity)
             radius: 16
         }
 
