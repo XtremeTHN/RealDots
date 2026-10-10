@@ -1,23 +1,24 @@
 import QtQuick.Controls
 import QtQuick
 
-import Quickshell.Hyprland
 import Quickshell.Wayland
 
 import "root:/components"
+import "root:/services"
 import "root:/"
 
 Rectangle {
     id: root
     color: "transparent"
+    
     property Toplevel selectedWindow
 
     function refresh() {
-        Hyprland.refreshToplevels()
+        Wc.refreshToplevels()
     }
 
     Repeater {
-        model: Hyprland.toplevels.values.filter(t => t.workspace ? t.workspace.id == Hyprland.focusedWorkspace.id : false)
+        model: Wc.toplevels.filter(t => t.workspace ? t.workspace.id == Wc.focusedWorkspace.id : false)
         
         delegate: Rectangle {
             id: rectangle

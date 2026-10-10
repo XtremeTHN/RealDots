@@ -9,7 +9,7 @@ import "root:/"
 
 PanelWindow {
     id: root
-    // visible: false
+    visible: false
 
     onVisibleChanged: {
         if (!visible) return

@@ -3,6 +3,7 @@ import QtQuick.Layouts
 import QtQuick
 
 import "root:/components"
+import "root:/services"
 import "root:/"
 
 Control {
@@ -99,6 +100,7 @@ Control {
 
             CircularRadioButton {
                 property int mode: Toolbar.Mode.Window
+                enabled: Wc.isHyprland
                 indicator: null
                 iconName: "select_window_2"
             }

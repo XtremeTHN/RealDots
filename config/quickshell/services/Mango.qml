@@ -12,6 +12,7 @@ Singleton {
     property int active_workspace_index
 
     property var tags: []
+    property var clients: []
 
     property string socket_dir: Quickshell.env("MANGO_INSTANCE_SIGNATURE") ?? ""
 
@@ -47,6 +48,30 @@ Singleton {
                 }
 
                 mango.tags = primary.tags
+            }
+        }
+    }
+
+    Socket {
+        id: mango_socket_clients
+        path: mango.socket_dir
+        connected: true
+
+        property bool sentWatchCommand: false
+        
+        onConnectionStateChanged: {
+            if (sentWatchCommand) {
+                return
+            }
+
+            write("watch all-clients\n")
+            sentWatchCommand = true
+        }
+
+        parser: SplitParser {
+            onRead: msg => {
+                let root = JSON.parse(msg)
+                mango.clients = root.clients
             }
         }
     }

@@ -15,7 +15,7 @@ RadioButton {
 
     contentItem: Icon {
         size: 20
-        color: root.checked ? Colors.on_primary : Colors.on_background
+        color: root.enabled ? root.checked ? Colors.on_primary : Colors.on_background : Colors.outline_variant
         iconName: root.iconName
     }
 }
