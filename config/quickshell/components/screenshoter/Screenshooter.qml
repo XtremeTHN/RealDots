@@ -25,7 +25,6 @@ PanelWindow {
 
     WlrLayershell.layer: WlrLayer.Overlay
     exclusionMode: ExclusionMode.Ignore
-    // mask: Region {}
 
     property int operation
 
@@ -33,6 +32,8 @@ PanelWindow {
 
     // property bool frozen: false
     property bool isReady: false
+    property bool portal: false
+    property string portalOutPath
 
     readonly property rect selection: Qt.rect(
         Math.min(selector.startPoint.x, selector.endPoint.x),
@@ -44,6 +45,9 @@ PanelWindow {
         root.visible = false
         view.visible = true
         selector.restart()
+        t.restart()
+
+        console.warn("restart")
     }
 
     SystemClock {
@@ -57,9 +61,6 @@ PanelWindow {
         anchors.fill: parent
         live: false
         paintCursor: false
-
-        // onHasContentChanged: if (hasContent) root.frozen = true
-        // Component.onCompleted: captureFrame()
     }
 
     ShaderEffectSource {
@@ -82,7 +83,6 @@ PanelWindow {
         onCurrentIndexChanged: {
             if (view.captureSource != root.screen && currentIndex != Toolbar.Mode.Window) view.captureSource = root.screen
             if (currentIndex == Toolbar.Mode.Window) winSelector.refresh()
-            crop.hideSource = currentIndex == Toolbar.Mode.Window
         }
 
         Selector {
@@ -115,6 +115,7 @@ PanelWindow {
         
         onClose: {
             root.restart()
+            if (portal) ipc.finished(true)
         }
 
         onDone: {
@@ -126,29 +127,48 @@ PanelWindow {
                 item = crop
             }
             
-            if (mode == Toolbar.Mode.Window) item = view;
+            if (mode == Toolbar.Mode.Window || mode == Toolbar.Mode.Fullscreen) item = view;
+            if (mode == Toolbar.Mode.Fullscreen) {
+                view.captureSource = root.screen
+            }
 
             item.grabToImage(res => {
-                let xdg_screenshots = Quickshell.env("XDG_SCREENSHOT_DIR")
-                let xdg_pictures = Quickshell.env("XDG_PICTURES_DIR")
-                
-                let pictures = Utils.joinPath(Quickshell.env("HOME"), "Pictures")
+                if (!portal) {
+                    let xdg_screenshots = Quickshell.env("XDG_SCREENSHOT_DIR")
+                    let xdg_pictures = Quickshell.env("XDG_PICTURES_DIR")
+                    
+                    let pictures = Utils.joinPath(Quickshell.env("HOME"), "Pictures")
 
-                // use xdg screenshots, fallback to xdg pictures, fallback to pictures folder
-                let baseDir = xdg_screenshots ? xdg_screenshots : (xdg_pictures ? xdg_pictures : pictures)
-                let name = `Screenshot ${Qt.formatDateTime(clock.date, "yyyy-MM-dd")} at ${Qt.formatDateTime(clock.date, "hh.mm.ss")}.png`
+                    // use xdg screenshots, fallback to xdg pictures, fallback to pictures folder
+                    let baseDir = xdg_screenshots ? xdg_screenshots : (xdg_pictures ? xdg_pictures : pictures)
+                    let name = `Screenshot ${Qt.formatDateTime(clock.date, "yyyy-MM-dd")} at ${Qt.formatDateTime(clock.date, "hh.mm.ss")}.png`
 
-                res.saveToFile(Utils.joinPath(baseDir, name))
-                restart()
+                    res.saveToFile(Utils.joinPath(baseDir, name))
+                } else {
+                    res.saveToFile(root.portalOutPath)
+                    ipc.finished(false)
+                }
+
+                root.restart()
             })
         }
     }
 
     IpcHandler {
+        id: ipc
         target: "screenshot"
+
+        signal finished(dismissed: bool)
 
         function toggle() {
             root.visible = !root.visible 
+        }
+
+        function screenshot(target: string, path: string) {
+            root.portal = true
+            root.portalOutPath = path
+            t.setTarget(target)
+            root.visible = true
         }
     }
 }

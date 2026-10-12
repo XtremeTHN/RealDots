@@ -22,6 +22,29 @@ Control {
     signal done()
     signal close()
 
+    function setTarget(target: string) {
+        switch (target) {
+            case "screen":
+                fullscreenBtt.enabled = true
+                windowBtt.enabled = false
+                freeBtt.enabled = false
+            case "area":
+                fullscreenBtt.enabled = false
+                windowBtt.enabled = false
+                freeBtt.enabled = true
+            case "window" || "activeWindow":
+                fullscreenBtt.enabled = false
+                windowBtt.enabled = true
+                freeBtt.enabled = false
+        }
+    }
+
+    function restart() {
+        fullscreenBtt.enabled = true
+        windowBtt.enabled = true
+        freeBtt.enabled = true
+    }
+
     x: (parent.width / 2) - implicitWidth / 2
     y: parent.height / 16
 
@@ -87,18 +110,21 @@ Control {
             spacing: 8
 
             CircularRadioButton {
+                id: fullscreenBtt
                 property int mode: Toolbar.Mode.Fullscreen
                 indicator: null
                 iconName: "fullscreen"
             }
 
             CircularRadioButton {
+                id: freeBtt
                 property int mode: Toolbar.Mode.Free
                 indicator: null
                 iconName: "highlight_alt"
             }
 
             CircularRadioButton {
+                id: windowBtt
                 property int mode: Toolbar.Mode.Window
                 enabled: Wc.isHyprland
                 indicator: null
@@ -123,7 +149,7 @@ Control {
 
             CircularButton {
                 id: check_btt
-                enabled: root.doneEnabled
+                enabled: fullscreenBtt.checked ? true : root.doneEnabled
                 hoverColor: check_btt.enabled ? Colors.surface_container_high : Colors.surface_container
 
                 onClicked: root.done()
