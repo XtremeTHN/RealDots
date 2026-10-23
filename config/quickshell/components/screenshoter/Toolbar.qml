@@ -26,16 +26,25 @@ Control {
         switch (target) {
             case "screen":
                 fullscreenBtt.enabled = true
+                fullscreenBtt.checked = true
+                root.mode = fullscreenBtt.mode
                 windowBtt.enabled = false
                 freeBtt.enabled = false
+                break
             case "area":
                 fullscreenBtt.enabled = false
                 windowBtt.enabled = false
                 freeBtt.enabled = true
-            case "window" || "activeWindow":
+                freeBtt.checked = true
+                root.mode = freeBtt.mode
+                break
+            case "window" || "active_window":
                 fullscreenBtt.enabled = false
                 windowBtt.enabled = true
+                windowBtt.checked = true
+                root.mode = windowBtt.mode
                 freeBtt.enabled = false
+                break
         }
     }
 

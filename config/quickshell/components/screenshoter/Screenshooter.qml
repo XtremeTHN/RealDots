@@ -46,8 +46,6 @@ PanelWindow {
         view.visible = true
         selector.restart()
         t.restart()
-
-        console.warn("restart")
     }
 
     SystemClock {

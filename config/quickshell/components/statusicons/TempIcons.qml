@@ -26,7 +26,7 @@ Row {
 
         iconName: {
             if (gpuTemp.temperature > 70000 || cpuTemp.temperature > 70000) return "emergency_heat"
-            if (gpuTemp.temperature < 30000 || cpuTemp.temperature < 30000) return "snowflake"
+            if (gpuTemp.temperature < 30000 || cpuTemp.temperature < 30000) return "ac_unit"
             return "device_thermostat"
         }
     }

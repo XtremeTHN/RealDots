@@ -2,7 +2,9 @@ import Quickshell
 import "components/bar"
 import "components/screenshoter"
 import "components/quicksettings"
+import "components/notifications"
 import "components/portals/wallpaper"
+import "components/portals/access"
 import "components/portals/usb"
 
 Scope {
@@ -11,4 +13,6 @@ Scope {
     Screenshooter {}
     Wallpaper {}
     Usb {}
+    NotificationList {}
+    Access {}
 }

@@ -10,6 +10,7 @@ Button {
     implicitHeight: implicitWidth
     property alias _flat: background.flat
     property alias hoverColor: background.hoverColor
+    property alias idleColor: background.idleColor
     background: ButtonBackground {
         id: background
         btt: btt
