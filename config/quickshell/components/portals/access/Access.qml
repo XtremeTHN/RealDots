@@ -22,38 +22,10 @@ Dialog {
 
     function getDefaultData() {
         return {
-            title: "Allow App to access USB?",
+            title: "",
             subtitle: "",
-            body: "App wants these devices:",
-            options: {
-                choices: [
-                    [
-                        "read_only",
-                        "Read-only",
-                        [],
-                        "true"
-                    ],
-                    [
-                        "allow",
-                        "Allow for:",
-                        [
-                            [
-                                "once",
-                                "Just Once"
-                            ],
-                            [
-                                "always",
-                                "Always"
-                            ],
-                            [
-                                "deny",
-                                "Deny"
-                            ]
-                        ],
-                        "always"
-                    ]
-                ]
-            },
+            body: "",
+            options: {},
         }
     }
 
@@ -97,7 +69,6 @@ Dialog {
     title: data.title
     subtitle: data.subtitle
     body: data.body
-    visible: true
 
     property var grantLabel: data.options.grant_label != undefined ? data.options.grant_label : "Grant"
     property var denyLabel: data.options.deny_label != undefined ? data.options.deny_label : "Deny" 
