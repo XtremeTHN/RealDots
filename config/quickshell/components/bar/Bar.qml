@@ -68,40 +68,25 @@ PanelWindow {
                 }
             }
 
-            RowLayout {
-                Layout.maximumHeight: 30
+            BarRow {
                 Layout.alignment: Qt.AlignRight
                 Layout.rightMargin: 10
-                spacing: 2
 
                 Music {
                     Layout.fillHeight: true
                     id: music
                 }
 
+                NotificationsButton {}
+
                 BarContainer {
                     Layout.fillHeight: true
                     padding: 7
-
-                    topLeftRadius: music.visible ? 4 : 16 
-                    bottomLeftRadius: music.visible ? 4 : 16
-                    topRightRadius: 4
-                    bottomRightRadius: 4
-
                     contentItem: TempIcons {}
-
-                    Behavior on topLeftRadius {
-                        NumberAnimation { duration: 100 }
-                    }
-
-                    Behavior on bottomLeftRadius {
-                        NumberAnimation { duration: 100 }
-                    }
                 }
 
                 BarContainer {
                     Layout.fillHeight: true
-                    radius: 4
                     padding: 7
 
                     contentItem: Label {

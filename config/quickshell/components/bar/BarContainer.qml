@@ -25,6 +25,22 @@ Control {
     topRightRadius: rightRadius
     bottomRightRadius: rightRadius
 
+    Behavior on topLeftRadius {
+        NumberAnimation { duration: 100 }
+    }
+
+    Behavior on bottomLeftRadius {
+        NumberAnimation { duration: 100 }
+    }
+
+    Behavior on topRightRadius {
+        NumberAnimation { duration: 100 }
+    }
+
+    Behavior on bottomRightRadius {
+        NumberAnimation { duration: 100 }
+    }
+
     background: Rectangle {
         id: back
         color: root.color

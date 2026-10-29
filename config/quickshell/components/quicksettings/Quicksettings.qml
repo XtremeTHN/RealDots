@@ -14,6 +14,8 @@ import "root:/"
 PanelWindow {
     id: quicksettings
 
+    property bool shown: false
+
     anchors {
         right: true
         top: true
@@ -28,7 +30,7 @@ PanelWindow {
         target: "quicksettings"
 
         function toggleQuickSettings() {
-            quicksettings.visible = !quicksettings.visible
+            quicksettings.shown = !quicksettings.shown
         }
     }
 
@@ -40,24 +42,18 @@ PanelWindow {
     color: "transparent"
     implicitWidth: 355
     implicitHeight: 300
-    visible: false
 
-    Controls.Control {
+    visible: shown || content.opacity > 0.01
+
+    SpringControl {
         id: content
-
-        background: Rectangle {
-            color: Qt.alpha(Colors.background, Settings.s.quickSettings.opacity)
-            radius: 16
-        }
-
-        padding: 14
-        topPadding: 16
-        bottomPadding: 16
-
-        implicitWidth: 355
+        
+        shown: quicksettings.shown
+        transformOrigin: Item.TopRight
 
         contentItem: ColumnLayout {
             spacing: 15
+
             GridLayout {
                 Layout.fillWidth: true
 

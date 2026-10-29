@@ -118,6 +118,8 @@ Controls.Control {
         }
 
         Label {
+            Layout.maximumWidth: 380
+            wrapMode: Text.WrapAnywhere
             text: root.body
             opacity: 0.6
             font.weight: 450

@@ -1,10 +1,10 @@
 import QtQuick
 import Quickshell
-import QtQuick.Layouts
 
 import Quickshell.Services.Notifications
 import Quickshell.Wayland
 
+import "root:/services/notifications"
 
 PanelWindow {
     color: "transparent"
@@ -26,36 +26,23 @@ PanelWindow {
         right: 10
     }
 
-    NotificationServer {
-        id: server
-
-        bodyImagesSupported: true
-        actionIconsSupported: false
-        actionsSupported: true
-        bodySupported: true
-        imageSupported: true
-        extraHints: ["materialIcon"]
-
-        onNotification: n => n.tracked = true
-    }
-
     ListView {
         id: view
 
-        model: server.trackedNotifications
+        model: ScriptModel { values: Notifs.popups }
         spacing: 8
+        height: contentHeight
 
         anchors {
             top: parent.top
             left: parent.left
             right: parent.right
         }
-        height: contentHeight
         
         delegate: NotificationCard {
             required property var modelData
             width: ListView.view.width
-            notification: modelData
+            notification: modelData.notification
         }
 
         add: Transition {
